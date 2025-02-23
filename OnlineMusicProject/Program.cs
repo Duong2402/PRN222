@@ -1,12 +1,41 @@
 
+using OnlineMusicProject.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
-var app = builder.Build();
-app.UseStaticFiles();
+builder.Services.AddDbContext<OnlineMusicDBContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineMusic"));
+});
+builder.Services.AddIdentity<Users, IdentityRole>(options =>
+{
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+    options.User.RequireUniqueEmail = true;
+    options.SignIn.RequireConfirmedAccount = false;
+    options.SignIn.RequireConfirmedEmail = false;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
+}).AddEntityFrameworkStores<OnlineMusicDBContext>().AddDefaultTokenProviders();
+builder.Services.AddSession(options =>
+{
 
-app.UseRouting();
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+});
+var app = builder.Build();
+app.UseSession();
+app.UseStaticFiles();
+app.UseRouting(); ;
+app.UseAuthentication();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"
     );
 app.Run();
+
+
+
+

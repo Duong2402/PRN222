@@ -18,6 +18,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\HE172265_PRN212\OnlineMusicProject\OnlineMusicProject
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/HE172265_PRN212/OnlineMusicProject/OnlineMusicProject/Views/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/HE172265_PRN212/OnlineMusicProject/OnlineMusicProject/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/HE172265_PRN212/OnlineMusicProject/OnlineMusicProject/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/HE172265_PRN212/OnlineMusicProject/OnlineMusicProject/Views/Account/VerifyEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxWZXJpZnlFbWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/HE172265_PRN212/OnlineMusicProject/OnlineMusicProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,8 +60,4 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/HE172265_PRN212/OnlineMusicProject/OnlineMusicProject/Views/Users/Event.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRXZlbnQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/HE172265_PRN212/OnlineMusicProject/OnlineMusicProject/Views/Users/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

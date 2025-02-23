@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@using OnlineMusicProject.Models
+@inject SignInManager<Users> signInManager;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -66,7 +70,17 @@
                                             <li><a href="/Users/Blog">News</a></li>
                                             <li><a href="/Users/Contact">Contact</a></li>
                                             <li><a href="/Users/Elements">Elements</a></li>
-                                            <li><a href="/Users/Login">Login</a></li>
+                                            <li>
+                                               @*  <a href="/Account/Login">Login</a> *@
+                                                @if (signInManager.IsSignedIn(User))
+                                                {
+                                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login / Register</a>
+                                                }
+                                            </li>
                                             <li>
                                                 <a href="#">Dropdown</a>
                                                 <ul class="dropdown">
@@ -97,13 +111,21 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="/Users/Login" id="loginBtn">Login / Register</a>
+                                       @*  <a href="/Account/Login" id="loginBtn">Login / Register</a> *@
+                                        @if (signInManager.IsSignedIn(User))
+                                        {
+                                            <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login / Register</a>
+                                        }
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
+                                  @*   <div class="cart-btn">
                                         <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                    </div>
+                                    </div> *@
                                 </div>
                             </div>
                             <!-- Nav End -->
