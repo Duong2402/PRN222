@@ -4185,11 +4185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HE172265_PRN212\\OnlineMusicProject\\OnlineMusicProject\\OnlineMusicProject.csproj",
+      "projectUniqueName": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\OnlineMusicProject.csproj",
       "projectName": "OnlineMusicProject",
-      "projectPath": "D:\\HE172265_PRN212\\OnlineMusicProject\\OnlineMusicProject\\OnlineMusicProject.csproj",
+      "projectPath": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\OnlineMusicProject.csproj",
       "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-      "outputPath": "D:\\HE172265_PRN212\\OnlineMusicProject\\OnlineMusicProject\\obj\\",
+      "outputPath": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
