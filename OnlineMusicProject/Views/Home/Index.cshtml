@@ -1,7 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using OnlineMusicProject.Models
 @inject SignInManager<Users> signInManager;
+@inject UserManager<Users> userManager;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    var user = await userManager.GetUserAsync(User);
+    var fullName = user != null ? user.FullName : "Guest";
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,9 +22,27 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Ẩn dropdown mặc định */
+        .dropdown-menu {
+            display: none;
+        }
 
+        /* Hiển thị dropdown khi di chuyển chuột qua liên kết */
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            position: absolute;
+        }
+
+        .avatar-img {
+            width: 40px; /* Điều chỉnh kích thước */
+            height: 40px; /* Điều chỉnh kích thước */
+            border-radius: 50%; /* Làm tròn hình ảnh */
+            object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+        }
+
+    </style>
 </head>
-
 <body>
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
@@ -71,7 +94,6 @@
                                             <li><a href="/Users/Contact">Contact</a></li>
                                             <li><a href="/Users/Elements">Elements</a></li>
                                             <li>
-                                               @*  <a href="/Account/Login">Login</a> *@
                                                 @if (signInManager.IsSignedIn(User))
                                                 {
                                                     <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
@@ -80,25 +102,6 @@
                                                 {
                                                     <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login / Register</a>
                                                 }
-                                            </li>
-                                            <li>
-                                                <a href="#">Dropdown</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li>
-                                                        <a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                </ul>
                                             </li>
                                         </ul>
                                     </li>
@@ -111,21 +114,27 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                       @*  <a href="/Account/Login" id="loginBtn">Login / Register</a> *@
                                         @if (signInManager.IsSignedIn(User))
                                         {
-                                            <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
+                                            <ul class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" style="display: flex; align-items: center;">
+                                                    <img src="/img/avatar-img/avatar.png" alt="User Avatar" class="avatar-img" style="margin-right: 10px;" />
+                                                    <p style="margin: 0; color: white; font-weight: bold">@fullName</p>
+                                                </a>
+
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item nav-link text-dark" href="/Users/Profile" >Profile</a>
+                                                    <a class="dropdown-item nav-link text-dark" href="#">Recently</a>
+                                                    <a class="dropdown-item nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
+                                                </div>
+                                            </ul>
                                         }
                                         else
                                         {
                                             <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login / Register</a>
                                         }
                                     </div>
-
-                                    <!-- Cart Button -->
-                                  @*   <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                    </div> *@
+                               
                                 </div>
                             </div>
                             <!-- Nav End -->
