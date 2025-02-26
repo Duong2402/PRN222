@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\HE172265_PRN212\\OnlineMusicProject\\OnlineMusicProject\\OnlineMusicProject.csproj": {}
+    "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\OnlineMusicProject.csproj": {}
   },
   "projects": {
-    "D:\\HE172265_PRN212\\OnlineMusicProject\\OnlineMusicProject\\OnlineMusicProject.csproj": {
+    "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\OnlineMusicProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\HE172265_PRN212\\OnlineMusicProject\\OnlineMusicProject\\OnlineMusicProject.csproj",
+        "projectUniqueName": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\OnlineMusicProject.csproj",
         "projectName": "OnlineMusicProject",
-        "projectPath": "D:\\HE172265_PRN212\\OnlineMusicProject\\OnlineMusicProject\\OnlineMusicProject.csproj",
+        "projectPath": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\OnlineMusicProject.csproj",
         "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "D:\\HE172265_PRN212\\OnlineMusicProject\\OnlineMusicProject\\obj\\",
+        "outputPath": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
