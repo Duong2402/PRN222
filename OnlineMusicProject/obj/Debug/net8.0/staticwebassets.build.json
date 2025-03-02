@@ -1,10 +1,6 @@
 {
   "Version": 1,
-<<<<<<< HEAD
-  "Hash": "OSUL7dWxPKsAYBw+R2lN4l/5XVqQGdNhJC6armWEZqQ=",
-=======
   "Hash": "07DUdTCYH50iBMiUUrlFBazQ97Hvp+KvwgOW1PcI4no=",
->>>>>>> ducbinh
   "Source": "OnlineMusicProject",
   "BasePath": "_content/OnlineMusicProject",
   "Mode": "Default",
@@ -14,28 +10,17 @@
     {
       "Name": "OnlineMusicProject\\wwwroot",
       "Source": "OnlineMusicProject",
-<<<<<<< HEAD
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\audio\\dummy-audio.mp3",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\audio\\dummy-audio.mp3",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "audio/dummy-audio.mp3",
       "AssetKind": "All",
@@ -51,17 +36,10 @@
       "OriginalItemSpec": "wwwroot\\audio\\dummy-audio.mp3"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\css\\animate.css",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\css\\animate.css",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "css/animate.css",
       "AssetKind": "All",
@@ -77,17 +55,10 @@
       "OriginalItemSpec": "wwwroot\\css\\animate.css"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\css\\audioplayer.css",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\css\\audioplayer.css",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "css/audioplayer.css",
       "AssetKind": "All",
@@ -103,17 +74,10 @@
       "OriginalItemSpec": "wwwroot\\css\\audioplayer.css"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\css\\bootstrap.min.css",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\css\\bootstrap.min.css",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "css/bootstrap.min.css",
       "AssetKind": "All",
@@ -129,17 +93,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap.min.css"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\css\\classy-nav.css",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\css\\classy-nav.css",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "css/classy-nav.css",
       "AssetKind": "All",
@@ -155,17 +112,10 @@
       "OriginalItemSpec": "wwwroot\\css\\classy-nav.css"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\css\\font-awesome.min.css",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\css\\font-awesome.min.css",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "css/font-awesome.min.css",
       "AssetKind": "All",
@@ -181,17 +131,10 @@
       "OriginalItemSpec": "wwwroot\\css\\font-awesome.min.css"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\css\\magnific-popup.css",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\css\\magnific-popup.css",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "css/magnific-popup.css",
       "AssetKind": "All",
@@ -207,17 +150,10 @@
       "OriginalItemSpec": "wwwroot\\css\\magnific-popup.css"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\css\\one-music-icon.css",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\css\\one-music-icon.css",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "css/one-music-icon.css",
       "AssetKind": "All",
@@ -233,17 +169,10 @@
       "OriginalItemSpec": "wwwroot\\css\\one-music-icon.css"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\css\\owl.carousel.min.css",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\css\\owl.carousel.min.css",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "css/owl.carousel.min.css",
       "AssetKind": "All",
@@ -259,17 +188,10 @@
       "OriginalItemSpec": "wwwroot\\css\\owl.carousel.min.css"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\classy.eot",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\classy.eot",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/classy.eot",
       "AssetKind": "All",
@@ -285,17 +207,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\classy.eot"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\classy.svg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\classy.svg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/classy.svg",
       "AssetKind": "All",
@@ -311,17 +226,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\classy.svg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\classy.ttf",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\classy.ttf",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/classy.ttf",
       "AssetKind": "All",
@@ -337,17 +245,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\classy.ttf"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\classy.woff",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\classy.woff",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/classy.woff",
       "AssetKind": "All",
@@ -363,17 +264,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\classy.woff"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\FontAwesome.otf",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\FontAwesome.otf",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/FontAwesome.otf",
       "AssetKind": "All",
@@ -389,17 +283,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\FontAwesome.otf"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\fontawesome-webfont.eot",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\fontawesome-webfont.eot",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/fontawesome-webfont.eot",
       "AssetKind": "All",
@@ -415,17 +302,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\fontawesome-webfont.eot"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\fontawesome-webfont.svg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\fontawesome-webfont.svg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/fontawesome-webfont.svg",
       "AssetKind": "All",
@@ -441,17 +321,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\fontawesome-webfont.svg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\fontawesome-webfont.ttf",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\fontawesome-webfont.ttf",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/fontawesome-webfont.ttf",
       "AssetKind": "All",
@@ -467,17 +340,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\fontawesome-webfont.ttf"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\fontawesome-webfont.woff",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\fontawesome-webfont.woff",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/fontawesome-webfont.woff",
       "AssetKind": "All",
@@ -493,17 +359,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\fontawesome-webfont.woff"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\fontawesome-webfont.woff2",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\fontawesome-webfont.woff2",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/fontawesome-webfont.woff2",
       "AssetKind": "All",
@@ -519,17 +378,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\fontawesome-webfont.woff2"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\icomoon.eot",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\icomoon.eot",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/icomoon.eot",
       "AssetKind": "All",
@@ -545,17 +397,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\icomoon.eot"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\icomoon.svg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\icomoon.svg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/icomoon.svg",
       "AssetKind": "All",
@@ -571,17 +416,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\icomoon.svg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\icomoon.ttf",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\icomoon.ttf",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/icomoon.ttf",
       "AssetKind": "All",
@@ -597,17 +435,10 @@
       "OriginalItemSpec": "wwwroot\\fonts\\icomoon.ttf"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\fonts\\icomoon.woff",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\fonts\\icomoon.woff",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "fonts/icomoon.woff",
       "AssetKind": "All",
@@ -623,12 +454,6 @@
       "OriginalItemSpec": "wwwroot\\fonts\\icomoon.woff"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a1.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\avatar-img\\avatar.png",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
@@ -652,7 +477,6 @@
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a1.jpg",
       "AssetKind": "All",
@@ -668,17 +492,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a1.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a10.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a10.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a10.jpg",
       "AssetKind": "All",
@@ -694,17 +511,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a10.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a11.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a11.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a11.jpg",
       "AssetKind": "All",
@@ -720,17 +530,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a11.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a12.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a12.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a12.jpg",
       "AssetKind": "All",
@@ -746,17 +549,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a12.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a2.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a2.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a2.jpg",
       "AssetKind": "All",
@@ -772,17 +568,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a2.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a3.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a3.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a3.jpg",
       "AssetKind": "All",
@@ -798,17 +587,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a3.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a4.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a4.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a4.jpg",
       "AssetKind": "All",
@@ -824,17 +606,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a4.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a5.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a5.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a5.jpg",
       "AssetKind": "All",
@@ -850,17 +625,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a5.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a6.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a6.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a6.jpg",
       "AssetKind": "All",
@@ -876,17 +644,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a6.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a7.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a7.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a7.jpg",
       "AssetKind": "All",
@@ -902,17 +663,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a7.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a8.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a8.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a8.jpg",
       "AssetKind": "All",
@@ -928,17 +682,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a8.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a9.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\a9.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/a9.jpg",
       "AssetKind": "All",
@@ -954,17 +701,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\a9.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\add.gif",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\add.gif",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/add.gif",
       "AssetKind": "All",
@@ -980,17 +720,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\add.gif"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\add2.gif",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\add2.gif",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/add2.gif",
       "AssetKind": "All",
@@ -1006,17 +739,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\add2.gif"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\add3.gif",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\add3.gif",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/add3.gif",
       "AssetKind": "All",
@@ -1032,17 +758,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\add3.gif"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\b1.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\b1.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/b1.jpg",
       "AssetKind": "All",
@@ -1058,17 +777,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\b1.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\b2.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\b2.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/b2.jpg",
       "AssetKind": "All",
@@ -1084,17 +796,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\b2.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\b3.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\b3.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/b3.jpg",
       "AssetKind": "All",
@@ -1110,17 +815,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\b3.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\b4.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\b4.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/b4.jpg",
       "AssetKind": "All",
@@ -1136,17 +834,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\b4.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\bg-1.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\bg-1.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/bg-1.jpg",
       "AssetKind": "All",
@@ -1162,17 +853,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\bg-1.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\bg-2.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\bg-2.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/bg-2.jpg",
       "AssetKind": "All",
@@ -1188,17 +872,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\bg-2.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\bg-3.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\bg-3.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/bg-3.jpg",
       "AssetKind": "All",
@@ -1214,17 +891,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\bg-3.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\bg-4.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\bg-4.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/bg-4.jpg",
       "AssetKind": "All",
@@ -1240,17 +910,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\bg-4.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\blog1.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\blog1.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/blog1.jpg",
       "AssetKind": "All",
@@ -1266,17 +929,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\blog1.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\blog2.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\blog2.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/blog2.jpg",
       "AssetKind": "All",
@@ -1292,17 +948,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\blog2.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\blog3.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\blog3.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/blog3.jpg",
       "AssetKind": "All",
@@ -1318,17 +967,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\blog3.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\breadcumb.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\breadcumb.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/breadcumb.jpg",
       "AssetKind": "All",
@@ -1344,17 +986,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\breadcumb.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\breadcumb2.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\breadcumb2.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/breadcumb2.jpg",
       "AssetKind": "All",
@@ -1370,17 +1005,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\breadcumb2.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\breadcumb3.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\breadcumb3.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/breadcumb3.jpg",
       "AssetKind": "All",
@@ -1396,17 +1024,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\breadcumb3.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e1.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e1.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/e1.jpg",
       "AssetKind": "All",
@@ -1422,17 +1043,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\e1.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e2.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e2.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/e2.jpg",
       "AssetKind": "All",
@@ -1448,17 +1062,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\e2.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e3.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e3.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/e3.jpg",
       "AssetKind": "All",
@@ -1474,17 +1081,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\e3.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e4.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e4.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/e4.jpg",
       "AssetKind": "All",
@@ -1500,17 +1100,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\e4.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e5.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e5.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/e5.jpg",
       "AssetKind": "All",
@@ -1526,17 +1119,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\e5.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e6.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e6.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/e6.jpg",
       "AssetKind": "All",
@@ -1552,17 +1138,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\e6.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e7.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e7.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/e7.jpg",
       "AssetKind": "All",
@@ -1578,17 +1157,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\e7.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e8.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e8.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/e8.jpg",
       "AssetKind": "All",
@@ -1604,17 +1176,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\e8.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e9.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\e9.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/e9.jpg",
       "AssetKind": "All",
@@ -1630,17 +1195,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\e9.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\fa.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\fa.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/fa.jpg",
       "AssetKind": "All",
@@ -1656,17 +1214,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\fa.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa1.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa1.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/pa1.jpg",
       "AssetKind": "All",
@@ -1682,17 +1233,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\pa1.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa2.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa2.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/pa2.jpg",
       "AssetKind": "All",
@@ -1708,17 +1252,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\pa2.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa3.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa3.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/pa3.jpg",
       "AssetKind": "All",
@@ -1734,17 +1271,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\pa3.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa4.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa4.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/pa4.jpg",
       "AssetKind": "All",
@@ -1760,17 +1290,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\pa4.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa5.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa5.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/pa5.jpg",
       "AssetKind": "All",
@@ -1786,17 +1309,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\pa5.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa6.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa6.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/pa6.jpg",
       "AssetKind": "All",
@@ -1812,17 +1328,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\pa6.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa7.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\pa7.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/pa7.jpg",
       "AssetKind": "All",
@@ -1838,17 +1347,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\pa7.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\s1.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\s1.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/s1.jpg",
       "AssetKind": "All",
@@ -1864,17 +1366,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\s1.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\s2.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\s2.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/s2.jpg",
       "AssetKind": "All",
@@ -1890,17 +1385,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\s2.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\s3.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\s3.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/s3.jpg",
       "AssetKind": "All",
@@ -1916,17 +1404,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\s3.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\s4.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\s4.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/s4.jpg",
       "AssetKind": "All",
@@ -1942,17 +1423,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\s4.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\t1.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\t1.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/t1.jpg",
       "AssetKind": "All",
@@ -1968,17 +1442,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\t1.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt1.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt1.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt1.jpg",
       "AssetKind": "All",
@@ -1994,17 +1461,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt1.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt10.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt10.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt10.jpg",
       "AssetKind": "All",
@@ -2020,17 +1480,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt10.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt11.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt11.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt11.jpg",
       "AssetKind": "All",
@@ -2046,17 +1499,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt11.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt12.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt12.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt12.jpg",
       "AssetKind": "All",
@@ -2072,17 +1518,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt12.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt2.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt2.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt2.jpg",
       "AssetKind": "All",
@@ -2098,17 +1537,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt2.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt3.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt3.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt3.jpg",
       "AssetKind": "All",
@@ -2124,17 +1556,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt3.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt4.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt4.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt4.jpg",
       "AssetKind": "All",
@@ -2150,17 +1575,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt4.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt5.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt5.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt5.jpg",
       "AssetKind": "All",
@@ -2176,17 +1594,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt5.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt6.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt6.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt6.jpg",
       "AssetKind": "All",
@@ -2202,17 +1613,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt6.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt7.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt7.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt7.jpg",
       "AssetKind": "All",
@@ -2228,17 +1632,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt7.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt8.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt8.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt8.jpg",
       "AssetKind": "All",
@@ -2254,17 +1651,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt8.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt9.jpg",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\bg-img\\wt9.jpg",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/bg-img/wt9.jpg",
       "AssetKind": "All",
@@ -2280,17 +1670,10 @@
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\wt9.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\core-img\\favicon.ico",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\core-img\\favicon.ico",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/core-img/favicon.ico",
       "AssetKind": "All",
@@ -2306,17 +1689,10 @@
       "OriginalItemSpec": "wwwroot\\img\\core-img\\favicon.ico"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\img\\core-img\\logo.png",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\core-img\\logo.png",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "img/core-img/logo.png",
       "AssetKind": "All",
@@ -2332,17 +1708,10 @@
       "OriginalItemSpec": "wwwroot\\img\\core-img\\logo.png"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\js\\active.js",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\js\\active.js",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "js/active.js",
       "AssetKind": "All",
@@ -2358,17 +1727,10 @@
       "OriginalItemSpec": "wwwroot\\js\\active.js"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\js\\bootstrap\\bootstrap.min.js",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\js\\bootstrap\\bootstrap.min.js",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "js/bootstrap/bootstrap.min.js",
       "AssetKind": "All",
@@ -2384,17 +1746,10 @@
       "OriginalItemSpec": "wwwroot\\js\\bootstrap\\bootstrap.min.js"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\js\\bootstrap\\popper.min.js",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\js\\bootstrap\\popper.min.js",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "js/bootstrap/popper.min.js",
       "AssetKind": "All",
@@ -2410,17 +1765,10 @@
       "OriginalItemSpec": "wwwroot\\js\\bootstrap\\popper.min.js"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\js\\jquery\\jquery-2.2.4.min.js",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\js\\jquery\\jquery-2.2.4.min.js",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "js/jquery/jquery-2.2.4.min.js",
       "AssetKind": "All",
@@ -2436,17 +1784,10 @@
       "OriginalItemSpec": "wwwroot\\js\\jquery\\jquery-2.2.4.min.js"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\js\\plugins\\plugins.js",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\js\\plugins\\plugins.js",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "js/plugins/plugins.js",
       "AssetKind": "All",
@@ -2462,17 +1803,10 @@
       "OriginalItemSpec": "wwwroot\\js\\plugins\\plugins.js"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\scss\\_fonts.scss",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\scss\\_fonts.scss",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "scss/_fonts.scss",
       "AssetKind": "All",
@@ -2488,17 +1822,10 @@
       "OriginalItemSpec": "wwwroot\\scss\\_fonts.scss"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\scss\\_mixin.scss",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\scss\\_mixin.scss",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "scss/_mixin.scss",
       "AssetKind": "All",
@@ -2514,17 +1841,10 @@
       "OriginalItemSpec": "wwwroot\\scss\\_mixin.scss"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\scss\\_responsive.scss",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\scss\\_responsive.scss",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "scss/_responsive.scss",
       "AssetKind": "All",
@@ -2540,17 +1860,10 @@
       "OriginalItemSpec": "wwwroot\\scss\\_responsive.scss"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\scss\\_theme_color.scss",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\scss\\_theme_color.scss",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "scss/_theme_color.scss",
       "AssetKind": "All",
@@ -2566,17 +1879,10 @@
       "OriginalItemSpec": "wwwroot\\scss\\_theme_color.scss"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\scss\\style.scss",
-      "SourceId": "OnlineMusicProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\HE172265_PRN212\\PRN222\\OnlineMusicProject\\wwwroot\\",
-=======
       "Identity": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\scss\\style.scss",
       "SourceId": "OnlineMusicProject",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\",
->>>>>>> ducbinh
       "BasePath": "_content/OnlineMusicProject",
       "RelativePath": "scss/style.scss",
       "AssetKind": "All",

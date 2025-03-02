@@ -12,12 +12,15 @@ namespace OnlineMusicProject.Controllers
     {
         private readonly SignInManager<Users> signInManager;
         private readonly UserManager<Users> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
 
-        public AccountController(SignInManager<Users> signInManager, UserManager<Users> userManager)
+        public AccountController(SignInManager<Users> signInManager, UserManager<Users> userManager, RoleManager<IdentityRole> roleManager)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
+            this.roleManager = roleManager;
         }
+
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -27,6 +30,7 @@ namespace OnlineMusicProject.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -54,6 +58,7 @@ namespace OnlineMusicProject.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -67,6 +72,14 @@ namespace OnlineMusicProject.Controllers
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var roleExit = await roleManager.RoleExistsAsync("User");
+                    if (!roleExit)
+                    {
+                        var role = new IdentityRole("User");
+                        await roleManager.CreateAsync(role);
+                    }
+                    await userManager.AddToRoleAsync(user, "User");
+                    await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Login", "Account");
                 }
                 else
@@ -90,6 +103,7 @@ namespace OnlineMusicProject.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> VerifyEmail(VerifyEmailViewModel model)
         {
             if (ModelState.IsValid)

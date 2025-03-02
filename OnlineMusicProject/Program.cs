@@ -2,6 +2,7 @@
 using OnlineMusicProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using OnlineMusicProject.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -22,10 +23,10 @@ builder.Services.AddIdentity<Users, IdentityRole>(options =>
 }).AddEntityFrameworkStores<OnlineMusicDBContext>().AddDefaultTokenProviders();
 builder.Services.AddSession(options =>
 {
-
     options.IdleTimeout = TimeSpan.FromMinutes(30);
 });
 var app = builder.Build();
+await SeedService.SeedDb(app.Services);
 app.UseSession();
 app.UseStaticFiles();
 app.UseRouting(); ;
