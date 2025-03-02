@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineMusicProject.Models;
 using OnlineMusicProject.ViewModels;
@@ -13,9 +14,13 @@ namespace OnlineMusicProject.Controllers
         {
             this.userManager = userManager;
         }
-
+        [Authorize(Roles = "User")]
         public IActionResult Profile()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
         [HttpPost]
