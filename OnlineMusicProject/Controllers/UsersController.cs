@@ -14,13 +14,9 @@ namespace OnlineMusicProject.Controllers
         {
             this.userManager = userManager;
         }
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Admin")]
         public IActionResult Profile()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Home");
-            }
             return View();
         }
         [HttpPost]

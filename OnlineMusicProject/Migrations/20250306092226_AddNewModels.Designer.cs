@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineMusicProject.Models;
 
@@ -11,9 +12,11 @@ using OnlineMusicProject.Models;
 namespace OnlineMusicProject.Migrations
 {
     [DbContext(typeof(OnlineMusicDBContext))]
-    partial class OnlineMusicDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250306092226_AddNewModels")]
+    partial class AddNewModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,15 +194,17 @@ namespace OnlineMusicProject.Migrations
                     b.Property<Guid>("SongId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("HistoryId");
 
                     b.HasIndex("SongId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Histories");
                 });
@@ -247,13 +252,15 @@ namespace OnlineMusicProject.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("PlaylistId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Playlists");
                 });
@@ -449,9 +456,7 @@ namespace OnlineMusicProject.Migrations
 
                     b.HasOne("OnlineMusicProject.Models.Users", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("Songs");
 
@@ -481,9 +486,7 @@ namespace OnlineMusicProject.Migrations
                 {
                     b.HasOne("OnlineMusicProject.Models.Users", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("User");
                 });
