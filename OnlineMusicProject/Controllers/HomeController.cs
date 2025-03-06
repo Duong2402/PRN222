@@ -9,8 +9,11 @@ namespace OnlineMusicProject.Controllers
         {
             return View();
         }
-        [Authorize]
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult Errors()
         {
             return View();
         }
