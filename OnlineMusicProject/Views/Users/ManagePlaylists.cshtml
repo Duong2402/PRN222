@@ -1,0 +1,58 @@
+﻿@model IEnumerable<OnlineMusicProject.Models.Playlists>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Manage Playlists";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title -->
+    <title>Online Music</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+<div class="container mt-5" style="margin-top: 100px; padding-top: 20px;">
+    <h1>Manage Playlists</h1>
+    <a asp-action="CreatePlaylist" class="btn btn-success mb-3">Add New Playlist</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>User</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var playlist in Model)
+            {
+                <tr>
+                    <td>@playlist.PlaylistId</td>
+                    <td>@playlist.PlaylistName</td>
+                    <td>@playlist.User?.FullName</td>
+                    <td>@playlist.CreatedAt?.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a asp-action="EditPlaylist" asp-route-id="@playlist.PlaylistId" class="btn btn-sm btn-primary">Edit</a>
+                        <a asp-action="DeletePlaylist" asp-route-id="@playlist.PlaylistId" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>

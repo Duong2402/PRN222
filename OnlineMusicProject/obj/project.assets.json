@@ -4180,19 +4180,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pc\\.nuget\\packages\\": {}
+    "C:\\Users\\ROG STRIX\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\OnlineMusicProject.csproj",
+      "projectUniqueName": "D:\\e\\PRN222\\OnlineMusicProject\\OnlineMusicProject.csproj",
       "projectName": "OnlineMusicProject",
-      "projectPath": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\OnlineMusicProject.csproj",
-      "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-      "outputPath": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\obj\\",
+      "projectPath": "D:\\e\\PRN222\\OnlineMusicProject\\OnlineMusicProject.csproj",
+      "packagesPath": "C:\\Users\\ROG STRIX\\.nuget\\packages\\",
+      "outputPath": "D:\\e\\PRN222\\OnlineMusicProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ROG STRIX\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4200,7 +4200,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4262,7 +4261,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
