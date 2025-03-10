@@ -1,0 +1,95 @@
+﻿@using OnlineMusicProject.Models
+@model Songs
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title -->
+    <title>Online Music</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .fixed-size-img {
+            width: 120px; 
+            height: 120px;
+            object-fit: cover; 
+        }
+
+        .related-song-img {
+            width: 60px; 
+            height: 60px; 
+            object-fit: cover; 
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>@Model.NameSong</p>
+            <h2>@Model.Artists.ArtistName</h2>
+        </div>
+    </section>
+
+    <div class="one-music-songs-area mb-70" style="margin-top: 40px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
+                        <div class="song-thumbnail">
+                            <img src="@Model.ImageSong" alt="@Model.NameSong" class="fixed-size-img">
+                        </div>
+                        <div class="song-play-area">
+                            <div class="song-name">
+                                <p>@Model.NameSong</p>
+                            </div>
+                            <audio controls >
+                                <source src="@Model.FilePath" type="audio/mpeg">
+                            </audio>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" style="text-align:center;">
+                    <h4>Các bài hát cùng thể loại</h4>
+                    <div class="single-related-song d-flex mb-3" style="justify-content:center; margin-top: 20px">
+                        <div class="thumbnail">
+                            <img src="" alt="" class="related-song-img">
+                        </div>
+                        <div class="song-info ml-3">
+                            <h6>Tháng tư là lời nói dối đầu tiên của tôi </h6>
+                            <p>Qunag Hùng MasterD</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- jQuery-2.2.4 js -->
+    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="/js/active.js"></script>
+</body>
+
+</html>

@@ -1,6 +1,38 @@
 {
   "Files": [
     {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\audio\\Anh-Cu-Di-Di-Hari-Won.mp3",
+      "PackagePath": "staticwebassets\\audio\\Anh-Cu-Di-Di-Hari-Won.mp3"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\audio\\Anh-Da-Quen-Voi-Co-Don-Soobin-Hoang-Son.mp3",
+      "PackagePath": "staticwebassets\\audio\\Anh-Da-Quen-Voi-Co-Don-Soobin-Hoang-Son.mp3"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\audio\\Dieu-Buon-Nhat-Kai-Dinh.mp3",
+      "PackagePath": "staticwebassets\\audio\\Dieu-Buon-Nhat-Kai-Dinh.mp3"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\audio\\Ngay-Chua-Giong-Bao-Bui-Lan-Huong.mp3",
+      "PackagePath": "staticwebassets\\audio\\Ngay-Chua-Giong-Bao-Bui-Lan-Huong.mp3"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\audio\\Vo-Nguoi-Ta-Phan-Manh-Quynh.mp3",
+      "PackagePath": "staticwebassets\\audio\\Vo-Nguoi-Ta-Phan-Manh-Quynh.mp3"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\audio\\Xin-Dung-Lang-Im-Soobin-Hoang-Son.mp3",
+      "PackagePath": "staticwebassets\\audio\\Xin-Dung-Lang-Im-Soobin-Hoang-Son.mp3"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\audio\\Yeu-Em-Rat-Nhieu-Hoang-Ton.mp3",
+      "PackagePath": "staticwebassets\\audio\\Yeu-Em-Rat-Nhieu-Hoang-Ton.mp3"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\audio\\Yeu-Mot-Nguoi-Vo-Tam-Bao-Anh.mp3",
+      "PackagePath": "staticwebassets\\audio\\Yeu-Mot-Nguoi-Vo-Tam-Bao-Anh.mp3"
+    },
+    {
       "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\audio\\dummy-audio.mp3",
       "PackagePath": "staticwebassets\\audio\\dummy-audio.mp3"
     },
@@ -355,6 +387,38 @@
     {
       "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\core-img\\logo.png",
       "PackagePath": "staticwebassets\\img\\core-img\\logo.png"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\song-image\\song1.jpg",
+      "PackagePath": "staticwebassets\\img\\song-image\\song1.jpg"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\song-image\\song2.jpg",
+      "PackagePath": "staticwebassets\\img\\song-image\\song2.jpg"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\song-image\\song3.jpg",
+      "PackagePath": "staticwebassets\\img\\song-image\\song3.jpg"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\song-image\\song4.jpg",
+      "PackagePath": "staticwebassets\\img\\song-image\\song4.jpg"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\song-image\\song5.jpg",
+      "PackagePath": "staticwebassets\\img\\song-image\\song5.jpg"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\song-image\\song6.jpg",
+      "PackagePath": "staticwebassets\\img\\song-image\\song6.jpg"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\song-image\\song7.jpg",
+      "PackagePath": "staticwebassets\\img\\song-image\\song7.jpg"
+    },
+    {
+      "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\img\\song-image\\song8.jpg",
+      "PackagePath": "staticwebassets\\img\\song-image\\song8.jpg"
     },
     {
       "Id": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\wwwroot\\js\\active.js",

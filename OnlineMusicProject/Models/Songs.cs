@@ -21,13 +21,11 @@ namespace OnlineMusicProject.Models
         [StringLength(255)]
         [Display(Name = "File_Path")]
         public string FilePath { get; set; }
-        [ForeignKey("GenreId")]
-
+        public string Lyrics { get; set; }
         public Guid GenreId { get; set; }
-        [ForeignKey("ArtistId")]
+        public SongGenres songGenres { get; set; }
         public Guid ArtistId {  get; set; }
         public Artists Artists { get; set; }
-        public SongGenres songGenres { get; set; }
         public ICollection<PlaylistSongs> PlaylistSongs { get; set; }
         public ICollection<Histories> Histories { get; set; }
 

@@ -1,0 +1,211 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.AspNetCore.Identity;
+@using OnlineMusicProject.Models
+@inject SignInManager<Users> signInManager;
+@inject UserManager<Users> userManager;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model OnlineMusicProject.ViewModels.UserProfileViewModel
+@{
+    var user = await userManager.GetUserAsync(User);
+    var fullName = user != null ? user.FullName : "Guest";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title -->
+    <title>Online Music</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/core-img/favicon.ico">
+    <!-- Thêm Font Awesome vào phần <head> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .edit-button i {
+            transition: color 0.3s ease;
+        }
+
+        .edit-button:hover i {
+            color: black;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            border-radius: 5px;
+            text-align: center;
+            z-index: 10000;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        #updateNameForm input {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        #updateNameForm button {
+            padding: 10px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            #updateNameForm button:hover {
+                background-color: #45a049;
+            }
+
+        .delete-btn {
+            background-color: transparent;
+            border: 1px solid gray;
+            border-radius: 50%;
+            padding: 0 7px;
+            cursor: pointer;
+            color: gray; /* Màu xám lúc ban đầu */
+            transition: color 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+            font-size:15px
+        }
+
+            .delete-btn:hover {
+                color: red; /* Màu đỏ khi hover */
+                border: 1px solid red;
+            }
+
+
+    </style>
+</head>
+
+<body>
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent" style="display: flex; align-items: center; justify-content: center; text-align: center;">
+            <img src="/img/avatar-img/avatar.png" alt="User Avatar" class="avatar-img" style="margin-right: 20px; width: 70px; height: 70px; border-radius: 50%; object-fit: cover;" />
+            <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 30px">@fullName</p>
+            <button class="edit-button" style="font-size: 20px; cursor: pointer; border: none; background: none; color: gray;" onclick="openModal()">
+                <i class="fas fa-pencil-alt"></i>
+            </button>
+        </div>
+    </section>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>
+            <form id="updateNameForm" asp-action="Profile" method="post">
+                <input asp-for="User.FullName" id="FullName" placeholder="Enter new name">
+                <span asp-validation-for="User.FullName" class="text-danger"></span>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <h3>Lịch sử nghe nhạc</h3>
+                        <div class="login-form" style="position: relative;">
+                            @foreach(var history in Model.Histories)
+                            {
+                               
+                                <div style="display: flex; align-items: center;">
+                                   
+                                        <div style="flex-grow: 1; text-align:left">
+                                           <a asp-controller="Songs" asp-action="Details" asp-route-id="@history.SongId">
+                                              <p style="margin: 0; font-weight: bold; font-size:20px">@history.Songs.NameSong</p>
+                                              <p style="margin: 0; font-size: 15px; color: gray;">@history.Songs.Artists.ArtistName</p>
+                                           </a>
+                                        </div>
+                               
+                                  
+                                    <div style="text-align: right; display:flex; flex: 1;justify-content:space-around">
+                                        <p style="margin: 0; font-size: 15px; color: gray;">@history.PlayedAt</p>
+                                        <a class="delete-btn" asp-action="RemoveFromHistories" asp-route-songId="@history.SongId">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="/js/active.js"></script>
+    <script>
+        var modal = document.getElementById("myModal");
+
+        function openModal() {
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        document.getElementById("updateNameForm").onsubmit = function (event) {
+            // Không cần preventDefault
+            closeModal(); // Đóng modal sau khi submit
+        };
+    </script>
+</body>
+
+</html>

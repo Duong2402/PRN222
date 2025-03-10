@@ -9,6 +9,13 @@
   <ItemGroup>
     <Content Remove="wwwroot\css\style.css" />
     <Content Remove="wwwroot\css\style.css.map" />
+    <Content Remove="wwwroot\img\artist-image\Artist.jpg" />
+    <Content Remove="wwwroot\img\artist-image\Artist1.jpg" />
+    <Content Remove="wwwroot\img\artist-image\Artist2.jpg" />
+    <Content Remove="wwwroot\img\artist-image\Artist3.jpg" />
+    <Content Remove="wwwroot\img\artist-image\Artist4.jpg" />
+    <Content Remove="wwwroot\img\artist-image\Artist5.jpg" />
+    <Content Remove="wwwroot\img\artist-image\Artist6.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +51,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="wwwroot\img\artist-image\Artist.jpg" />
+    <Resource Include="wwwroot\img\artist-image\Artist1.jpg" />
+    <Resource Include="wwwroot\img\artist-image\Artist2.jpg" />
+    <Resource Include="wwwroot\img\artist-image\Artist3.jpg" />
+    <Resource Include="wwwroot\img\artist-image\Artist4.jpg" />
+    <Resource Include="wwwroot\img\artist-image\Artist5.jpg" />
+    <Resource Include="wwwroot\img\artist-image\Artist6.jpg" />
   </ItemGroup>
 
 </Project>

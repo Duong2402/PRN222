@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using OnlineMusicProject.Models
+@model OnlineMusicProject.ViewModels.HomePage.SongArtistViewModel
 @inject SignInManager<Users> signInManager;
 @inject UserManager<Users> userManager;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -89,7 +90,7 @@
                                         <ul class="dropdown">
                                             <li><a href="/Home/Index">Home</a></li>
                                             <li><a href="/Users/AlbumsStore">Albums</a></li>
-                                            <li><a href="/Users/Event">Events</a></li>
+                                            <li><a href="/Users/Artists">Artists</a></li>
                                             <li><a href="/Users/Blog">News</a></li>
                                             <li><a href="/Users/Contact">Contact</a></li>
                                             <li><a href="/Users/Elements">Elements</a></li>
@@ -105,7 +106,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a href="/Users/Event">Events</a></li>
+                                    <li><a href="/Users/Artists">Artists</a></li>
                                     <li><a href="/Users/Blog">News</a></li>
                                     <li><a href="/Users/Contact">Contact</a></li>
                                 </ul>
@@ -128,7 +129,7 @@
                                                         <a class="dropdown-item nav-link text-dark" href="#">Dashboard</a>
                                                     }
                                                     <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="Profile">Profile</a>
-                                                    <a class="dropdown-item nav-link text-dark" href="#">Recently</a>
+                                                    <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="HistoryOfListening">Recently</a>
                                                     <a class="dropdown-item nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
                                                 </div>
                                             </ul>
@@ -568,72 +569,25 @@
                             <h2>This week’s top</h2>
                         </div>
 
-                        <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/wt1.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Sam Smith</h6>
-                                <p>Underground</p>
-                            </div>
-                        </div>
+                        @foreach(var s in Model.Songs)
+                        {
+                                <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
+                                <form asp-controller="Users" asp-action="HistoryOfListening" method="post">
+                                    <input type="hidden" name="songId" value="@s.SongId" />
+                                    <button type="submit" style="background: transparent; border: none; display: flex;align-items: center;">
+                                        <div class="thumbnail">
+                                            <img src="@s.ImageSong" alt="@s.NameSong" style="width: 73px; height: 73px; object-fit: cover;">
+                                        </div>
+                                        <div class="content-">
+                                            <h6 style="text-align: left">@s.Artists.ArtistName</h6>
+                                            <p>@s.NameSong</p>
+                                        </div>
+                                    </button>
 
-                        <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="150ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/wt2.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Power Play</h6>
-                                <p>In my mind</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="200ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/wt3.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Cristinne Smith</h6>
-                                <p>My Music</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="250ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/wt4.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>The Music Band</h6>
-                                <p>Underground</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="300ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/wt5.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Creative Lyrics</h6>
-                                <p>Songs and stuff</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="350ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/wt6.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>The Culture</h6>
-                                <p>Pop Songs</p>
-                            </div>
-                        </div>
-
+                                </form>
+                                </div>
+                        }
+                   
                     </div>
                 </div>
 
@@ -644,102 +598,25 @@
                             <p>See what’s new</p>
                             <h2>New Hits</h2>
                         </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="/img/bg-img/wt7.jpg" alt="">
+             
+                        @foreach(var s in Model.Songs)
+                        {
+                            <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
+                                <div class="first-part d-flex align-items-center">
+                                    <div class="thumbnail">
+                                        <img src="@s.ImageSong" alt="@s.NameSong" style="width: 73px; height: 73px; object-fit: cover;">
+                                    </div>
+                                    <div class="content-">
+                                        <h6>@s.Artists.ArtistName</h6>
+                                        <p>@s.NameSong</p>
+                                    </div>
                                 </div>
-                                <div class="content-">
-                                    <h6>Sam Smith</h6>
-                                    <p>Underground</p>
-                                </div>
+                                <audio preload="auto" controls>
+                                    <source src="@s.FilePath">
+                                </audio>
                             </div>
-                            <audio preload="auto" controls>
-                                <source src="/audio/dummy-audio.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="150ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="/img/bg-img/wt8.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>Power Play</h6>
-                                    <p>In my mind</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="/audio/dummy-audio.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="200ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="/img/bg-img/wt9.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>Cristinne Smith</h6>
-                                    <p>My Music</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="/audio/dummy-audio.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="250ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="/img/bg-img/wt10.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>The Music Band</h6>
-                                    <p>Underground</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="/audio/dummy-audio.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="300ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="/img/bg-img/wt11.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>Creative Lyrics</h6>
-                                    <p>Songs and stuff</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="/audio/dummy-audio.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="350ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="/img/bg-img/wt12.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>The Culture</h6>
-                                    <p>Pop Songs</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="/audio/dummy-audio.mp3">
-                            </audio>
-                        </div>
+                        }
+                      
                     </div>
                 </div>
 
@@ -751,76 +628,17 @@
                             <h2>Popular Artist</h2>
                         </div>
 
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/pa1.jpg" alt="">
+                        @foreach(var a in Model.Artists)
+                        {
+                            <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
+                                <div class="thumbnail">
+                                    <img src="@a.ArtistImage" alt="@a.ArtistName" style="width: 65px; height: 65px; object-fit: cover; ">
+                                </div>
+                                <div class="content-">
+                                    <p>@a.ArtistName</p>
+                                </div>
                             </div>
-                            <div class="content-">
-                                <p>Sam Smith</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="150ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/pa2.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>William Parker</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="200ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/pa3.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>Jessica Walsh</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="250ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/pa4.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>Tha Stoves</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="300ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/pa5.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>DJ Ajay</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="350ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/pa6.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>Radio Vibez</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="400ms">
-                            <div class="thumbnail">
-                                <img src="/img/bg-img/pa7.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>Music 4u</p>
-                            </div>
-                        </div>
-
+                        }
                     </div>
                 </div>
             </div>
@@ -893,7 +711,7 @@
                         <ul>
                             <li><a href="/Home/Index">Home</a></li>
                             <li><a href="/Users/AlbumsStore">Albums</a></li>
-                            <li><a href="/Users/Event">Events</a></li>
+                            <li><a href="/Users/Artists">Artists</a></li>
                             <li><a href="/Users/Blog">News</a></li>
                             <li><a href="/Users/Contact">Contact</a></li>
                         </ul>
