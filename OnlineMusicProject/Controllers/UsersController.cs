@@ -49,10 +49,23 @@ namespace OnlineMusicProject.Controllers
         {
             return View();
         }
-        public IActionResult HistoryOfListening()
+        public async Task<IActionResult> HistoryOfListening()
         {
-
-            return View();
+            var user = await userManager.GetUserAsync(User);
+            if(user != null)
+            {
+                var histories = await _context.Histories
+                                      .Include(h => h.Songs).ThenInclude(h => h.Artists)
+                                      .Where(h => h.UserId == user.Id.ToString())
+                                      .ToListAsync();
+                var model = new UserProfileViewModel
+                {
+                    User = user,
+                    Histories = histories
+                };
+                return View(model);
+            }
+            return RedirectToAction("Login", "Account");
         }
         [HttpPost]
         public async Task<IActionResult> HistoryOfListening(Guid songId)
@@ -60,7 +73,7 @@ namespace OnlineMusicProject.Controllers
             var user = await userManager.GetUserAsync(User);
             if (user == null)
             {
-                return RedirectToAction("./Account/Login");
+                return RedirectToAction("Login", "Account");
             }
             var song = await _context.Songs.FindAsync(songId);
             if (song == null)
@@ -86,7 +99,25 @@ namespace OnlineMusicProject.Controllers
                 _context.Histories.Update(history);
             }
             await _context.SaveChangesAsync();
-            return View();
+            return RedirectToAction("Details", "Songs", new { id = songId });
+        }
+        public async Task<IActionResult> RemoveFromHistories(Guid songId)
+        {
+            var user = await userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var songHistory = await _context.Histories
+                                       .FirstOrDefaultAsync(h => h.UserId == user.Id.ToString() 
+                                                              && h.SongId == songId);
+            if (songHistory == null)
+            {
+                return RedirectToAction("HistoryOfListening");
+            }
+            _context.Histories.Remove(songHistory);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("HistoryOfListening");
         }
 
 

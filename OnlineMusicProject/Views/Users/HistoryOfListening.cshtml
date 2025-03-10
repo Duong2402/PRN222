@@ -6,11 +6,12 @@
 @inject SignInManager<Users> signInManager;
 @inject UserManager<Users> userManager;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model OnlineMusicProject.Models.Users
+@model OnlineMusicProject.ViewModels.UserProfileViewModel
 @{
     var user = await userManager.GetUserAsync(User);
     var fullName = user != null ? user.FullName : "Guest";
 }
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,8 +132,8 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>
             <form id="updateNameForm" asp-action="Profile" method="post">
-                <input asp-for="FullName" id="FullName" placeholder="Enter new name">
-                <span asp-validation-for="FullName" class="text-danger"></span>
+                <input asp-for="User.FullName" id="FullName" placeholder="Enter new name">
+                <span asp-validation-for="User.FullName" class="text-danger"></span>
                 <button type="submit">Save</button>
             </form>
         </div>
@@ -145,22 +146,27 @@
                     <div class="login-content">
                         <h3>Lịch sử nghe nhạc</h3>
                         <div class="login-form" style="position: relative;">
-                            <!-- Left part: Song title and Artist -->
-                            <div style="display: flex; align-items: center;">
-                                <div style="flex-grow: 1; text-align:left">
-                                    <p style="margin: 0; font-weight: bold; font-size:20px">Tên bài hát</p>
-                                    <p style="margin: 0; font-size: 15px; color: gray;">Nhạc sĩ</p>
+                            @foreach(var history in Model.Histories)
+                            {
+                               
+                                <div style="display: flex; align-items: center;">
+                                   
+                                        <div style="flex-grow: 1; text-align:left">
+                                           <a asp-controller="Songs" asp-action="Details" asp-route-id="@history.SongId">
+                                              <p style="margin: 0; font-weight: bold; font-size:20px">@history.Songs.NameSong</p>
+                                              <p style="margin: 0; font-size: 15px; color: gray;">@history.Songs.Artists.ArtistName</p>
+                                           </a>
+                                        </div>
+                               
+                                  
+                                    <div style="text-align: right; display:flex; flex: 1;justify-content:space-around">
+                                        <p style="margin: 0; font-size: 15px; color: gray;">@history.PlayedAt</p>
+                                        <a class="delete-btn" asp-action="RemoveFromHistories" asp-route-songId="@history.SongId">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
                                 </div>
-
-                                <!-- Right part: Time and Delete icon -->
-                                <div style="text-align: right; display:flex; flex: 1;justify-content:space-around">
-                                    <p style="margin: 0; font-size: 15px; color: gray;">Thời gian</p>
-                                    <button class="delete-btn">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>

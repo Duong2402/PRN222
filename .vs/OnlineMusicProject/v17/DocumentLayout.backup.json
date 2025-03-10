@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "D:\\HE172265_PRN212\\OnlineMusic\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|d:\\he172265_prn212\\onlinemusic\\onlinemusicproject\\views\\users\\historyoflistening.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\views\\users\\historyoflistening.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|d:\\he172265_prn212\\onlinemusic\\onlinemusicproject\\controllers\\songscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\controllers\\songscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|d:\\he172265_prn212\\onlinemusic\\onlinemusicproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|d:\\he172265_prn212\\onlinemusic\\onlinemusicproject\\models\\playlists.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\models\\playlists.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|d:\\he172265_prn212\\onlinemusic\\onlinemusicproject\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|d:\\he172265_prn212\\onlinemusic\\onlinemusicproject\\models\\histories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\models\\histories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|d:\\he172265_prn212\\onlinemusic\\onlinemusicproject\\views\\users\\historyoflistening.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\views\\users\\historyoflistening.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 365,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,54 +42,66 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HistoryOfListening.cshtml",
-              "DocumentMoniker": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Views\\Users\\HistoryOfListening.cshtml",
-              "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Users\\HistoryOfListening.cshtml",
-              "ToolTip": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Views\\Users\\HistoryOfListening.cshtml",
-              "RelativeToolTip": "OnlineMusicProject\\Views\\Users\\HistoryOfListening.cshtml",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-10T01:32:05.404Z",
+              "DocumentIndex": 1,
+              "Title": "SongsController.cs",
+              "DocumentMoniker": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Controllers\\SongsController.cs",
+              "RelativeDocumentMoniker": "OnlineMusicProject\\Controllers\\SongsController.cs",
+              "ToolTip": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Controllers\\SongsController.cs",
+              "RelativeToolTip": "OnlineMusicProject\\Controllers\\SongsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T07:30:15.982Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Histories.cs",
-              "DocumentMoniker": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Models\\Histories.cs",
-              "RelativeDocumentMoniker": "OnlineMusicProject\\Models\\Histories.cs",
-              "ToolTip": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Models\\Histories.cs",
-              "RelativeToolTip": "OnlineMusicProject\\Models\\Histories.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAYwBUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T01:29:17.183Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Home\\Index.cshtml",
               "ToolTip": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "OnlineMusicProject\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAADoCAAAAAAAAAADwv0sCAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAADoCAAAAAAAAAAAAAD8CAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-10T01:28:06.205Z",
+              "WhenOpened": "2025-03-10T07:29:27.941Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "Playlists.cs",
+              "DocumentMoniker": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Models\\Playlists.cs",
+              "RelativeDocumentMoniker": "OnlineMusicProject\\Models\\Playlists.cs",
+              "ToolTip": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Models\\Playlists.cs",
+              "RelativeToolTip": "OnlineMusicProject\\Models\\Playlists.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBEAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T07:25:17.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "UsersController.cs",
               "DocumentMoniker": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Controllers\\UsersController.cs",
               "ToolTip": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Controllers\\UsersController.cs",
               "RelativeToolTip": "OnlineMusicProject\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAwwDkAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAEYAAAAAAAAAAAA9wHYAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T01:27:18.881Z",
+              "WhenOpened": "2025-03-10T04:32:09.698Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HistoryOfListening.cshtml",
+              "DocumentMoniker": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Views\\Users\\HistoryOfListening.cshtml",
+              "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Users\\HistoryOfListening.cshtml",
+              "ToolTip": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Views\\Users\\HistoryOfListening.cshtml",
+              "RelativeToolTip": "OnlineMusicProject\\Views\\Users\\HistoryOfListening.cshtml",
+              "ViewState": "AgIAAJMAAAAAAAAAAADwv54AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-10T01:32:05.404Z",
               "EditorCaption": ""
             }
           ]

@@ -573,20 +573,18 @@
                         {
                                 <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
                                 <form asp-controller="Users" asp-action="HistoryOfListening" method="post">
-                                    <a asp-controller="Songs" asp-action="Details" asp-route-id="@s.SongId">
+                                    <input type="hidden" name="songId" value="@s.SongId" />
+                                    <button type="submit" style="background: transparent; border: none; display: flex;align-items: center;">
                                         <div class="thumbnail">
                                             <img src="@s.ImageSong" alt="@s.NameSong" style="width: 73px; height: 73px; object-fit: cover;">
                                         </div>
-                                    </a>
+                                        <div class="content-">
+                                            <h6 style="text-align: left">@s.Artists.ArtistName</h6>
+                                            <p>@s.NameSong</p>
+                                        </div>
+                                    </button>
+
                                 </form>
-                                   
-                                <a asp-controller="Songs" asp-action="Details" asp-route-id="@s.SongId">
-                                    <div class="content-">
-                                        <h6>@s.Artists.ArtistName</h6>
-                                        <p>@s.NameSong</p>
-                                    </div>
-                                    </a>
-                                 
                                 </div>
                         }
                    
