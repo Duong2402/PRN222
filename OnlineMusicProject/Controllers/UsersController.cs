@@ -57,6 +57,8 @@ namespace OnlineMusicProject.Controllers
                 var histories = await _context.Histories
                                       .Include(h => h.Songs).ThenInclude(h => h.Artists)
                                       .Where(h => h.UserId == user.Id.ToString())
+                                      .OrderByDescending(h => h.PlayedAt) 
+                                      .Take(6)
                                       .ToListAsync();
                 var model = new UserProfileViewModel
                 {
@@ -73,7 +75,7 @@ namespace OnlineMusicProject.Controllers
             var user = await userManager.GetUserAsync(User);
             if (user == null)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Details", "Songs", new { id = songId });
             }
             var song = await _context.Songs.FindAsync(songId);
             if (song == null)

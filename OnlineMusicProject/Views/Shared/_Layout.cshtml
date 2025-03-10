@@ -68,28 +68,19 @@
                                     <li><a href="/Home/Index">Home</a></li>
                                     <li><a href="/Users/AlbumsStore">Albums</a></li>
                                     <li>
-                                        <a href="#">Pages</a>
+                                        <a href="#">Genres</a>
                                         <ul class="dropdown">
-                                            <li><a href="/Home/Index">Home</a></li>
-                                            <li><a href="/Users/AlbumsStore">Albums</a></li>
-                                            <li><a href="/Users/Artists">Artists</a></li>
-                                            <li><a href="/Users/Blog">News</a></li>
-                                            <li><a href="/Users/Contact">Contact</a></li>
-                                            <li><a href="/Users/Elements">Elements</a></li>
-                                            <li>
-                                              
-                                                @if (signInManager.IsSignedIn(User))
-                                                {
-                                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
-                                                }
-                                                else
-                                                {
-                                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login / Register</a>
-                                                }
-                                            </li>
+                                            <li><a href="#">Pop</a></li>
+                                            <li><a href="#">Tiền Chiến</a></li>
+                                            <li><a href="#">Cổ Điển</a></li>
+                                            <li><a href="#">Ballad</a></li>
+                                            <li><a href="#">Hip-Hop / Rap</a></li>
+                                            <li><a href="#">Rock</a></li>
+                                            <li><a href="#">Nhạc Trẻ</a></li>
+                                            <li><a href="#">Cách Mạng</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/Users/Artists">Artists</a></li>
+                                    <li><a asp-controller="Users" asp-action="Artists">Artists</a></li>
                                     <li><a href="/Users/Blog">News</a></li>
                                     <li><a href="/Users/Contact">Contact</a></li>
                                 </ul>
