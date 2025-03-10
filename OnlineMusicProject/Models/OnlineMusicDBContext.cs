@@ -37,8 +37,30 @@ namespace OnlineMusicProject.Models
          .WithMany()
          .HasForeignKey(p => p.UserId)
          .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Songs>()
+           .HasOne(s => s.Artists) 
+           .WithMany(a => a.Songs)
+           .HasForeignKey(s => s.ArtistId) 
+           .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Songs>()
+          .HasOne(s => s.songGenres)
+          .WithMany(a => a.Songs)
+          .HasForeignKey(s => s.GenreId)
+          .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PlaylistSongs>()
+       .HasOne(ps => ps.Playlists)    
+       .WithMany(p => p.PlaylistSongs) 
+       .HasForeignKey(ps => ps.PlaylistId) 
+       .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PlaylistSongs>()
+                .HasOne(ps => ps.Songs)    
+                .WithMany(s => s.PlaylistSongs)  
+                .HasForeignKey(ps => ps.SongId) 
+                .OnDelete(DeleteBehavior.Cascade);
         }
-
-
     }
 }

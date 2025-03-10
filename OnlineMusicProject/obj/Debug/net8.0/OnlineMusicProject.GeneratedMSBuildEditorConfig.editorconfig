@@ -46,12 +46,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Songs/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/AlbumsStore.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQWxidW1zU3RvcmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/Blog.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQmxvZy5jc2h0bWw=
+[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/Artists.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQXJ0aXN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/Contact.cshtml]
@@ -62,8 +66,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWxlbWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/Event.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRXZlbnQuY3NodG1s
+[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/HistoryOfListening.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSGlzdG9yeU9mTGlzdGVuaW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/Profile.cshtml]

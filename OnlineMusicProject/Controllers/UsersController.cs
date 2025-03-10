@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OnlineMusicProject.Models;
 using OnlineMusicProject.ViewModels;
 
@@ -9,11 +10,14 @@ namespace OnlineMusicProject.Controllers
     public class UsersController : Controller
     {
         private readonly UserManager<Users> userManager;
+        private readonly OnlineMusicDBContext _context;
 
-        public UsersController(UserManager<Users> userManager)
+        public UsersController(UserManager<Users> userManager, OnlineMusicDBContext context)
         {
             this.userManager = userManager;
+            _context = context;
         }
+
         [Authorize(Roles = "User, Admin")]
         public IActionResult Profile()
         {
@@ -45,10 +49,47 @@ namespace OnlineMusicProject.Controllers
         {
             return View();
         }
-        public IActionResult Blog()
+        public IActionResult HistoryOfListening()
         {
+
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> HistoryOfListening(Guid songId)
+        {
+            var user = await userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return RedirectToAction("./Account/Login");
+            }
+            var song = await _context.Songs.FindAsync(songId);
+            if (song == null)
+            {
+                return NotFound();
+            }
+            var history = await _context.Histories.FirstOrDefaultAsync(h => h.UserId == user.Id && h.SongId == songId);
+
+            if (history == null)
+            {
+                Histories newHistory = new Histories
+                {
+                    HistoryId = Guid.NewGuid(),
+                    UserId = user.Id,
+                    SongId = songId,
+                    PlayedAt = DateTime.Now,
+                };
+                _context.Histories.Add(newHistory);
+            }
+            else
+            {
+                history.PlayedAt = DateTime.Now;
+                _context.Histories.Update(history);
+            }
+            await _context.SaveChangesAsync();
+            return View();
+        }
+
+
         public IActionResult Contact()
         {
             return View();
@@ -57,9 +98,10 @@ namespace OnlineMusicProject.Controllers
         {
             return View();
         }
-        public IActionResult Event()
+        public async Task<ActionResult<IEnumerable<Artists>>> Artists()
         {
-            return View();
+            List<Artists> artists = await _context.Artists.ToListAsync();
+            return View(artists);
         }
     }
 }
