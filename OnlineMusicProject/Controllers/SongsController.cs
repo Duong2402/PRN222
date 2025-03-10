@@ -19,6 +19,5 @@ namespace OnlineMusicProject.Controllers
                                        .FirstOrDefaultAsync(p => p.SongId == id);
             return View(song);
         }
-        
     }
 }

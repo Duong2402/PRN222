@@ -157,14 +157,13 @@
                                               <p style="margin: 0; font-size: 15px; color: gray;">@history.Songs.Artists.ArtistName</p>
                                            </a>
                                         </div>
-                               
-                                  
-                                    <div style="text-align: right; display:flex; flex: 1;justify-content:space-around">
-                                        <p style="margin: 0; font-size: 15px; color: gray;">@history.PlayedAt</p>
-                                        <a class="delete-btn" asp-action="RemoveFromHistories" asp-route-songId="@history.SongId">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </div>
+                                        <div style="text-align: right; display: flex; justify-content: space-between; align-items: center;">
+                                            <p style="margin: 0; font-size: 15px; color: gray; flex-shrink: 0;">@history.PlayedAt</p>
+                                            <a class="delete-btn" asp-action="RemoveFromHistories" asp-route-songId="@history.SongId" style="flex-shrink: 0; margin-left:10px">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </div>
+
                                 </div>
                             }
                         </div>

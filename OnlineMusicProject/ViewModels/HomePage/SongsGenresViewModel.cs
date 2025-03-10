@@ -2,10 +2,9 @@
 
 namespace OnlineMusicProject.ViewModels.HomePage
 {
-    public class SongArtistViewModel
+    public class SongsGenresViewModel
     {
         public List<Songs> Songs { get; set; }
-        public List<Artists> Artists { get; set; }
-        public List<SongGenres> Genres { get; set; }
+        public SongGenres SongGenres { get; set; }
     }
 }

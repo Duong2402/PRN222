@@ -19,11 +19,14 @@ namespace OnlineMusicProject.Controllers
         {
             List<Songs> songs = await _context.Songs.Include(s => s.Artists).ToListAsync();
             List<Artists> artists = await _context.Artists.ToListAsync();
+            List<SongGenres> genres = await _context.SongGenres.ToListAsync();
 
             var viewALl = new SongArtistViewModel
             {
                 Songs = songs,
-                Artists = artists
+                Artists = artists,
+                Genres = genres
+                
             };
             return View(viewALl);
         }
