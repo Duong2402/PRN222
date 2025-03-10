@@ -1,0 +1,47 @@
+﻿@model OnlineMusicProject.Models.Playlists
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Create Playlist";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title -->
+    <title>Online Music</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+<div class="container mt-5" style="margin-top: 100px; padding-top: 20px;">
+    <h1>Create New Playlist</h1>
+    <form asp-action="CreatePlaylist">
+        <div class="form-group">
+            <label asp-for="PlaylistName" class="control-label"></label>
+            <input asp-for="PlaylistName" class="form-control" />
+            <span asp-validation-for="PlaylistName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserId" class="control-label">User</label>
+            <select asp-for="UserId" class="form-control" asp-items="@(new SelectList(ViewBag.Users, "Id", "FullName"))"></select>
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            <a asp-action="ManagePlaylists" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>

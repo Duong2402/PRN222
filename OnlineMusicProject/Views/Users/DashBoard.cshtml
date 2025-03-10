@@ -1,0 +1,90 @@
+﻿@model dynamic
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Admin Dashboard";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title -->
+    <title>Online Music</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<!-- Custom Styles for Dashboard -->
+<style>
+    .dashboard-card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+        .dashboard-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+            .dashboard-card a:hover {
+                background-color: #0056b3;
+            }
+</style>
+
+<div class="container mt-5" style="margin-top: 100px; padding-top: 20px;">
+    <h1 class="text-center mb-4">Admin Dashboard</h1>
+    <div class="row">
+        <!-- Manage Accounts -->
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <h3>Manage Accounts</h3>
+                <p>View, edit, or delete user accounts.</p>
+                 <a asp-controller="Users" asp-action="ManageAccounts">Go to Accounts</a>
+            </div>
+        </div>
+
+        <!-- Manage Songs -->
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <h3>Manage Songs</h3>
+                <p>Add, update, or remove songs from the library.</p>
+                <a asp-controller="Users" asp-action="ManageSongs">Go to Songs</a>
+            </div>
+        </div>
+
+        <!-- Manage Playlists -->
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <h3>Manage Playlists</h3>
+                <p>Create, edit, or delete playlists.</p>
+                <a asp-controller="Users" asp-action="ManagePlaylists">Go to Playlists</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

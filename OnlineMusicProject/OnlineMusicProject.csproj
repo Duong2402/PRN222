@@ -63,4 +63,10 @@
     <Resource Include="wwwroot\img\artist-image\Artist6.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

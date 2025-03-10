@@ -9,71 +9,99 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = OnlineMusicProject
 build_property.RootNamespace = OnlineMusicProject
-build_property.ProjectDir = D:\HE172265_PRN212\OnlineMusic\OnlineMusicProject\
+build_property.ProjectDir = D:\e\PRN222\OnlineMusicProject\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\HE172265_PRN212\OnlineMusic\OnlineMusicProject
+build_property.MSBuildProjectDirectory = D:\e\PRN222\OnlineMusicProject
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Account/ChangePassword.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Account/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Account/Login.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Account/Register.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Account/VerifyEmail.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Account/VerifyEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxWZXJpZnlFbWFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Genres/Songs.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Genres/Songs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VucmVzXFNvbmdzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Home/Errors.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Home/Errors.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Home/Index.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Shared/_Layout.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Songs/Details.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Songs/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/AlbumsStore.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Users/AlbumsStore.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQWxidW1zU3RvcmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/Artists.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Users/Artists.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQXJ0aXN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/Contact.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Users/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ29udGFjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/Elements.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Users/CreateAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlQWNjb3VudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/e/PRN222/OnlineMusicProject/Views/Users/CreatePlaylist.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlUGxheWxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/e/PRN222/OnlineMusicProject/Views/Users/CreateSong.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlU29uZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/e/PRN222/OnlineMusicProject/Views/Users/DashBoard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGFzaEJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/e/PRN222/OnlineMusicProject/Views/Users/Elements.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWxlbWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/HistoryOfListening.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Users/HistoryOfListening.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSGlzdG9yeU9mTGlzdGVuaW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/Profile.cshtml]
+[D:/e/PRN222/OnlineMusicProject/Views/Users/ManageAccounts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTWFuYWdlQWNjb3VudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/e/PRN222/OnlineMusicProject/Views/Users/ManagePlaylists.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTWFuYWdlUGxheWxpc3RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/e/PRN222/OnlineMusicProject/Views/Users/ManageSongs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTWFuYWdlU29uZ3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/e/PRN222/OnlineMusicProject/Views/Users/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
