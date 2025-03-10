@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OnlineMusicProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88319b117f3c770a478652e31f7b623cc2dc5dcf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d08772c813cbc8daadcc1b058354a23b825e8981")]
 [assembly: System.Reflection.AssemblyProductAttribute("OnlineMusicProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OnlineMusicProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
