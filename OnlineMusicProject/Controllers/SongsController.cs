@@ -19,5 +19,10 @@ namespace OnlineMusicProject.Controllers
                                        .FirstOrDefaultAsync(p => p.SongId == id);
             return View(song);
         }
+        public async Task<IActionResult> SongList()
+        {
+            var songs = await _context.Songs.Include(s => s.Artists).ToListAsync();
+            return View(songs);
+        }
     }
 }

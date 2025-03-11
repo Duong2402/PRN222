@@ -1,0 +1,109 @@
+﻿@using OnlineMusicProject.Models
+@model OnlineMusicProject.ViewModels.HomePage.SongArtistViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title -->
+    <title>Online Music</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .single-album{
+            width: 160px;
+            height: 250px
+        }
+        .single-album img {
+            width: 100%;
+            height: 160px;
+
+        }
+        .album-info {
+            text-align: center;
+            padding: 10px;
+        }
+
+        button:focus {
+            outline: none;
+            border: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <img src="@Model.ArtistOfSongs.ArtistImage" alt="@Model.ArtistOfSongs.ArtistName" class="img-fluid" style="border-radius: 50%; width: 150px; height: 150px; object-fit: cover;">
+            <h3>@Model.ArtistOfSongs.ArtistName</h3>
+        </div>
+    </section>
+
+    <div class="add-area mb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex align-items-center" style="margin-top: 20px">
+                    <div class="intro-text">
+                        <p style="font-size:20px; font-weight: bold">@Model.ArtistOfSongs.Bio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ##### Add Area End ##### -->
+    <!-- ##### Song Area Start ##### -->
+    <div class="one-music-songs-area">
+        <div class="container">
+            <div class="row">
+                @foreach(var songs in Model.Songs)
+                {
+                    <div class="col-12">
+                        <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
+                            <form asp-controller="Users" asp-action="HistoryOfListening" method="post">
+                                <input type="hidden" name="songId" value="@songs.SongId" />
+                                <button type="submit" style="background: transparent; border: none; display: flex;align-items: center; cursor:pointer">
+                                    <div class="song-thumbnail">
+                                        <img src="@songs.ImageSong" alt="@songs.NameSong" style="height:119px;object-fit: cover;">
+                                    </div>
+                                </button>
+                            </form>
+                            <div class="song-play-area">
+                                <div class="song-name">
+                                    <p>@songs.NameSong</p>
+                                </div>
+                                <audio preload="auto" controls>
+                                    <source src="@songs.FilePath">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+   
+    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+     @* <!-- All Plugins js -->
+     <script src="/js/plugins/plugins.js"></script> *@
+    <!-- Active js -->
+    <script src="/js/active.js"></script>
+</body>
+
+</html>

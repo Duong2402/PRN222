@@ -34,6 +34,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxWZXJpZnlFbWFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Artists/SongsOf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aXN0c1xTb25nc09mLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Genres/Songs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VucmVzXFNvbmdzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,6 +56,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Songs/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Songs/SongList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3NcU29uZ0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/HE172265_PRN212/OnlineMusic/OnlineMusicProject/Views/Users/AlbumsStore.cshtml]
