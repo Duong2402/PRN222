@@ -1,9 +1,8 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using OnlineMusicProject.Models;
-@model List<Artists>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +43,8 @@
                             </div>
                             <div class="event-text">
                                 <h4>@a.ArtistName</h4>
-                                <a href="#" class="btn see-more-btn">See Artist</a>
+                                <a asp-controller="Artists" asp-action="SongsOf" asp-route-artist="@a.ArtistName" style="cursor:pointer" class="btn see-more-btn">See Artist</a>
+                                  
                             </div>
                         </div>
                     </div>

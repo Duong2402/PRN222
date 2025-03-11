@@ -24,23 +24,28 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
     <style>
-        /* Ẩn dropdown mặc định */
+       
         .dropdown-menu {
             display: none;
         }
 
-        /* Hiển thị dropdown khi di chuyển chuột qua liên kết */
         .nav-item:hover .dropdown-menu {
             display: block;
             position: absolute;
         }
 
         .avatar-img {
-            width: 40px; /* Điều chỉnh kích thước */
-            height: 40px; /* Điều chỉnh kích thước */
-            border-radius: 50%; /* Làm tròn hình ảnh */
-            object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            object-fit: cover; 
         }
+
+        button:focus {
+            outline: none;
+            border: none;
+        }
+
 
     </style>
 </head>
@@ -65,7 +70,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="/img/core-img/logo.png" alt=""></a>
+                        <a asp-controller="Home" asp-action="Index" class="nav-brand"><img src="/img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -83,8 +88,8 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="/Home/Index">Home</a></li>
-                                    <li><a href="/Users/AlbumsStore">Albums</a></li>
+                                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                    <li><a asp-controller="Songs" asp-action="SongList">Songs</a></li>
                                     <li>
                                         <a href="#">Genres</a>
                                         <ul class="dropdown">
@@ -562,7 +567,7 @@
                                 <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
                                 <form asp-controller="Users" asp-action="HistoryOfListening" method="post">
                                     <input type="hidden" name="songId" value="@s.SongId" />
-                                    <button type="submit" style="background: transparent; border: none; display: flex;align-items: center;">
+                                    <button type="submit" style="background: transparent; border: none; display: flex;align-items: center; cursor: pointer">
                                         <div class="thumbnail">
                                             <img src="@s.ImageSong" alt="@s.NameSong" style="width: 73px; height: 73px; object-fit: cover;">
                                         </div>
@@ -591,13 +596,18 @@
                         {
                             <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                                 <div class="first-part d-flex align-items-center">
-                                    <div class="thumbnail">
-                                        <img src="@s.ImageSong" alt="@s.NameSong" style="width: 73px; height: 73px; object-fit: cover;">
-                                    </div>
-                                    <div class="content-">
-                                        <h6>@s.Artists.ArtistName</h6>
-                                        <p>@s.NameSong</p>
-                                    </div>
+                                    <form asp-controller="Users" asp-action="HistoryOfListening" method="post">
+                                        <input type="hidden" name="songId" value="@s.SongId" />
+                                        <button type="submit" style="background: transparent; border: none; display: flex;align-items: center; cursor: pointer">
+                                            <div class="thumbnail">
+                                                <img src="@s.ImageSong" alt="@s.NameSong" style="width: 73px; height: 73px; object-fit: cover;">
+                                            </div>
+                                            <div class="content-">
+                                                <h6>@s.Artists.ArtistName</h6>
+                                                <p>@s.NameSong</p>
+                                            </div>
+                                        </button>
+                                    </form>
                                 </div>
                                 <audio preload="auto" controls>
                                     <source src="@s.FilePath">
@@ -618,14 +628,16 @@
 
                         @foreach(var a in Model.Artists)
                         {
-                            <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
-                                <div class="thumbnail">
-                                    <img src="@a.ArtistImage" alt="@a.ArtistName" style="width: 65px; height: 65px; object-fit: cover; ">
+                            <a asp-controller="Artists" asp-action="SongsOf" asp-route-artist="@a.ArtistName" style="cursor:pointer">
+                                <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms" style="margin: 20px 0">
+                                    <div class="thumbnail">
+                                        <img src="@a.ArtistImage" alt="@a.ArtistName" style="width: 65px; height: 65px; object-fit: cover; ">
+                                    </div>
+                                    <div class="content-">
+                                        <p>@a.ArtistName</p>
+                                    </div>
                                 </div>
-                                <div class="content-">
-                                    <p>@a.ArtistName</p>
-                                </div>
-                            </div>
+                            </a>
                         }
                     </div>
                 </div>
@@ -697,8 +709,8 @@
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="/Home/Index">Home</a></li>
-                            <li><a href="/Users/AlbumsStore">Albums</a></li>
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-controller="Songs" asp-action="SongList">Songs</a></li>
                             <li><a href="/Users/Artists">Artists</a></li>
                             <li><a href="/Users/Blog">News</a></li>
                             <li><a href="/Users/Contact">Contact</a></li>

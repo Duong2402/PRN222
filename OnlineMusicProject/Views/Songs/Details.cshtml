@@ -38,8 +38,8 @@
 
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <p>@Model.NameSong</p>
-            <h2>@Model.Artists.ArtistName</h2>
+            <p>@Model.Artists.ArtistName</p>
+            <h2>@Model.NameSong</h2>
         </div>
     </section>
 
@@ -55,7 +55,7 @@
                             <div class="song-name">
                                 <p>@Model.NameSong</p>
                             </div>
-                            <audio controls >
+                            <audio preload ="auto" controls>
                                 <source src="@Model.FilePath" type="audio/mpeg">
                             </audio>
 
@@ -86,8 +86,8 @@
     <script src="/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="/js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="/js/plugins/plugins.js"></script>
+    @* <!-- All Plugins js -->
+    <script src="/js/plugins/plugins.js"></script> *@
     <!-- Active js -->
     <script src="/js/active.js"></script>
 </body>

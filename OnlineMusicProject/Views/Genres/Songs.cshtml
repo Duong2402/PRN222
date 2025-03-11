@@ -1,5 +1,6 @@
 ﻿@using OnlineMusicProject.Models
 @model OnlineMusicProject.ViewModels.HomePage.SongsGenresViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -89,14 +90,19 @@
                     var filterLetter = song.NameSong.Substring(0, 1).ToLower();
                     <div class="col-12 col-sm-6 col-md-3 col-lg-2 single-album-item @filterLetter">
                         <div class="single-album">
-                            <img src="@song.ImageSong" alt="@song.NameSong" class="album-image">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>@song.NameSong</h5>
-                                </a>
-                                <p>@song.Artists.ArtistName</p>
-                            </div>
-
+                           <form asp-controller="Users" asp-action="HistoryOfListening" method="post">
+                                <input type="hidden" name="songId" value="@song.SongId" />
+                                <button type="submit" style="background: transparent; border: none;">
+                                    <img src="@song.ImageSong" alt="@song.NameSong" class="album-image">
+                                    <div class="album-info">
+                                        <a href="#">
+                                            <h5>@song.NameSong</h5>
+                                        </a>
+                                        <p>@song.Artists.ArtistName</p>
+                                    </div>
+                                </button>
+                            </form>
+                        
                         </div>
                     </div>
                 }
@@ -248,8 +254,8 @@
     <script src="/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="/js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="/js/plugins/plugins.js"></script>
+@*     <!-- All Plugins js -->
+    <script src="/js/plugins/plugins.js"></script> *@
     <!-- Active js -->
     <script src="/js/active.js"></script>
 </body>
