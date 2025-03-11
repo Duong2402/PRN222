@@ -19,46 +19,37 @@ namespace OnlineMusicProject.Controllers
         }
 
         [Authorize(Roles = "User, Admin")]
-        public IActionResult Profile()
-        {
-            return View();
-        }
+        public IActionResult Profile() => View();
+
         [HttpPost]
+        [Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> Profile(Users u)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var user = await userManager.GetUserAsync(User);
-                if(user != null)
+                if (user != null)
                 {
                     user.FullName = u.FullName;
                     var result = await userManager.UpdateAsync(user);
-                    if(result.Succeeded)
-                    {
-                        return RedirectToAction("Profile");
-                    }
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
+                    if (result.Succeeded) return RedirectToAction("Profile");
+                    foreach (var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
             return View(u);
         }
-        public IActionResult AlbumsStore()
-        {
-            return View();
-        }
+
+        public IActionResult AlbumsStore() => View();
+
+        [Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> HistoryOfListening()
         {
             var user = await userManager.GetUserAsync(User);
-            if(user != null)
+            if (user != null)
             {
                 var histories = await _context.Histories
                                       .Include(h => h.Songs).ThenInclude(h => h.Artists)
                                       .Where(h => h.UserId == user.Id.ToString())
-                                      .OrderByDescending(h => h.PlayedAt) 
-                                      .Take(6)
                                       .ToListAsync();
                 var model = new UserProfileViewModel
                 {
@@ -69,19 +60,15 @@ namespace OnlineMusicProject.Controllers
             }
             return RedirectToAction("Login", "Account");
         }
+
         [HttpPost]
+        [Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> HistoryOfListening(Guid songId)
         {
             var user = await userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return RedirectToAction("Details", "Songs", new { id = songId });
-            }
+            if (user == null) return RedirectToAction("Login", "Account");
             var song = await _context.Songs.FindAsync(songId);
-            if (song == null)
-            {
-                return NotFound();
-            }
+            if (song == null) return NotFound();
             var history = await _context.Histories.FirstOrDefaultAsync(h => h.UserId == user.Id && h.SongId == songId);
 
             if (history == null)
@@ -103,38 +90,24 @@ namespace OnlineMusicProject.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Details", "Songs", new { id = songId });
         }
+
+        [Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> RemoveFromHistories(Guid songId)
         {
             var user = await userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            if (user == null) return RedirectToAction("Login", "Account");
             var songHistory = await _context.Histories
-                                       .FirstOrDefaultAsync(h => h.UserId == user.Id.ToString() 
-                                                              && h.SongId == songId);
-            if (songHistory == null)
-            {
-                return RedirectToAction("HistoryOfListening");
-            }
+                                       .FirstOrDefaultAsync(h => h.UserId == user.Id.ToString() && h.SongId == songId);
+            if (songHistory == null) return RedirectToAction("HistoryOfListening");
             _context.Histories.Remove(songHistory);
             await _context.SaveChangesAsync();
             return RedirectToAction("HistoryOfListening");
         }
 
+        public IActionResult Contact() => View();
 
-        public IActionResult Contact()
-        {
-            return View();
-        }
-        public IActionResult Elements()
-        {
-            return View();
-        }
-        public async Task<ActionResult<IEnumerable<Artists>>> Artists()
-        {
-            List<Artists> artists = await _context.Artists.ToListAsync();
-            return View(artists);
-        }
+        public IActionResult Elements() => View();
+
+        public async Task<ActionResult<IEnumerable<Artists>>> Artists() => View(await _context.Artists.ToListAsync());
     }
 }
