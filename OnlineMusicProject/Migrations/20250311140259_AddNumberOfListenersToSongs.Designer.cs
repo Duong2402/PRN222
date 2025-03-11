@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineMusicProject.Models;
 
@@ -11,9 +12,11 @@ using OnlineMusicProject.Models;
 namespace OnlineMusicProject.Migrations
 {
     [DbContext(typeof(OnlineMusicDBContext))]
-    partial class OnlineMusicDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250311140259_AddNumberOfListenersToSongs")]
+    partial class AddNumberOfListenersToSongs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -299,7 +302,7 @@ namespace OnlineMusicProject.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("NumberOfListeners")
+                    b.Property<int?>("NumberOfListeners")
                         .HasColumnType("int");
 
                     b.HasKey("SongId");
