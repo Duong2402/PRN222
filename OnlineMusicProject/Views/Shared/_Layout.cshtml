@@ -2,7 +2,6 @@
 @using OnlineMusicProject.Models
 @inject SignInManager<Users> signInManager;
 @inject UserManager<Users> userManager;
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     var user = await userManager.GetUserAsync(User);
     var fullName = user != null ? user.FullName : "Guest";
@@ -13,58 +12,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Online Music</title>
-
     <link rel="icon" href="/img/core-img/favicon.ico" />
     <link rel="stylesheet" href="/css/style.css" />
     <style>
-        /* Ẩn dropdown mặc định */
         .dropdown-menu {
             display: none;
         }
 
-        /* Hiển thị dropdown khi di chuyển chuột qua liên kết */
         .nav-item:hover .dropdown-menu {
             display: block;
             position: absolute;
         }
 
         .avatar-img {
-            width: 40px; /* Điều chỉnh kích thước */
-            height: 40px; /* Điều chỉnh kích thước */
-            border-radius: 50%; /* Làm tròn hình ảnh */
-            object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
         }
-
     </style>
 </head>
 <body>
+    <!-- Header and navigation unchanged -->
     <header class="header-area">
-        <!-- Navbar Area -->
         <div class="oneMusic-main-menu">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
-                    <!-- Menu -->
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
-
-                        <!-- Nav brand -->
                         <a href="/Home/Index" class="nav-brand"><img src="/img/core-img/logo.png" alt="" style="margin: 20px"></a>
-
-                        <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
                             <span class="navbarToggler"><span></span><span></span><span></span></span>
                         </div>
-
-                        <!-- Menu -->
                         <div class="classy-menu">
-
-                            <!-- Close Button -->
                             <div class="classycloseIcon">
                                 <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                             </div>
-
-                            <!-- Nav Start -->
                             <div class="classynav" style="margin-right:20px">
-                                <ul> 
+                                <ul>
                                     <li><a href="/Home/Index">Home</a></li>
                                     <li><a href="/Users/AlbumsStore">Albums</a></li>
                                     <li>
@@ -84,9 +68,7 @@
                                     <li><a href="/Users/Blog">News</a></li>
                                     <li><a href="/Users/Contact">Contact</a></li>
                                 </ul>
-                                 
                                 <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         @if (signInManager.IsSignedIn(User))
                                         {
@@ -95,18 +77,16 @@
                                                     <img src="/img/avatar-img/avatar.png" alt="User Avatar" class="avatar-img" style="margin-right: 10px;" />
                                                     <p style="margin: 0; color: white; font-weight: bold">@fullName</p>
                                                 </a>
-
                                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                     @if (User.IsInRole("Admin"))
                                                     {
-                                                        <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="DashBoard">Dashboard</a>
+                                                        <a class="dropdown-item nav-link text-dark" asp-controller="Admin" asp-action="DashBoard">Dashboard</a>
                                                     }
                                                     <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="Profile">Profile</a>
                                                     <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="HistoryOfListening">Recently</a>
                                                     <a class="dropdown-item nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
                                                 </div>
                                             </ul>
-
                                         }
                                         else
                                         {
@@ -115,7 +95,6 @@
                                     </div>
                                 </div>
                             </div>
-                           
                         </div>
                     </nav>
                 </div>
@@ -127,18 +106,15 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="footer-area">
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
                     <a href="#"><img src="/img/core-img/logo.png" alt=""></a>
                     <p class="copywrite-text">
-                        <a href="#">
-                            Online Music - Relaxation options for every home 
+                        <a href="#">Online Music - Relaxation options for every home</a>
                     </p>
                 </div>
-
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
@@ -153,18 +129,11 @@
             </div>
         </div>
     </footer>
-    <!-- ##### Footer Area Start ##### -->
-    <!-- ##### All Javascript Script ##### -->
-    <!-- jQuery-2.2.4 js -->
     <script src="/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
     <script src="/js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap js -->
     <script src="/js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
     <script src="/js/plugins/plugins.js"></script>
-    <!-- Active js -->
     <script src="/js/active.js"></script>
-
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

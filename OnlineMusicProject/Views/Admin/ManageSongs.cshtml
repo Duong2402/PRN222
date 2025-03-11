@@ -44,10 +44,10 @@
                     <td>@song.NameSong</td> 
                     <td>@song.Artists?.ArtistName</td>
                     <td>@song.songGenres?.Name</td>
-                    <td>
-                        <a asp-action="EditSong" asp-route-id="@song.SongId" class="btn btn-sm btn-primary">Edit</a>
-                        <a asp-action="DeleteSong" asp-route-id="@song.SongId" class="btn btn-sm btn-danger">Delete</a>
-                    </td>
+                        <td>
+                            <a asp-controller="Admin" asp-action="EditSong" asp-route-id="@song.SongId" class="btn btn-sm btn-primary">Edit</a>
+                            <a asp-action="DeleteSong" asp-route-id="@song.SongId" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
                 </tr>
             }
         </tbody>

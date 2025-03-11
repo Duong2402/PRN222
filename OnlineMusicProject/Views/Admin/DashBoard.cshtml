@@ -54,37 +54,32 @@
             }
 </style>
 
-<div class="container mt-5" style="margin-top: 100px; padding-top: 20px;">
-    <h1 class="text-center mb-4">Admin Dashboard</h1>
-    <div class="row">
-        <!-- Manage Accounts -->
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <h3>Manage Accounts</h3>
-                <p>View, edit, or delete user accounts.</p>
-                 <a asp-controller="Users" asp-action="ManageAccounts">Go to Accounts</a>
+    <div class="container mt-5" style="margin-top: 100px; padding-top: 20px;">
+        <h1 class="text-center mb-4">Admin Dashboard</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="dashboard-card">
+                    <h3>Manage Accounts</h3>
+                    <p>View, edit, or delete user accounts.</p>
+                    <a asp-controller="Admin" asp-action="ManageAccounts">Go to Accounts</a>
+                </div>
             </div>
-        </div>
-
-        <!-- Manage Songs -->
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <h3>Manage Songs</h3>
-                <p>Add, update, or remove songs from the library.</p>
-                <a asp-controller="Users" asp-action="ManageSongs">Go to Songs</a>
+            <div class="col-md-4">
+                <div class="dashboard-card">
+                    <h3>Manage Songs</h3>
+                    <p>Add, update, or remove songs from the library.</p>
+                    <a asp-controller="Admin" asp-action="ManageSongs">Go to Songs</a>
+                </div>
             </div>
-        </div>
-
-        <!-- Manage Playlists -->
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <h3>Manage Playlists</h3>
-                <p>Create, edit, or delete playlists.</p>
-                <a asp-controller="Users" asp-action="ManagePlaylists">Go to Playlists</a>
+            <div class="col-md-4">
+                <div class="dashboard-card">
+                    <h3>Manage Playlists</h3>
+                    <p>Create, edit, or delete playlists.</p>
+                    <a asp-controller="Admin" asp-action="ManagePlaylists">Go to Playlists</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>

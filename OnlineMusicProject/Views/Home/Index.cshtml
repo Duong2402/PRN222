@@ -114,7 +114,7 @@
                                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                     @if (User.IsInRole("Admin"))
                                                     {
-                                                        <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="DashBoard">Dashboard</a>
+                                                        <a class="dropdown-item nav-link text-dark" asp-controller="Admin" asp-action="DashBoard">Dashboard</a>
                                                     }
                                                     <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="Profile">Profile</a>
                                                     <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="HistoryOfListening">Recently</a>
