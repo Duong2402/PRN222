@@ -2,6 +2,7 @@
 @using OnlineMusicProject.Models
 @inject SignInManager<Users> signInManager;
 @inject UserManager<Users> userManager;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     var user = await userManager.GetUserAsync(User);
     var fullName = user != null ? user.FullName : "Guest";
@@ -121,8 +122,8 @@
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="/Home/Index">Home</a></li>
-                            <li><a href="/Users/AlbumsStore">Albums</a></li>
+                            <li><a asp-controller="Home" asp-action="Index" >Home</a></li>
+                            <li><a asp-controller="Songs" asp-action="SongList" >Songs</a></li>
                             <li><a href="/Users/Artists">Artists</a></li>
                             <li><a href="/Users/Blog">News</a></li>
                             <li><a href="/Users/Contact">Contact</a></li>
