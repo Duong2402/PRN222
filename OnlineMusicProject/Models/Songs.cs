@@ -8,20 +8,22 @@ namespace OnlineMusicProject.Models
         [Key]
         public Guid SongId { get; set; }
 
-        [Display(Name = "Image_Song")]
+        [Display(Name = "Image Song")]
         [StringLength(255)]
         public string? ImageSong { get; set; }
 
         [Required]
         [StringLength(255)]
-        [Display(Name = "Name_Song")]
+        [Display(Name = "Name Song")]
         public string NameSong { get; set; }
 
         [Required]
         [StringLength(255)]
-        [Display(Name = "File_Path")]
+        [Display(Name = "File Path")]
         public string FilePath { get; set; }
         public string Lyrics { get; set; }
+        [Display(Name = "Number Of Listeners")]
+        public int NumberOfListeners { get; set; }
         public Guid GenreId { get; set; }
         public SongGenres songGenres { get; set; }
         public Guid ArtistId {  get; set; }

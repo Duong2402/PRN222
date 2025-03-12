@@ -66,7 +66,10 @@ namespace OnlineMusicProject.Controllers
             var user = await userManager.GetUserAsync(User);
             if (user == null) return RedirectToAction("Details", "Songs", new { id = songId });
             var song = await _context.Songs.FindAsync(songId);
-            if (song == null) return NotFound();
+            if (song == null)
+            {
+                return NotFound();
+            }
             var history = await _context.Histories.FirstOrDefaultAsync(h => h.UserId == user.Id && h.SongId == songId);
 
             if (history == null)
@@ -86,6 +89,7 @@ namespace OnlineMusicProject.Controllers
                 _context.Histories.Update(history);
             }
             await _context.SaveChangesAsync();
+
             return RedirectToAction("Details", "Songs", new { id = songId });
         }
 

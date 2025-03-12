@@ -17,6 +17,12 @@ namespace OnlineMusicProject.Controllers
         {
             Songs song = await _context.Songs.Include(p => p.Artists)
                                        .FirstOrDefaultAsync(p => p.SongId == id);
+            if(song != null)
+            {
+                song.NumberOfListeners += 1;
+                _context.Songs.Update(song);
+                await _context.SaveChangesAsync();
+            }
             return View(song);
         }
         public async Task<IActionResult> SongList()

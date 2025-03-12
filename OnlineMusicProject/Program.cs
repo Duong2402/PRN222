@@ -3,9 +3,11 @@ using OnlineMusicProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using OnlineMusicProject.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
+//builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddDbContext<OnlineMusicDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineMusic"));

@@ -42,7 +42,7 @@ namespace OnlineMusicProject.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Email or Password is incorrect");
+                    ModelState.AddModelError("Password", "Email or Password is incorrect");
                     return View(model);
                 }
             }
@@ -93,7 +93,6 @@ namespace OnlineMusicProject.Controllers
             }
             return View(model);
         }
-      
         public IActionResult VerifyEmail()
         {
             if (User.Identity.IsAuthenticated)
@@ -111,7 +110,7 @@ namespace OnlineMusicProject.Controllers
                 var user = await userManager.FindByNameAsync(model.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "Not Found");
+                    ModelState.AddModelError("Email", "This email does not exist.");
                     return View(model);
                 }
                 else
@@ -154,7 +153,7 @@ namespace OnlineMusicProject.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Email not found");
+                    ModelState.AddModelError("Email", "This email does not exist.");
                     return View(model);
                 }
             }
