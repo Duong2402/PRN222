@@ -3,7 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\",
   "Documents": [
     {
-<<<<<<< HEAD
+      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\new folder (2)\\prn222\\onlinemusicproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\new folder (2)\\prn222\\onlinemusicproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\new folder (2)\\prn222\\onlinemusicproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\new folder (2)\\prn222\\onlinemusicproject\\views\\artists\\songsof.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\views\\artists\\songsof.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -38,14 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\new folder (2)\\prn222\\onlinemusicproject\\views\\admin\\createaccount.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\views\\admin\\createaccount.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-=======
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|d:\\he172265_prn212\\onlinemusic\\onlinemusicproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|d:\\he172265_prn212\\onlinemusic\\onlinemusicproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> fb43f64c5608d799a29be5d1d713be88ea0efc46
     }
   ],
   "DocumentGroupContainers": [
@@ -55,11 +58,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 365,
-<<<<<<< HEAD
           "SelectedChildIndex": 1,
-=======
-          "SelectedChildIndex": 3,
->>>>>>> fb43f64c5608d799a29be5d1d713be88ea0efc46
           "Children": [
             {
               "$type": "Bookmark",
@@ -67,21 +66,59 @@
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
               "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "OnlineMusicProject\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAPABAAAAqBi7fKgFwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-12T04:12:23.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\appsettings.json",
+              "RelativeDocumentMoniker": "OnlineMusicProject\\appsettings.json",
+              "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\appsettings.json",
+              "RelativeToolTip": "OnlineMusicProject\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-12T04:11:11.647Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "OnlineMusicProject\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "OnlineMusicProject\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowBgAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T04:08:48.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "SongsOf.cshtml",
               "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Views\\Artists\\SongsOf.cshtml",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Artists\\SongsOf.cshtml",
               "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Views\\Artists\\SongsOf.cshtml",
               "RelativeToolTip": "OnlineMusicProject\\Views\\Artists\\SongsOf.cshtml",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAGEAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-11T12:19:44.364Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "songdetail.css",
               "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\wwwroot\\css\\SongsOnline\\songdetail.css",
               "RelativeDocumentMoniker": "OnlineMusicProject\\wwwroot\\css\\SongsOnline\\songdetail.css",
@@ -93,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "SongList.cshtml",
               "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Views\\Songs\\SongList.cshtml",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Songs\\SongList.cshtml",
@@ -105,7 +142,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Views\\Songs\\Details.cshtml",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Songs\\Details.cshtml",
@@ -117,7 +154,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "AlbumsStore.cshtml",
               "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Views\\Users\\AlbumsStore.cshtml",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Users\\AlbumsStore.cshtml",
@@ -129,7 +166,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "SongsController.cs",
               "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Controllers\\SongsController.cs",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Controllers\\SongsController.cs",
@@ -141,7 +178,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "DashBoard.cshtml",
               "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Views\\Admin\\DashBoard.cshtml",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Admin\\DashBoard.cshtml",
@@ -153,7 +190,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Controllers\\UsersController.cs",
@@ -165,7 +202,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "CreateAccount.cshtml",
               "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\New folder (2)\\PRN222\\OnlineMusicProject\\Views\\Admin\\CreateAccount.cshtml",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Admin\\CreateAccount.cshtml",
@@ -174,31 +211,6 @@
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-11T03:39:40.882Z"
-=======
-              "DocumentIndex": 1,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "OnlineMusicProject\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "OnlineMusicProject\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwBsAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T15:15:02.97Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "OnlineMusicProject\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAACABAAAAAAAAAAAAADABAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-11T14:33:24.694Z",
-              "EditorCaption": ""
->>>>>>> fb43f64c5608d799a29be5d1d713be88ea0efc46
             }
           ]
         }
