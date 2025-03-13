@@ -23,10 +23,6 @@ namespace OnlineMusicProject.Controllers
 
         public IActionResult Login()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Home");
-            }
             return View();
         }
         [HttpPost]
@@ -51,10 +47,6 @@ namespace OnlineMusicProject.Controllers
        
         public IActionResult Register()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Home");
-            }
             return View();
         }
         [HttpPost]
@@ -95,10 +87,6 @@ namespace OnlineMusicProject.Controllers
         }
         public IActionResult VerifyEmail()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Home");
-            }
             return View();
         }
         [HttpPost]

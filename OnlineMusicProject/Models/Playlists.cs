@@ -8,9 +8,11 @@ namespace OnlineMusicProject.Models
         [Key]
         public Guid PlaylistId { get; set; }
         [Required]
-        [Display(Name = "Playlist_Name")]
+        [Display(Name = "Playlist Name")]
         [StringLength(255)]
         public string PlaylistName { get; set; }
+        [Display(Name = "Playlist Image")]
+        public string? PlaylistImage { get; set; }
 
         [ForeignKey(nameof(Users))]
         public string UserId { get; set; }

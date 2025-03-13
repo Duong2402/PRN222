@@ -10,6 +10,7 @@ namespace OnlineMusicProject.Models
         [StringLength(50, MinimumLength = 1)]
         [RegularExpression(@"^[a-zA-Z\s]*$", ErrorMessage = "FullName can only contain letters and spaces.")]
         public string FullName { get; set; }
+        public string? Avatar { get; set; }
 
     }
 }

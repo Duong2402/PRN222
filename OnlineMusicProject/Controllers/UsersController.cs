@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using OnlineMusicProject.Models;
 using OnlineMusicProject.ViewModels;
+using OnlineMusicProject.ViewModels.HomePage;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace OnlineMusicProject.Controllers
 {
@@ -22,7 +25,7 @@ namespace OnlineMusicProject.Controllers
         public IActionResult Profile() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Profile(Users u)
+        public async Task<IActionResult> Profile(Users u, IFormFile avatar)
         {
             if (ModelState.IsValid)
             {
@@ -30,6 +33,17 @@ namespace OnlineMusicProject.Controllers
                 if (user != null)
                 {
                     user.FullName = u.FullName;
+                    user.PhoneNumber = u.PhoneNumber;
+
+                    if(avatar != null && avatar.Length > 0)
+                    {
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", "avatar-img", avatar.FileName);
+                        using(var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await avatar.CopyToAsync(stream);
+                        }
+                        user.Avatar = "/img/avatar-img/" + avatar.FileName;
+                    }
                     var result = await userManager.UpdateAsync(user);
                     if (result.Succeeded) return RedirectToAction("Profile");
                     foreach (var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
@@ -110,5 +124,55 @@ namespace OnlineMusicProject.Controllers
         public IActionResult Elements() => View();
 
         public async Task<ActionResult<IEnumerable<Artists>>> Artists() => View(await _context.Artists.ToListAsync());
+        [Authorize(Roles = "User, Admin")]
+        public async Task<IActionResult> Playlist()
+        {
+            var user = await userManager.GetUserAsync(User);
+            if (user != null)
+            {
+                var singlePlaylist = await _context.Playlists.FirstOrDefaultAsync(p => p.UserId == user.Id);
+                var play = await _context.Playlists.Where(p => p.UserId == user.Id).ToListAsync();
+                var modelPlaylist = new PlaylistsViewModel
+                {
+                    SinglePlaylist = singlePlaylist,
+                    PlaylistList = play
+                };
+                return View(modelPlaylist);
+            }
+            return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Playlist(PlaylistsViewModel p, IFormFile avatar)
+        {
+            var user = await userManager.GetUserAsync(User);
+           
+            if (user != null)
+            {
+                Playlists play = new Playlists
+                {
+                    PlaylistId = Guid.NewGuid(),
+                    PlaylistName = p.SinglePlaylist.PlaylistName,
+                    UserId = user.Id,
+                    CreatedAt = DateTime.Now,
+                    
+                };
+                if (avatar != null && avatar.Length > 0)
+                {
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", "playlist-img", avatar.FileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await avatar.CopyToAsync(stream);
+                    }
+
+                    play.PlaylistImage = "/img/playlist-img/" + avatar.FileName;
+                }
+                _context.Playlists.Add(play);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("PlayList");
+            }
+            return RedirectToAction("PlayList");
+        }
+
     }
 }

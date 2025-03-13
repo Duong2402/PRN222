@@ -61,10 +61,10 @@
                                 <source src="@Model.FilePath" type="audio/mpeg">
                             </audio>
                             <div class="button-group">
-                                <button class="playlist-btn" onclick="addToPlaylist('@Model.SongId')">
+                                <button class="playlist-btn" onclick="addToPlaylist('@Model.SongId')" style="width:200px">
                                     <span class="icon">❤️</span> Add to playlist
                                 </button>
-                                <a href="@Model.FilePath" download class="download-btn">
+                                <a href="@Model.FilePath" download class="download-btn" style="width: 200px">
                                     <span class="icon">⬇</span> Download
                                 </a>
                             </div>

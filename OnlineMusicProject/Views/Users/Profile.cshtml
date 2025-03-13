@@ -7,6 +7,7 @@
 @inject UserManager<Users> userManager;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model OnlineMusicProject.Models.Users
+
 @{
     var user = await userManager.GetUserAsync(User);
     var fullName = user != null ? user.FullName : "Guest";
@@ -96,14 +97,96 @@
             #updateNameForm button:hover {
                 background-color: #45a049;
             }
+
+      
+        /* .modalPlaylist {
+              display: none;
+              position: fixed;
+              z-index: 9999;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              background-color: rgba(0, 0, 0, 0.6); 
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              transition: opacity 0.3s ease-in-out;
+          }
+
+          .modal-content {
+              background-color: white;
+              padding: 30px;
+              border-radius: 10px;
+              width: 400px; 
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+              position: relative;
+          }
+
+          .closePlaylist {
+              color: #aaa;
+              font-size: 30px;
+              font-weight: bold;
+              cursor: pointer;
+              position: absolute;
+              right: 15px;
+              top: 5px;
+          }
+
+              .closePlaylist:hover,
+              .closePlaylist:focus {
+                  color: black;
+                  text-decoration: none;
+              }
+
+          #addToPlaylistForm input {
+              padding: 12px;
+              width: 100%;
+              margin-bottom: 20px;
+              font-size: 16px;
+              border-radius: 8px;
+              border: 1px solid #ddd;
+              box-sizing: border-box; 
+              transition: border-color 0.3s ease;
+          }
+
+              #addToPlaylistForm input:focus {
+                  border-color: #4CAF50; 
+                  outline: none;
+              }
+
+         
+          #addToPlaylistForm button {
+              padding: 12px;
+              width: 100%;
+              background-color: #4CAF50;
+              color: white;
+              font-size: 16px;
+              border: none;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+          }
+
+         
+              #addToPlaylistForm button:hover {
+                  background-color: #45a049;
+              }
+
+          .text-danger {
+              color: red;
+              font-size: 14px;
+              margin-top: 5px;
+          } */
+
     </style>
 </head>
 
 <body>
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent" style="display: flex; align-items: center; justify-content: center; text-align: center;">
-            <img src="/img/avatar-img/avatar.png" alt="User Avatar" class="avatar-img" style="margin-right: 20px; width: 70px; height: 70px; border-radius: 50%; object-fit: cover;" />
-            <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 30px">@fullName</p>
+            <img src="@(!string.IsNullOrEmpty(user.Avatar) ? user.Avatar : "/img/avatar-img/avatar.png")" alt="User Avatar" class="avatar-img" style="margin-right: 20px; width: 70px; height: 70px; border-radius: 50%; object-fit: cover;" />
+            <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 30px">Account</p>
             <button class="edit-button" style="font-size: 20px; cursor: pointer; border: none; background: none; color: gray;" onclick="openModal()">
                 <i class="fas fa-pencil-alt"></i>
             </button>
@@ -112,34 +195,53 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>
-            <form id="updateNameForm" asp-action="Profile" method="post">
-                <input asp-for="FullName" id="FullName" placeholder="Enter new name">
-                <span asp-validation-for="FullName" class="text-danger"></span>
+            <form id="updateNameForm" asp-action="Profile" method="post" enctype="multipart/form-data">
+          
+                <div style="text-align: center; margin-bottom:5px; display: flex">
+                    <input type="file" asp-for="Avatar" id="Avatar" accept="image/*" style="margin-right: 5px" onchange="previewImage(event)">
+                    <br>
+                    <img id="avatarPreview" src="@(!string.IsNullOrEmpty(user.Avatar) ? user.Avatar : "/img/avatar-img/avatar.png")" alt="User Avatar" class="avatar-img" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" />
+                </div>
+                <div>
+                    <input asp-for="FullName" id="FullName" placeholder="Enter new name" value="@fullName"/>
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <input asp-for="PhoneNumber" id="PhoneNumber" placeholder="Enter Phone" value="@user.PhoneNumber"/>
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
                 <button type="submit">Save</button>
             </form>
+
         </div>
     </div>
 
-    <section class="login-area section-padding-100">
+   <section class="login-area section-padding-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
                     <div class="login-content">
-                        <h3>Danh sách phát</h3>
-                        <div class="login-form" style="position: relative; display: flex; justify-content: space-between; align-items: center;">
+                        <div class="login-form" style="display: flex; justify-content: center; text-align: left;">
                             <div>
-                                    PlayList in here
-                            </div>
+                                <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 20px">Tên tài khoản: @fullName</p>
+                                <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 20px">Email: @user.Email</p>
+                               
+                                <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 20px">Mật Khẩu: 
+                                    <a asp-controller="Account" asp-action="VerifyEmail" style="color: #0689ba; font-size: 18px; padding-left: 20px;">Đổi mật khẩu</a>
+                                </p>
 
-                            <button class="edit-button" style="font-size: 20px; cursor: pointer; border: none; background: none; color: gray; position: absolute; right: 5px; border: 2px solid; border-radius:100%">
-                                <i class="fas fa-plus" style="padding: 0 6px"></i>
-                            </button>
+                                <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 20px">Giới tính: Nam</p>
+                                <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 20px">Phone: @user.PhoneNumber</p>
+
+                            </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </section>
-
+  
     <script src="/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="/js/bootstrap/popper.min.js"></script>
@@ -150,6 +252,7 @@
     <!-- Active js -->
     <script src="/js/active.js"></script>
     <script>
+        // Modal Update Name
         var modal = document.getElementById("myModal");
 
         function openModal() {
@@ -167,10 +270,27 @@
         }
 
         document.getElementById("updateNameForm").onsubmit = function (event) {
-            // Không cần preventDefault
-            closeModal(); // Đóng modal sau khi submit
+            closeModal(); 
         };
+
+       
     </script>
+    <script>
+        function previewImage(event) {
+            var file = event.target.files[0]; 
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var imgElement = document.getElementById('avatarPreview'); 
+                imgElement.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
 </body>
 
 </html>
