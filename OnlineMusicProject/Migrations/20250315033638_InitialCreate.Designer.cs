@@ -12,8 +12,8 @@ using OnlineMusicProject.Models;
 namespace OnlineMusicProject.Migrations
 {
     [DbContext(typeof(OnlineMusicDBContext))]
-    [Migration("20250306094535_FixForeignKeyNaming")]
-    partial class FixForeignKeyNaming
+    [Migration("20250315033638_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -221,17 +221,9 @@ namespace OnlineMusicProject.Migrations
                     b.Property<int?>("PlayCount")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("PlaylistsPlaylistId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SongsSongId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("PlaylistId", "SongId");
 
-                    b.HasIndex("PlaylistsPlaylistId");
-
-                    b.HasIndex("SongsSongId");
+                    b.HasIndex("SongId");
 
                     b.ToTable("PlaylistSongs");
                 });
@@ -244,6 +236,9 @@ namespace OnlineMusicProject.Migrations
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("PlaylistImage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PlaylistName")
                         .IsRequired()
@@ -289,9 +284,6 @@ namespace OnlineMusicProject.Migrations
                     b.Property<Guid>("ArtistId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ArtistsArtistId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("FilePath")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -304,19 +296,23 @@ namespace OnlineMusicProject.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("Lyrics")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NameSong")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<Guid>("songGenresGenreId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("NumberOfListeners")
+                        .HasColumnType("int");
 
                     b.HasKey("SongId");
 
-                    b.HasIndex("ArtistsArtistId");
+                    b.HasIndex("ArtistId");
 
-                    b.HasIndex("songGenresGenreId");
+                    b.HasIndex("GenreId");
 
                     b.ToTable("Songs");
                 });
@@ -328,6 +324,9 @@ namespace OnlineMusicProject.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("Avatar")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -465,13 +464,13 @@ namespace OnlineMusicProject.Migrations
                 {
                     b.HasOne("OnlineMusicProject.Models.Playlists", "Playlists")
                         .WithMany("PlaylistSongs")
-                        .HasForeignKey("PlaylistsPlaylistId")
+                        .HasForeignKey("PlaylistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("OnlineMusicProject.Models.Songs", "Songs")
                         .WithMany("PlaylistSongs")
-                        .HasForeignKey("SongsSongId")
+                        .HasForeignKey("SongId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -495,13 +494,13 @@ namespace OnlineMusicProject.Migrations
                 {
                     b.HasOne("OnlineMusicProject.Models.Artists", "Artists")
                         .WithMany("Songs")
-                        .HasForeignKey("ArtistsArtistId")
+                        .HasForeignKey("ArtistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("OnlineMusicProject.Models.SongGenres", "songGenres")
                         .WithMany("Songs")
-                        .HasForeignKey("songGenresGenreId")
+                        .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

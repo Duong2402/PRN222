@@ -4,7 +4,8 @@
 @using Microsoft.AspNetCore.Identity;
 @using OnlineMusicProject.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model OnlineMusicProject.ViewModels.HomePage.PlaylistsViewModel
+@* @model List<Playlists> *@
+@model OnlineMusicProject.ViewModels.HomePage.PlaylistViewModel
 <!DOCTYPE html>
 <html lang="en">
 
@@ -120,7 +121,7 @@
 <body>
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent" style="display: flex; align-items: center; justify-content: center; text-align: center;">
-            <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 30px">Playlist</p>
+            <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 30px">Playlists</p>
             <button class="edit-button" style="background-color: #4CAF50; color: white; border: none; font-size: 24px; padding: 10px 15px; border-radius: 50%; cursor: pointer;" onclick="openModal()">
                 <i class="fas fa-plus"></i>
             </button>
@@ -130,18 +131,20 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>
             <form id="updateNameForm" asp-action="Playlist" method="post" enctype="multipart/form-data">
-                <div style="text-align: center; margin-bottom:5px; display: flex">
-                    <input type="file" asp-for="SinglePlaylist.PlaylistImage" accept="image/*" style="margin-right: 5px" onchange="previewImage(event)">
+               <div style="text-align: center; margin-bottom:5px; display: flex">
+                    <input type="file" name="avatar" accept="image/*" style="margin-right: 5px" onchange="previewImage(event)">
                     <br>
-                    <img id="avatarPreview" src="@(!string.IsNullOrEmpty(Model.SinglePlaylist.PlaylistImage) ? Model.SinglePlaylist.PlaylistImage : "/img/playlist-img/default_Image.png")" class="avatar-img" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" />
+                    <img id="avatarPreview" src="" class="avatar-img" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" />
                 </div>
                 <div>
-                    <input asp-for="SinglePlaylist.PlaylistName" placeholder="Enter name" />
-                    <span asp-validation-for="SinglePlaylist.PlaylistName" class="text-danger"></span>
+                   <input name="playlistName" placeholder="Enter name" />
+                    @if (TempData["RequiredMsg"] != null)
+                    {
+                        <span class="text-danger">@TempData["RequiredMsg"]</span>
+                    }
                 </div>
                 <button type="submit">Create Playlist</button>
             </form>
-
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         </div>
     </div>
@@ -153,30 +156,43 @@
                     <div class="login-content">
                         <div class="login-form" style="display: flex; justify-content: center; text-align: left;">
                             <div>
-                                @if(Model.PlaylistList == null)
+                                @if (Model.PlaylistItems.Count() > 0)
                                 {
-                                    <p style="color: lightgray; font-size: 20px ; font-weight: bold"> Tạo Playlist để lưu lại những bản nhạc mình yêu thích ngay nào</p>
+                                    <div class="album-container">
+                                        @foreach (var play in Model.PlaylistItems)
+                                        {
+                                            <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item">
+                                                <a asp-controller="Playlists" asp-action="Details" asp-route-playlistId="@play.PlaylistId">
+                                                    <div class="single-album">
+                                                        <img src="@(!string.IsNullOrEmpty(play.PlaylistImage) ? play.PlaylistImage : "/img/playlist-img/default_Image.png")" alt="" style="width: 100%; height:100%;">
+                                                        <div class="album-info">
+                                                            <a href="#">
+                                                                <h5>@play.PlaylistName</h5>
+                                                            </a>
+                                                            @foreach(var cp in Model.PlaylistItemsWithCounts)
+                                                            {
+                                                                @if(cp.Playlists.PlaylistId == play.PlaylistId)
+                                                                {
+                                                                    <p>(@cp.CountSongInPlaylist)</p>
+                                                                }
+                                                              
+                                                            }
+                                                          
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
                                 }
                                 else
                                 {
-                                    <div class="album-container">
-                                        @foreach (var play in Model.PlaylistList)
-                                        {
-                                            <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item">
-                                                <div class="single-album">
-                                                    <img src="@(!string.IsNullOrEmpty(play.PlaylistImage) ? play.PlaylistImage : "/img/playlist-img/default_Image.png")" alt="" style="width: 100%; height:100%;">
-                                                    <div class="album-info">
-                                                        <a href="#">
-                                                            <h5>@play.PlaylistName</h5>
-                                                        </a>
-                                                        <p>(@(play.PlaylistSongs?.Count() ?? 0))</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        }
-                                    </div>  
+
+                                    <p style="color: lightgray; font-size: 20px; font-weight: bold">Tạo Playlist để lưu lại những bản nhạc mình yêu thích ngay nào</p>
+
                                 }
                             </div>
+
                         </div>
                     </div>
                 </div>

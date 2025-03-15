@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineMusicProject.Models;
 using OnlineMusicProject.ViewModels;
 using OnlineMusicProject.ViewModels.HomePage;
+using OnlineMusicProject.ViewModels.SongPage;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace OnlineMusicProject.Controllers
@@ -128,35 +129,50 @@ namespace OnlineMusicProject.Controllers
         public async Task<IActionResult> Playlist()
         {
             var user = await userManager.GetUserAsync(User);
+            List<Playlists> play = new List<Playlists>();
+            List<playlistWithCounts> playlistSongsWithCounts = new List<playlistWithCounts>();
             if (user != null)
             {
-                var singlePlaylist = await _context.Playlists.FirstOrDefaultAsync(p => p.UserId == user.Id);
-                var play = await _context.Playlists.Where(p => p.UserId == user.Id).ToListAsync();
-                var modelPlaylist = new PlaylistsViewModel
+                play = await _context.Playlists.Where(p => p.UserId == user.Id).ToListAsync();
+                foreach(var item in play)
                 {
-                    SinglePlaylist = singlePlaylist,
-                    PlaylistList = play
-                };
-                return View(modelPlaylist);
+                    int count = await _context.PlaylistSongs
+                                          .Where(ps => ps.PlaylistId == item.PlaylistId)
+                                          .CountAsync();
+                    playlistSongsWithCounts.Add(new playlistWithCounts
+                    {
+                        Playlists = item,
+                        CountSongInPlaylist = count
+                    });
+                }
             }
-            return RedirectToAction("Login", "Account");
+            var model = new PlaylistViewModel
+            {
+                PlaylistItems = play,
+                PlaylistItemsWithCounts = playlistSongsWithCounts
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Playlist(PlaylistsViewModel p, IFormFile avatar)
+        public async Task<IActionResult> Playlist(string playlistName, IFormFile avatar)
         {
             var user = await userManager.GetUserAsync(User);
-           
+
             if (user != null)
             {
-                Playlists play = new Playlists
+                Playlists playItem = new Playlists
                 {
                     PlaylistId = Guid.NewGuid(),
-                    PlaylistName = p.SinglePlaylist.PlaylistName,
+                    PlaylistName = playlistName,
                     UserId = user.Id,
                     CreatedAt = DateTime.Now,
-                    
                 };
+                if (string.IsNullOrEmpty(playlistName))
+                {
+                    TempData["RequiredMsg"] = "Name is required";
+                    return RedirectToAction("Playlist");
+                }
                 if (avatar != null && avatar.Length > 0)
                 {
                     var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", "playlist-img", avatar.FileName);
@@ -165,13 +181,46 @@ namespace OnlineMusicProject.Controllers
                         await avatar.CopyToAsync(stream);
                     }
 
-                    play.PlaylistImage = "/img/playlist-img/" + avatar.FileName;
+                    playItem.PlaylistImage = "/img/playlist-img/" + avatar.FileName;
                 }
-                _context.Playlists.Add(play);
+                _context.Playlists.Add(playItem);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("PlayList");
             }
-            return RedirectToAction("PlayList");
+            return RedirectToAction("Login", "Account");
+        }
+
+        public async Task<IActionResult> addToPlaylist(Guid itemId, Guid songId)
+        {
+            var user = await userManager.GetUserAsync(User);
+            if (user != null)
+            {
+                var playItems = await _context.Playlists.FirstOrDefaultAsync(pi => pi.PlaylistId == itemId);
+                if (playItems != null)
+                {
+                    var exitingSong = await _context.PlaylistSongs.FirstOrDefaultAsync(es => es.PlaylistId == playItems.PlaylistId && es.SongId == songId);
+                    if (exitingSong == null)
+                    {
+                        PlaylistSongs playlistSong = new PlaylistSongs
+                        {
+                            PlaylistId = playItems.PlaylistId,
+                            SongId = songId,
+                        };
+                        _context.PlaylistSongs.Add(playlistSong);
+                        await _context.SaveChangesAsync();
+                        TempData["MsgToDetail"] = "Song added successfully!";
+
+                        playItems.CreatedAt = DateTime.Now;
+                        _context.Playlists.Update(playItems);
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        TempData["MsgToDetail"] = "This song is already in the playlist!";
+                    }
+                }
+            }
+            return RedirectToAction("Details", "Songs", new { id = songId });
         }
 
     }

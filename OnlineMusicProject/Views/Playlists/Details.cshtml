@@ -1,0 +1,411 @@
+﻿@using OnlineMusicProject.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Identity;
+@model OnlineMusicProject.ViewModels.PlaylistPage.SongsOfPlaylistViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title -->
+    <title>Online Music</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/core-img/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/SongsOnline/songdetail.css">
+
+    <style>
+        .fixed-size-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .related-song-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+        }
+
+        .edit-button i {
+            transition: color 0.3s ease;
+        }
+
+        .edit-button:hover i {
+            color: black;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            border-radius: 5px;
+            text-align: center;
+            z-index: 10000;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        #updateNameForm input {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        #updateNameForm button {
+            padding: 10px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            #updateNameForm button:hover {
+                background-color: #45a049;
+            }
+
+        a:hover {
+            background-color: #f0f0f0;
+            transition: background-color 0.3s ease;
+        }
+        
+        .song-container {
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            gap: 10px;
+        }
+
+            .song-container img {
+                width: 68px;
+                height: 68px;
+                object-fit: cover;
+                border-radius: 50%;
+               
+            }
+
+     
+        .song-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .song-info h6, .song-info p {
+                margin-bottom: 0;
+            }
+
+        .audio-control {
+            display: none;
+        }
+
+        audio::-webkit-media-controls-play-button {
+            display: block !important; 
+        }
+
+        .modalEdit {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modalEdit-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            border-radius: 5px;
+            text-align: center;
+            z-index: 10000;
+        }
+
+        .closeEdit {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: relative;
+            bottom: 25px;
+        }
+
+            .closeEdit:hover,
+            .closeEdit:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        #updatePlaylistForm input {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        #updatePlaylistForm button {
+            padding: 10px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            #updatePlaylistForm button:hover {
+                background-color: #45a049;
+            }
+
+
+    </style>
+</head>
+
+<body>
+
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent" style="display: flex; justify-content: center; align-items: center">
+            <h2 style="margin-bottom: 0">@Model.playlistItem.PlaylistName  -  </h2>
+            <button onclick="openModalEdit()" style="border: none; margin-left: 10px; font-size: 20px; background: white;outline: none;">
+                <span class="icon"><i class="fas fa-edit"></i></span>
+            </button>
+        </div>
+    </section>
+    <div class="one-music-songs-area mb-70" style="margin-top: 40px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-center justify-content-center">
+
+                        <div class="song-play-area text-center w-100">
+                            <div class="song-name">
+                                <p>@Model.SinglePlaylistSongs.Songs.NameSong - @Model.SinglePlaylistSongs.Songs.Artists.ArtistName</p>
+                            </div>
+                            <audio controls>
+                                <source src="@Model.SinglePlaylistSongs.Songs.FilePath" type="audio/mpeg">
+                            </audio>
+                            <div class="button-group">
+                                <button class="playlist-btn" onclick="openModal()" style="width:200px">
+                                    <span class="icon">❤️</span> Add to playlist
+                                </button>
+                                <a href="FilePath" download class="download-btn" style="width: 200px">
+                                    <span class="icon">⬇</span> Download
+                                </a>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="col-md-3" style="background: lightgray">
+                    @foreach (var s in Model.playlistSongs)
+                    {
+                        <div style="display: flex; justify-content: space-around; margin:10px">
+                            <div class="song-container">
+                                <img src="@s.Songs.ImageSong" alt="@s.Songs.ImageSong">
+                                <div class="song-info">
+                                    <h6>@s.Songs.Artists.ArtistName</h6>
+                                    <p>@s.Songs.NameSong</p>
+                                </div>
+                            </div>
+                            <button class="play-btn" style="border: none; padding: 5px; border-radius: 50%; background: white; width: 30px ;height: 30px; position: relative;top: 12px; left: 10px">
+                                <i class="fas fa-play"></i>
+                            </button>
+                          
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>
+
+            <div style="border-bottom: 1px solid lightgray; margin: 5px 0">
+               @*  @foreach (var play in Model.PlaylistItems)
+                {
+                    <div>
+                        <a asp-controller="Users"
+                           asp-action="addToPlaylist"
+                           asp-route-itemId="@play.PlaylistId"
+                           asp-route-songId="@Model.Song.SongId"
+                           style="display: flex; justify-content: space-between;
+                        text-decoration: none;padding: 0 5px;">
+
+                            <p style="color: black; font-size: 16px; margin-bottom: 0">@play.PlaylistName - (@Model.CountSongInPlaylist)</p>
+                            <p style="color: black; font-size: 16px; margin-bottom: 0">@play.CreatedAt?.ToString("dd/MM/yyyy")</p>
+                        </a>
+                    </div>
+                } *@
+            </div>
+            <form id="updateNameForm">
+                <div>
+                    <input type="hidden" name="songId" value="" />
+                    <input name="playlistName" placeholder="Enter new name" />
+                  @*   @if (TempData["RequiredMsg"] != null)
+                    {
+                        <span class="text-danger">@TempData["RequiredMsg"]</span>
+                    } *@
+                </div>
+                <button type="submit">Create Playlist</button>
+            </form>
+
+        </div>
+    </div>
+
+    <div id="myModalEdit" class="modalEdit">
+        <div class="modalEdit-content">
+            <span class="closeEdit" onclick="closeModalEdit()" style="text-align: right;">&times;</span>
+
+            <form id="updatePlaylistForm" asp-action="Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId"/>
+                <div style="text-align: center; margin-bottom:5px; display: flex">
+                    <input type="file" name="playlistImage" id="Avatar" accept="image/*" style="margin-right: 5px" onchange="previewImage(event)">
+                    <br>
+                    <img id="avatarPreview" src="@(!string.IsNullOrEmpty(Model.playlistItem.PlaylistImage) ? Model.playlistItem.PlaylistImage : "/img/playlist-img/default_Image.png")" alt="User Avatar" class="avatar-img" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" />
+                </div>
+                <div>
+                    <input name="playlistName" id="playlistName" placeholder="Enter new name" value="@Model.playlistItem.PlaylistName" />
+                    @if (TempData["RequiredMsg"] != null)
+                    {
+                        <span class="text-danger">@TempData["RequiredMsg"]</span>
+                    }
+                </div>
+                <div style="display: flex; align-items: center; gap: 20px; padding: 10px;">
+                    <button type="submit" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s; width: 100px">
+                        Save
+                    </button>
+                    <a asp-controller="Playlists" asp-action="Delete" asp-route-playlistId ="@Model.playlistItem.PlaylistId" style="background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s; width: 100px; padding: 10px">
+                        Delete
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+    <!-- jQuery-2.2.4 js -->
+    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    @* <!-- All Plugins js --> *@
+    @* <script src="/js/plugins/plugins.js"></script> *@
+    <!-- Active js -->
+    <script src="/js/active.js"></script>
+    <script>
+
+        var modal = document.getElementById("myModal");
+
+        function openModal() {
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        document.getElementById("updateNameForm").onsubmit = function (event) {
+            closeModal();
+        };
+
+
+    </script>
+
+    <script>
+
+        var modal = document.getElementById("myModalEdit");
+
+        function openModalEdit() {
+            modal.style.display = "block";
+        }
+
+        function closeModalEdit() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModalEdit();
+            }
+        }
+
+        document.getElementById("updatePlaylistForm").onsubmit = function (event) {
+            closeModalEdit();
+        };
+
+
+    </script>
+    <script>
+        function previewImage(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var imgElement = document.getElementById('avatarPreview');
+                imgElement.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+
+</html>
