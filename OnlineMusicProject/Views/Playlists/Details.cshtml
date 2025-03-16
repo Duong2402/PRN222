@@ -116,8 +116,8 @@
         }
 
             .song-container img {
-                width: 68px;
-                height: 68px;
+                width: 60px;
+                height: 60px;
                 object-fit: cover;
                 border-radius: 50%;
                
@@ -203,7 +203,48 @@
                 background-color: #45a049;
             }
 
+        .delete-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: gray;
+            transition: color 0.3s ease;
+            font-size: 15px;
+            outline: none;
+        }
+            .delete-btn:hover {
+                color: red;
+                border: none;
+                outline: none;
+                background: lightgray
+            }
 
+        .audioplayer-next {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            bottom: 34px;
+            left: 30px;
+            margin-left: 5px;
+            border: none;
+            outline: none;
+            cursor: pointer ;
+            background: #262626;
+            color: white
+        }
+
+        .audioplayer-prev {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            bottom: 34px;
+            right: 30px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background: #262626;
+            color: white 
+        }
     </style>
 </head>
 
@@ -211,27 +252,55 @@
 
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent" style="display: flex; justify-content: center; align-items: center">
-            <h2 style="margin-bottom: 0">@Model.playlistItem.PlaylistName  -  </h2>
-            <button onclick="openModalEdit()" style="border: none; margin-left: 10px; font-size: 20px; background: white;outline: none;">
+            <h2 style="margin-bottom: 0">@Model.playlistItem.PlaylistName - @Model.UserName</h2>
+            <button onclick="openEditPlaylistForm()" style="border: none; margin-left: 10px; font-size: 20px; background: white;outline: none;">
                 <span class="icon"><i class="fas fa-edit"></i></span>
             </button>
         </div>
     </section>
+    <div style="margin-top: 20px">
+        @if (TempData["MsgToDetail"] != null)
+        {
+            <div class="alert alert-info" style="text-align: center; font-size: 20px">
+                @TempData["MsgToDetail"]
+            </div>
+        }
+    </div>
     <div class="one-music-songs-area mb-70" style="margin-top: 40px">
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-center justify-content-center">
-
-                        <div class="song-play-area text-center w-100">
+                        <div class="song-play-area text-center w-100" style="padding: 20px 50px;">
                             <div class="song-name">
                                 <p>@Model.SinglePlaylistSongs.Songs.NameSong - @Model.SinglePlaylistSongs.Songs.Artists.ArtistName</p>
                             </div>
-                            <audio controls>
+                            <audio id="audioPlayer" controls>
                                 <source src="@Model.SinglePlaylistSongs.Songs.FilePath" type="audio/mpeg">
                             </audio>
+                            <div class="audioplayer">
+                                <form asp-action="Details" method="get" style="display: inline;">
+                                    <input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId" />
+                                    <input type="hidden" name="songId" value="@Model.SinglePlaylistSongs.SongId" />
+                                    <input type="hidden" name="action" value="prev" />
+                                    <button type="submit" class="audioplayer-prev">
+                                        <i class="fas fa-step-backward"></i>
+                                    </button>
+                                </form>
+
+                                <form asp-action="Details" method="get" style="display: inline;">
+                                    <input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId" />
+                                    <input type="hidden" name="songId" value="@Model.SinglePlaylistSongs.SongId" />
+                                    <input type="hidden" name="action" value="next" />
+                                    <button type="submit" class="audioplayer-next">
+                                        <i class="fas fa-step-forward"></i>
+                                    </button>
+                                </form>
+
+
+                            </div>
                             <div class="button-group">
-                                <button class="playlist-btn" onclick="openModal()" style="width:200px">
+                                <button class="playlist-btn" onclick="openAddPlaylistForm()" style="width:200px">
                                     <span class="icon">❤️</span> Add to playlist
                                 </button>
                                 <a href="FilePath" download class="download-btn" style="width: 200px">
@@ -245,18 +314,32 @@
                 <div class="col-md-3" style="background: lightgray">
                     @foreach (var s in Model.playlistSongs)
                     {
-                        <div style="display: flex; justify-content: space-around; margin:10px">
+                        <div style="display: flex; justify-content: space-around; margin:10px 0">
                             <div class="song-container">
+                                <a class="delete-btn" asp-action="RemoveSongFromPlaylist" asp-route-songId="@s.SongId" asp-route-playlistId="@s.PlaylistId" style="flex-shrink: 0;margin-left: 0;padding: 0">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                                 <img src="@s.Songs.ImageSong" alt="@s.Songs.ImageSong">
                                 <div class="song-info">
                                     <h6>@s.Songs.Artists.ArtistName</h6>
                                     <p>@s.Songs.NameSong</p>
                                 </div>
                             </div>
-                            <button class="play-btn" style="border: none; padding: 5px; border-radius: 50%; background: white; width: 30px ;height: 30px; position: relative;top: 12px; left: 10px">
-                                <i class="fas fa-play"></i>
-                            </button>
-                          
+                            <form asp-action="Details" method="get">
+                                <input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId" />
+                                <input type="hidden" name="songId" value="@s.SongId" />
+                                <button type="submit"
+                                        style="border: none; padding: 5px; border-radius: 50%; background: white; width: 30px; height: 30px; position: relative;top: 12px; left: 10px">
+                                    @if (Model.CurrentSongId == s.SongId)
+                                    {
+                                        <i class="fas fa-pause"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-play"></i>
+                                    }
+                                </button>
+                            </form>
                         </div>
                     }
                 </div>
@@ -269,30 +352,42 @@
             <span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>
 
             <div style="border-bottom: 1px solid lightgray; margin: 5px 0">
-               @*  @foreach (var play in Model.PlaylistItems)
+                @foreach (var play in Model.PlaylistItems)
                 {
                     <div>
-                        <a asp-controller="Users"
-                           asp-action="addToPlaylist"
-                           asp-route-itemId="@play.PlaylistId"
-                           asp-route-songId="@Model.Song.SongId"
+                        <a asp-controller="Playlists"
+                           asp-action="addSongToPlaylist"
+                           asp-route-playlistId="@play.PlaylistId"
+                           asp-route-itemId="@Model.playlistItem.PlaylistId"
+                           asp-route-songId="@Model.SinglePlaylistSongs.SongId"
                            style="display: flex; justify-content: space-between;
-                        text-decoration: none;padding: 0 5px;">
+                              text-decoration: none;padding: 0 5px;">
+                            <div style="display: flex; align-items: center;">
+                                <p style="color: black; font-size: 16px; margin-bottom: 0">@play.PlaylistName</p>
+                                @foreach (var cp in Model.PlaylistItemsWithCounts)
+                                {
+                                    @if (cp.Playlists.PlaylistId == play.PlaylistId)
+                                    {
+                                        <p style="margin-bottom: 0; margin-left: 5px">(@cp.CountSongInPlaylist)</p>
+                                    }
+                                }
+                            </div>
 
-                            <p style="color: black; font-size: 16px; margin-bottom: 0">@play.PlaylistName - (@Model.CountSongInPlaylist)</p>
                             <p style="color: black; font-size: 16px; margin-bottom: 0">@play.CreatedAt?.ToString("dd/MM/yyyy")</p>
                         </a>
                     </div>
-                } *@
+                }
             </div>
-            <form id="updateNameForm">
+
+            <form id="updateNameForm" asp-action="CreatePlaylist" method="post">
                 <div>
-                    <input type="hidden" name="songId" value="" />
+                    <input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId" />
+                    <input type="hidden" name="songId" value="@Model.SinglePlaylistSongs.SongId" />
                     <input name="playlistName" placeholder="Enter new name" />
-                  @*   @if (TempData["RequiredMsg"] != null)
+                    @if (TempData["RequiredMsg"] != null)
                     {
                         <span class="text-danger">@TempData["RequiredMsg"]</span>
-                    } *@
+                    }
                 </div>
                 <button type="submit">Create Playlist</button>
             </form>
@@ -300,12 +395,13 @@
         </div>
     </div>
 
+
     <div id="myModalEdit" class="modalEdit">
         <div class="modalEdit-content">
             <span class="closeEdit" onclick="closeModalEdit()" style="text-align: right;">&times;</span>
 
             <form id="updatePlaylistForm" asp-action="Edit" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId"/>
+                <input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId" />
                 <div style="text-align: center; margin-bottom:5px; display: flex">
                     <input type="file" name="playlistImage" id="Avatar" accept="image/*" style="margin-right: 5px" onchange="previewImage(event)">
                     <br>
@@ -322,7 +418,7 @@
                     <button type="submit" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s; width: 100px">
                         Save
                     </button>
-                    <a asp-controller="Playlists" asp-action="Delete" asp-route-playlistId ="@Model.playlistItem.PlaylistId" style="background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s; width: 100px; padding: 10px">
+                    <a asp-controller="Playlists" asp-action="Delete" asp-route-playlistId="@Model.playlistItem.PlaylistId" style="background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s; width: 100px; padding: 10px">
                         Delete
                     </a>
                 </div>
@@ -330,6 +426,7 @@
 
         </div>
     </div>
+
 
 
     <!-- jQuery-2.2.4 js -->
@@ -343,53 +440,31 @@
     <!-- Active js -->
     <script src="/js/active.js"></script>
     <script>
+        function openAddPlaylistForm() {
+            document.getElementById("myModalEdit").style.display = "none";
+            document.getElementById("myModal").style.display = "block";
+        }
 
-        var modal = document.getElementById("myModal");
-
-        function openModal() {
-            modal.style.display = "block";
+        function openEditPlaylistForm() {
+            document.getElementById("myModal").style.display = "none";
+            document.getElementById("myModalEdit").style.display = "block";
         }
 
         function closeModal() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-
-        document.getElementById("updateNameForm").onsubmit = function (event) {
-            closeModal();
-        };
-
-
-    </script>
-
-    <script>
-
-        var modal = document.getElementById("myModalEdit");
-
-        function openModalEdit() {
-            modal.style.display = "block";
+            document.getElementById("myModal").style.display = "none";
         }
 
         function closeModalEdit() {
-            modal.style.display = "none";
+            document.getElementById("myModalEdit").style.display = "none";
         }
 
         window.onclick = function (event) {
-            if (event.target == modal) {
+            if (event.target == document.getElementById("myModal")) {
+                closeModal();
+            } else if (event.target == document.getElementById("myModalEdit")) {
                 closeModalEdit();
             }
         }
-
-        document.getElementById("updatePlaylistForm").onsubmit = function (event) {
-            closeModalEdit();
-        };
-
-
     </script>
     <script>
         function previewImage(event) {

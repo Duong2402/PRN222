@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Web.Virtualization;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Web.Virtualization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,6 @@ namespace OnlineMusicProject.Controllers
             this.userManager = userManager;
         }
 
-
         public async Task<IActionResult> Details(Guid id)
         {
             Songs song = await _context.Songs.Include(p => p.Artists)
@@ -35,8 +35,11 @@ namespace OnlineMusicProject.Controllers
             if (user != null)
             {
                 playitems = await _context.Playlists
-                                          .Where(pi => pi.UserId == user.Id) 
-                                          .ToListAsync();
+                                 .Where(pi => pi.UserId == user.Id)
+                                 .GroupBy(pi => pi.PlaylistName) 
+                                 .Select(group => group.First())
+                                 .ToListAsync();
+
                 foreach (var playlist in playitems)
                 {
                     int countSongs = await _context.PlaylistSongs
