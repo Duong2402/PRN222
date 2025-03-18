@@ -3,479 +3,464 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Identity;
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <!-- Title -->
-    <title>Online Music</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<!-- Title -->
+	<title>Online Music</title>
 
-    <!-- Favicon -->
-    <link rel="icon" href="/img/core-img/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/SongsOnline/songdetail.css">
+	<!-- Favicon -->
+	<link rel="icon" href="/img/core-img/favicon.ico">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<!-- Stylesheet -->
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/SongsOnline/songdetail.css">
 
-<style>
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 30px;
-        }
+	<style>
+		.switch {
+			position: relative;
+			display: inline-block;
+			width: 50px;
+			height: 30px;
+		}
 
-            .switch input {
-                opacity: 0;
-                width: 0;
-                height: 0;
-            }
+			.switch input {
+				opacity: 0;
+				width: 0;
+				height: 0;
+			}
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.4s;
-            border-radius: 30px;
-        }
+		.slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			transition: 0.4s;
+			border-radius: 30px;
+		}
 
-            .slider:before {
-                position: absolute;
-                content: "";
-                height: 20px;
-                width: 20px;
-                border-radius: 50%;
-                left: 4px;
-                bottom: 5px;
-                background-color: white;
-                transition: 0.4s;
-                background: white
-            }
+			.slider:before {
+				position: absolute;
+				content: "";
+				height: 20px;
+				width: 20px;
+				border-radius: 50%;
+				left: 4px;
+				bottom: 5px;
+				background-color: white;
+				transition: 0.4s;
+				background: white
+			}
 
-        input:checked + .slider {
-            background-color: lightgreen;
-        }
+		input:checked + .slider {
+			background-color: lightgreen;
+		}
 
-            input:checked + .slider:before {
-                transform: translateX(20px);
-            }
+			input:checked + .slider:before {
+				transform: translateX(20px);
+			}
 
-        .fixed-size-img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-        }
+		.fixed-size-img {
+			width: 120px;
+			height: 120px;
+			object-fit: cover;
+		}
 
-        .related-song-img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-        }
+		.related-song-img {
+			width: 60px;
+			height: 60px;
+			object-fit: cover;
+		}
 
-        .edit-button i {
-            transition: color 0.3s ease;
-        }
+		.edit-button i {
+			transition: color 0.3s ease;
+		}
 
-        .edit-button:hover i {
-            color: black;
-        }
+		.edit-button:hover i {
+			color: black;
+		}
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 9999;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.4);
+		}
 
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 300px;
-            border-radius: 5px;
-            text-align: center;
-            z-index: 10000;
-        }
+		.modal-content {
+			background-color: white;
+			margin: 15% auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 300px;
+			border-radius: 5px;
+			text-align: center;
+			z-index: 10000;
+		}
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+		.close {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
 
-            .close:hover,
-            .close:focus {
-                color: black;
-                text-decoration: none;
-                cursor: pointer;
-            }
+			.close:hover,
+			.close:focus {
+				color: black;
+				text-decoration: none;
+				cursor: pointer;
+			}
 
-        #updateNameForm input {
-            padding: 10px;
-            width: 100%;
-            margin-bottom: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
+		#updateNameForm input {
+			padding: 10px;
+			width: 100%;
+			margin-bottom: 10px;
+			font-size: 16px;
+			border-radius: 5px;
+			border: 1px solid #ddd;
+		}
 
-        #updateNameForm button {
-            padding: 10px;
-            width: 100%;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+		#updateNameForm button {
+			padding: 10px;
+			width: 100%;
+			background-color: #4CAF50;
+			color: white;
+			font-size: 16px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
 
-            #updateNameForm button:hover {
-                background-color: #45a049;
-            }
+			#updateNameForm button:hover {
+				background-color: #45a049;
+			}
 
-        a:hover {
-            background-color: #f0f0f0;
-            transition: background-color 0.3s ease;
-        }
+		a:hover {
+			background-color: #f0f0f0;
+			transition: background-color 0.3s ease;
+		}
 
-        .song-container{
-            display: flex;
-            flex-direction: column;
-            width: 150px;
-            justify-content: center;
-            align-items: center;
-            padding: 5px 0;
-            margin: 0 20px
-        }
+		.song-container {
+			display: flex;
+			flex-direction: column;
+			width: 150px;
+			justify-content: center;
+			align-items: center;
+			padding: 5px 0;
+			margin: 0 20px
+		}
 
-        .song-info{
-            text-align: center;
-        }
+		.song-info {
+			text-align: center;
+		}
 
-        .arrow-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
+		.arrow-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 20px;
+		}
 
-        .swiper-button-prev,
-        .swiper-button-next {
-            font-size: 24px;
-            color: #333;
-            text-decoration: none;
-            padding: 10px;
-            cursor: pointer;
-            user-select: none;
-            background-color: #f0f0f0;
-            border-radius: 50%;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
+		.swiper-button-prev,
+		.swiper-button-next {
+			font-size: 24px;
+			color: #333;
+			text-decoration: none;
+			padding: 10px;
+			cursor: pointer;
+			user-select: none;
+			background-color: #f0f0f0;
+			border-radius: 50%;
+			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+		}
 
 
-            .swiper-button-prev:focus,
-            .swiper-button-next:focus {
-                outline: none;
-            }
+			.swiper-button-prev:focus,
+			.swiper-button-next:focus {
+				outline: none;
+			}
 
-        .audioplayer-next {
-            width: 20px;
-            height: 20px;
-            position: relative;
-            bottom: 34px;
-            left: 30px;
-            margin-left: 5px;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            background: #262626;
-            color: white
-        }
+		.audioplayer-next {
+			width: 20px;
+			height: 20px;
+			position: relative;
+			bottom: 34px;
+			left: 30px;
+			margin-left: 5px;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			background: #262626;
+			color: white
+		}
 
-        .audioplayer-prev {
-            width: 20px;
-            height: 20px;
-            position: relative;
-            bottom: 34px;
-            right: 30px;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            background: #262626;
-            color: white
-        }
-    </style>
+		.audioplayer-prev {
+			width: 20px;
+			height: 20px;
+			position: relative;
+			bottom: 34px;
+			right: 30px;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			background: #262626;
+			color: white
+		}
+	</style>
 </head>
 
 <body>
 
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
-        <div class="bradcumbContent">
-            <p>@Model.Song.NameSong</p>
-            <h2>@Model.Song.Artists.ArtistName</h2>
-        </div>
-    </section>
-    <div style="margin-top: 20px">
-        @if (TempData["MsgToDetail"] != null)
-        {
-            <div class="alert alert-info" style="text-align: center; font-size: 20px">
-                @TempData["MsgToDetail"]
-            </div>
-        }
-    </div>
-    <div class="one-music-songs-area mb-70" style="margin-top: 40px">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10" style="margin-bottom: 0">
-                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-center justify-content-center">
-                        <div class="song-thumbnail">
-                            <img src="@Model.Song.ImageSong" alt="@Model.Song.NameSong" style="height: 150px;">
-                        </div>
-                        <div class="song-play-area text-center w-100" style="padding: 20px 60px">
-                            <div class="song-name">
-                                <p>@Model.Song.NameSong</p>
-                            </div>
-                            <audio id="audio-player" controls>
-                                <source id="audioSource" src="@Model.Song.FilePath" type="audio/mpeg">
-                            </audio>
-                            <div class="audioplayer">
-                                <form asp-action="Details" method="get" style="display: inline;">
-                                    <input type="hidden" name="playlistId" value="" />
-                                    <input type="hidden" name="songId" value="" />
-                                    <input type="hidden" name="action" value="prev" />
-                                    <button type="submit" class="audioplayer-prev">
-                                        <i class="fas fa-step-backward"></i>
-                                    </button>
-                                </form>
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
+		<div class="bradcumbContent">
+			<p>@Model.Song.NameSong</p>
+			<h2>@Model.Song.Artists.ArtistName</h2>
+		</div>
+	</section>
+	<div style="margin-top: 20px">
+		@if (TempData["MsgToDetail"] != null)
+		{
+			<div class="alert alert-info" style="text-align: center; font-size: 20px">
+				@TempData["MsgToDetail"]
+			</div>
+		}
+	</div>
+	<div class="one-music-songs-area mb-70" style="margin-top: 40px">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10" style="margin-bottom: 0">
+					<div class="single-song-area mb-30 d-flex flex-wrap align-items-center justify-content-center">
+						<div class="song-thumbnail">
+							<img src="@Model.Song.ImageSong" alt="@Model.Song.NameSong" style="height: 150px;">
+						</div>
+						<div class="song-play-area text-center w-100" style="padding: 20px 60px">
+							<div class="song-name">
+								<p>@Model.Song.NameSong</p>
+							</div>
+							<audio id="audio-player" controls autoplay>
+								<source id="audioSource" src="@Model.Song.FilePath" type="audio/mpeg">
+							</audio>
+							<div class="audioplayer">
+								<button id="prev" class="audioplayer-prev">
+									<i class="fas fa-step-backward"></i>
+								</button>
+								<button id="next" class="audioplayer-next">
+									<i class="fas fa-step-forward"></i>
+								</button>
+							</div>
+							<div id="replay" style="cursor: pointer; height: 0px" onclick="toggleLoop()">
+								<i id="replay-icon" class="fas fa-sync-alt" style="font-size: 16px; color: white; position: relative; bottom: 55px; left: 320px"></i>
+							</div>
+							<div class="button-group">
+								@if (User.Identity.IsAuthenticated)
+								{
+									<button class="playlist-btn" onclick="openModal()" style="width:200px">
+										<span class="icon">❤️</span> Add to playlist
+									</button>
+								}
+								else
+								{
+									<a asp-controller="Account" asp-action="Login" class="playlist-btn" style="width:200px">
+										<span class="icon">❤️</span> Add to playlist
+									</a>
+								}
+								<a href="@Model.Song.FilePath" download class="download-btn" style="width: 200px">
+									<span class="icon">⬇</span> Download
+								</a>
+							</div>
+						</div>
 
-                                <form asp-action="Details" method="get" style="display: inline;">
-                                    <input type="hidden" name="playlistId" value="" />
-                                    <input type="hidden" name="songId" value="" />
-                                    <input type="hidden" name="action" value="next" />
-                                    <button type="submit" class="audioplayer-next">
-                                        <i class="fas fa-step-forward"></i>
-                                    </button>
-                                </form>
-                            </div>
-                            <div id="replay" style="cursor: pointer; height: 0px">
-                                <i class="fas fa-sync-alt" style="font-size: 16px; color: white; position: relative; bottom: 55px; left: 320px"></i>
-                            </div>
-                            <div class="button-group">
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <button class="playlist-btn" onclick="openModal()" style="width:200px">
-                                        <span class="icon">❤️</span> Add to playlist
-                                    </button>
-                                }
-                                else
-                                {
-                                    <a asp-controller="Account" asp-action="Login" class="playlist-btn" style="width:200px">
-                                        <span class="icon">❤️</span> Add to playlist
-                                    </a>
-                                }
-                                <a href="@Model.Song.FilePath" download class="download-btn" style="width: 200px">
-                                    <span class="icon">⬇</span> Download
-                                </a>
-                            </div>
-                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="margin-top: -50px">
+		<div style="display: flex; justify-content: space-between">
+			<h3 style="text-align: center">Song same genre</h3>
+			<div id="auto-slide-toggle" style="margin-top: 20px; display: flex; justify-content: center; align-items: center;">
+				<label class="switch">
+					<input type="checkbox" id="auto-slide-checkbox" checked>
+					<span class="slider"></span>
+				</label>
+				<span id="auto-slide-status" style="margin-left: 10px; font-size: 18px; color: gray; margin-bottom: 10px;">Auto-Play</span>
+			</div>
+		</div>
+		<div id="songs-container" style="display: flex; background: lightgray; height: 120px; width: auto; margin: 0 auto; overflow-x: auto; justify-content:center">
+			@foreach (var song in Model.Songs)
+			{
+				<div class="song-container" data-song-id="@song.SongId" data-file-path="@song.FilePath" style="display: none;">
+					<a asp-controller="Songs" asp-action="Details" asp-route-id="@song.SongId"
+					   style="background: lightgray; display: flex; flex-direction: column; align-items: center">
+						<img src="@song.ImageSong" alt="@song.ImageSong" style="width: 70px; height: 70px; margin-right: 10px; border-radius: 50%; margin-right: 0">
+						<div class="song-info">
+							<p style="font-size: 15px; font-weight: bold; margin-bottom: 0">@song.NameSong</p>
+						</div>
+					</a>
+				</div>
+			}
+		</div>
+		<div class="arrow-container" style="height: 10px;display: flex; justify-content: center; align-items: center">
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div style="margin-top: -50px">
-        <div style="display: flex; justify-content: space-between">
-            <h3 style="text-align: center">Một số bài hát cùng thể loại</h3>
-            <div id="auto-slide-toggle" style="margin-top: 20px; display: flex; justify-content: center; align-items: center;">
-                <label class="switch">
-                    <input type="checkbox" id="auto-slide-checkbox" checked>
-                    <span class="slider"></span>
-                </label>
-                <span id="auto-slide-status" style="margin-left: 10px; font-size: 18px; color: gray;margin-bottom: 10px;">Tự động chuyển bài</span>
-            </div>
-        </div>
-        <div id="songs-container" style="display: flex; background: lightgray; height: 120px; width: auto; margin: 0 auto; overflow-x: auto; justify-content:center">
-            @foreach (var song in Model.Songs)
-            {
-                <div class="song-container" style="display: none;">
-                    <a href="javascript:void(0);"
-                    onclick="handleSongClick('@song.SongId', '@song.FilePath'); return false;" 
-                    style="background: lightgray; display: flex; flex-direction: column; align-items: center">
-                        <img src="@song.ImageSong" alt="@song.ImageSong" style="width: 70px; height: 70px; margin-right: 10px; border-radius: 50%; margin-right: 0">
-                        <div class="song-info">
-                            <p style="font-size: 15px; font-weight: bold; margin-bottom: 0">@song.NameSong</p>
-                        </div>
-                    </a>
-                </div>
-            }
-        </div>
-        <div class="arrow-container" style="height: 10px;display: flex; justify-content: center; align-items: center">
+			<div id="prev" class="swiper-button-prev prev-ads" style="cursor: pointer; margin-right: 20px; position: relative;bottom: 85px;right: 520px;">
+				<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M15 18l-6-6 6-6"></path>
+				</svg>
+			</div>
 
-            <div id="prev" class="swiper-button-prev prev-ads" style="cursor: pointer; margin-right: 20px; position: relative;bottom: 85px;right: 520px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M15 18l-6-6 6-6"></path>
-                </svg>
-            </div>
-
-            <div id="next" class="swiper-button-next next-ads" style="cursor: pointer; margin-left: 20px;position: relative;bottom: 85px;left: 520px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 18l6-6-6-6"></path>
-                </svg>
-            </div>
-        </div>
-    </div>
+			<div id="next" class="swiper-button-next next-ads" style="cursor: pointer; margin-left: 20px;position: relative;bottom: 85px;left: 520px;">
+				<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M9 18l6-6-6-6"></path>
+				</svg>
+			</div>
+		</div>
+	</div>
 
 
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>
 
-            <div style="border-bottom: 1px solid lightgray; margin: 5px 0">
-                @foreach (var play in Model.PlaylistItems)
-                {
-                    <div>
-                        <a asp-controller="Users"
-                           asp-action="addToPlaylist"
-                           asp-route-itemId="@play.PlaylistId"
-                           asp-route-songId="@Model.Song.SongId"
-                           style="display: flex; justify-content: space-between;
+			<div style="border-bottom: 1px solid lightgray; margin: 5px 0">
+				@foreach (var play in Model.PlaylistItems)
+				{
+					<div>
+						<a asp-controller="Users"
+						   asp-action="addToPlaylist"
+						   asp-route-itemId="@play.PlaylistId"
+						   asp-route-songId="@Model.Song.SongId"
+						   style="display: flex; justify-content: space-between;
                         text-decoration: none;padding: 0 5px;">
-                                <div style="display: flex; align-items: center;">
-                                <p style="color: black; font-size: 16px; margin-bottom: 0">@play.PlaylistName</p>
-                                @foreach (var cp in Model.PlaylistItemsWithCounts)
-                                {
-                                        @if (cp.Playlists.PlaylistId == play.PlaylistId)
-                                        {
-                                            <p style="margin-bottom: 0; margin-left: 5px">(@cp.CountSongInPlaylist)</p>  
-                                        }
-                                }
-                            </div>
-              
-                            <p style="color: black; font-size: 16px; margin-bottom: 0">@play.CreatedAt?.ToString("dd/MM/yyyy")</p>
-                        </a>
-                    </div>
-                }
-            </div>
-            <form id="updateNameForm" asp-controller="Songs" asp-action="CreatePlaylist" method="post">
-                <div>
-                    <input type="hidden" name="songId" value="@Model.Song.SongId" />
-                    <input name="playlistName" placeholder="Enter new name" />
-                    @if (TempData["RequiredMsg"] != null)
-                    {
-                        <span class="text-danger">@TempData["RequiredMsg"]</span>
-                    }
-                </div>
-                <button type="submit">Create Playlist</button>
-            </form>
+							<div style="display: flex; align-items: center;">
+								<p style="color: black; font-size: 16px; margin-bottom: 0">@play.PlaylistName</p>
+								@foreach (var cp in Model.PlaylistItemsWithCounts)
+								{
+									@if (cp.Playlists.PlaylistId == play.PlaylistId)
+									{
+										<p style="margin-bottom: 0; margin-left: 5px">(@cp.CountSongInPlaylist)</p>
+									}
+								}
+							</div>
 
-        </div>
-    </div>
+							<p style="color: black; font-size: 16px; margin-bottom: 0">@play.CreatedAt?.ToString("dd/MM/yyyy")</p>
+						</a>
+					</div>
+				}
+			</div>
+			<form id="updateNameForm" asp-controller="Songs" asp-action="CreatePlaylist" method="post">
+				<div>
+					<input type="hidden" name="songId" value="@Model.Song.SongId" />
+					<input name="playlistName" placeholder="Enter new name" />
+					@if (TempData["RequiredMsg"] != null)
+					{
+						<span class="text-danger">@TempData["RequiredMsg"]</span>
+					}
+				</div>
+				<button type="submit">Create Playlist</button>
+			</form>
 
-
-    <!-- jQuery-2.2.4 js -->
-    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="/js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="/js/bootstrap/bootstrap.min.js"></script>
-    @* <!-- All Plugins js --> *@
-    @* <script src="/js/plugins/plugins.js"></script> *@
-    <!-- Active js -->
-    <script src="/js/active.js"></script>
-    <script>
-
-        var modal = document.getElementById("myModal");
-
-        function openModal() {
-            modal.style.display = "block";
-        }
-
-        function closeModal() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-
-        document.getElementById("updateNameForm").onsubmit = function (event) {
-            closeModal();
-        };
+		</div>
+	</div>
 
 
-    </script>
-    <script>
-        const songsContainer = document.getElementById('songs-container');
-        const songs = Array.from(songsContainer.getElementsByClassName('song-container'));
-        const songsPerPage = 6;
-        let currentPage = 1;
+	<!-- jQuery-2.2.4 js -->
+	<script src="/js/jquery/jquery-2.2.4.min.js"></script>
+	<!-- Popper js -->
+	<script src="/js/bootstrap/popper.min.js"></script>
+	<!-- Bootstrap js -->
+	<script src="/js/bootstrap/bootstrap.min.js"></script>
+	@* <!-- All Plugins js --> *@
+	@* <script src="/js/plugins/plugins.js"></script> *@
+	<!-- Active js -->
+	<script src="/js/active.js"></script>
 
-        function showPage(page) {
-            const startIndex = (page - 1) * songsPerPage;
-            const endIndex = startIndex + songsPerPage;
+	@* <script src="/js/songs/song.js"></script> *@
 
-            songs.forEach(song => song.style.display = 'none');
+	<script>
 
-            const currentSongs = songs.slice(startIndex, endIndex);
-            currentSongs.forEach(song => song.style.display = 'flex');
-        }
+		var modal = document.getElementById("myModal");
 
-        document.getElementById('next').addEventListener('click', function () {
-            if (currentPage * songsPerPage < songs.length) {
-                currentPage++;
-                showPage(currentPage);
-            }
-        });
+		function openModal() {
+			modal.style.display = "block";
+		}
 
-        document.getElementById('prev').addEventListener('click', function () {
-            if (currentPage > 1) {
-                currentPage--;
-                showPage(currentPage);
-            }
-        });
+		function closeModal() {
+			modal.style.display = "none";
+		}
 
-        showPage(currentPage);
-    </script>
-    <script>
- function handleSongClick(songId, filePath) {
-  
-    var encodedFilePath = encodeURIComponent(filePath);
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				closeModal();
+			}
+		}
 
-    window.location.href = '/Songs/Details/' + songId + '?filePath=' + encodedFilePath;
-}
+		document.getElementById("updateNameForm").onsubmit = function (event) {
+			closeModal();
+		};
 
-function playSong(filePath) {
-    var audioPlayer = document.getElementById('audio-player');
-    var audioSource = document.getElementById('audioSource');
 
-    audioSource.src = filePath;
-    audioPlayer.load();
-    audioPlayer.play()
-        .catch(error => {
-            console.error('Error playing audio:', error);
-        });
-}
+	</script>
+	<script>
+		const songsContainer = document.getElementById('songs-container');
+		const songs = Array.from(songsContainer.getElementsByClassName('song-container'));
+		const songsPerPage = 6;
+		let currentPage = 1;
 
-    </script>
+		function showPage(page) {
+			const startIndex = (page - 1) * songsPerPage;
+			const endIndex = startIndex + songsPerPage;
+
+			songs.forEach(song => song.style.display = 'none');
+
+			const currentSongs = songs.slice(startIndex, endIndex);
+			currentSongs.forEach(song => song.style.display = 'flex');
+		}
+
+		showPage(currentPage);
+	</script>
+	<script>
+		 function handleSongClick(songId, filePath) {
+
+			var encodedFilePath = encodeURIComponent(filePath);
+
+			window.location.href = '/Songs/Details/' + songId + '?filePath=' + encodedFilePath;
+		}
+
+		function playSong(filePath) {
+			var audioPlayer = document.getElementById('audio-player');
+			var audioSource = document.getElementById('audioSource');
+
+			audioSource.src = filePath;
+			audioPlayer.load();
+			audioPlayer.play()
+				.catch(error => {
+					console.error('Error playing audio:', error);
+				});
+		}
+
+		function toggleLoop() {
+			var audioPlayer = document.getElementById('audio-player');
+			var replayIcon = document.getElementById('replay-icon');
+			audioPlayer.loop = !audioPlayer.loop;
+			replayIcon.style.color = audioPlayer.loop ? 'blue' : 'white';
+
+		}
+
+	</script>
 </body>
 
 </html>
