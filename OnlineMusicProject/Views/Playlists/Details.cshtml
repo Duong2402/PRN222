@@ -223,7 +223,7 @@
             width: 20px;
             height: 20px;
             position: relative;
-            bottom: 34px;
+            bottom: 23px;
             left: 30px;
             margin-left: 5px;
             border: none;
@@ -237,7 +237,7 @@
             width: 20px;
             height: 20px;
             position: relative;
-            bottom: 34px;
+            bottom: 23px;
             right: 30px;
             border: none;
             outline: none;
@@ -271,14 +271,14 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-center justify-content-center">
-                        <div class="song-play-area text-center w-100" style="padding: 20px 50px;">
+                        <div class="song-play-area text-center w-100" style="padding: 20px 60px;">
                             <div class="song-name">
                                 <p>@Model.SinglePlaylistSongs.Songs.NameSong - @Model.SinglePlaylistSongs.Songs.Artists.ArtistName</p>
                             </div>
                             <audio id="audioPlayer" controls>
                                 <source src="@Model.SinglePlaylistSongs.Songs.FilePath" type="audio/mpeg">
                             </audio>
-                            <div class="audioplayer">
+                            <div class="audioplayer" style="height: 0">
                                 <form asp-action="Details" method="get" style="display: inline;">
                                     <input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId" />
                                     <input type="hidden" name="songId" value="@Model.SinglePlaylistSongs.SongId" />
@@ -296,8 +296,9 @@
                                         <i class="fas fa-step-forward"></i>
                                     </button>
                                 </form>
-
-
+                            </div>
+                            <div id="replay" style="cursor: pointer; height: 0px">
+                                <i class="fas fa-sync-alt" style="font-size: 16px; color: white; position: relative; bottom: 33px; left: 275px"></i>
                             </div>
                             <div class="button-group">
                                 <button class="playlist-btn" onclick="openAddPlaylistForm()" style="width:200px">

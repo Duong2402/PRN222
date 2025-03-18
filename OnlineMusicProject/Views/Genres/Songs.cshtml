@@ -34,6 +34,10 @@
             padding: 10px;
         }
 
+        button:focus {
+            outline: none;
+            border: none;
+        }
     </style>
 </head>
 
@@ -92,7 +96,7 @@
                         <div class="single-album">
                            <form asp-controller="Users" asp-action="HistoryOfListening" method="post">
                                 <input type="hidden" name="songId" value="@song.SongId" />
-                                <button type="submit" style="background: transparent; border: none;">
+                                <button type="submit" style="background: transparent; border: none; outline: none">
                                     <img src="@song.ImageSong" alt="@song.NameSong" class="album-image">
                                     <div class="album-info">
                                         <a href="#">

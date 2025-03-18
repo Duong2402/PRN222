@@ -17,12 +17,58 @@
 
     <!-- Favicon -->
     <link rel="icon" href="/img/core-img/favicon.ico">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/SongsOnline/songdetail.css">
 
-    <style>
+<style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+        }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 30px;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                left: 4px;
+                bottom: 5px;
+                background-color: white;
+                transition: 0.4s;
+                background: white
+            }
+
+        input:checked + .slider {
+            background-color: lightgreen;
+        }
+
+            input:checked + .slider:before {
+                transform: translateX(20px);
+            }
+
         .fixed-size-img {
             width: 120px;
             height: 120px;
@@ -108,6 +154,72 @@
             transition: background-color 0.3s ease;
         }
 
+        .song-container{
+            display: flex;
+            flex-direction: column;
+            width: 150px;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 0;
+            margin: 0 20px
+        }
+
+        .song-info{
+            text-align: center;
+        }
+
+        .arrow-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            font-size: 24px;
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+            cursor: pointer;
+            user-select: none;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+
+            .swiper-button-prev:focus,
+            .swiper-button-next:focus {
+                outline: none;
+            }
+
+        .audioplayer-next {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            bottom: 34px;
+            left: 30px;
+            margin-left: 5px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background: #262626;
+            color: white
+        }
+
+        .audioplayer-prev {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            bottom: 34px;
+            right: 30px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background: #262626;
+            color: white
+        }
     </style>
 </head>
 
@@ -130,18 +242,40 @@
     <div class="one-music-songs-area mb-70" style="margin-top: 40px">
         <div class="container">
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-10" style="margin-bottom: 0">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-center justify-content-center">
                         <div class="song-thumbnail">
-                            <img src="@Model.Song.ImageSong" alt="@Model.Song.NameSong" class="large-song-img">
+                            <img src="@Model.Song.ImageSong" alt="@Model.Song.NameSong" style="height: 150px;">
                         </div>
-                        <div class="song-play-area text-center w-100">
+                        <div class="song-play-area text-center w-100" style="padding: 20px 60px">
                             <div class="song-name">
                                 <p>@Model.Song.NameSong</p>
                             </div>
-                            <audio controls>
-                                <source src="@Model.Song.FilePath" type="audio/mpeg">
+                            <audio id="audio-player" controls>
+                                <source id="audioSource" src="@Model.Song.FilePath" type="audio/mpeg">
                             </audio>
+                            <div class="audioplayer">
+                                <form asp-action="Details" method="get" style="display: inline;">
+                                    <input type="hidden" name="playlistId" value="" />
+                                    <input type="hidden" name="songId" value="" />
+                                    <input type="hidden" name="action" value="prev" />
+                                    <button type="submit" class="audioplayer-prev">
+                                        <i class="fas fa-step-backward"></i>
+                                    </button>
+                                </form>
+
+                                <form asp-action="Details" method="get" style="display: inline;">
+                                    <input type="hidden" name="playlistId" value="" />
+                                    <input type="hidden" name="songId" value="" />
+                                    <input type="hidden" name="action" value="next" />
+                                    <button type="submit" class="audioplayer-next">
+                                        <i class="fas fa-step-forward"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div id="replay" style="cursor: pointer; height: 0px">
+                                <i class="fas fa-sync-alt" style="font-size: 16px; color: white; position: relative; bottom: 55px; left: 320px"></i>
+                            </div>
                             <div class="button-group">
                                 @if (User.Identity.IsAuthenticated)
                                 {
@@ -163,10 +297,52 @@
 
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+    <div style="margin-top: -50px">
+        <div style="display: flex; justify-content: space-between">
+            <h3 style="text-align: center">Một số bài hát cùng thể loại</h3>
+            <div id="auto-slide-toggle" style="margin-top: 20px; display: flex; justify-content: center; align-items: center;">
+                <label class="switch">
+                    <input type="checkbox" id="auto-slide-checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+                <span id="auto-slide-status" style="margin-left: 10px; font-size: 18px; color: gray;margin-bottom: 10px;">Tự động chuyển bài</span>
+            </div>
+        </div>
+        <div id="songs-container" style="display: flex; background: lightgray; height: 120px; width: auto; margin: 0 auto; overflow-x: auto; justify-content:center">
+            @foreach (var song in Model.Songs)
+            {
+                <div class="song-container" style="display: none;">
+                    <a href="javascript:void(0);"
+                    onclick="handleSongClick('@song.SongId', '@song.FilePath'); return false;" 
+                    style="background: lightgray; display: flex; flex-direction: column; align-items: center">
+                        <img src="@song.ImageSong" alt="@song.ImageSong" style="width: 70px; height: 70px; margin-right: 10px; border-radius: 50%; margin-right: 0">
+                        <div class="song-info">
+                            <p style="font-size: 15px; font-weight: bold; margin-bottom: 0">@song.NameSong</p>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="arrow-container" style="height: 10px;display: flex; justify-content: center; align-items: center">
+
+            <div id="prev" class="swiper-button-prev prev-ads" style="cursor: pointer; margin-right: 20px; position: relative;bottom: 85px;right: 520px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6"></path>
+                </svg>
+            </div>
+
+            <div id="next" class="swiper-button-next next-ads" style="cursor: pointer; margin-left: 20px;position: relative;bottom: 85px;left: 520px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18l6-6-6-6"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>
@@ -245,6 +421,59 @@
             closeModal();
         };
 
+
+    </script>
+    <script>
+        const songsContainer = document.getElementById('songs-container');
+        const songs = Array.from(songsContainer.getElementsByClassName('song-container'));
+        const songsPerPage = 6;
+        let currentPage = 1;
+
+        function showPage(page) {
+            const startIndex = (page - 1) * songsPerPage;
+            const endIndex = startIndex + songsPerPage;
+
+            songs.forEach(song => song.style.display = 'none');
+
+            const currentSongs = songs.slice(startIndex, endIndex);
+            currentSongs.forEach(song => song.style.display = 'flex');
+        }
+
+        document.getElementById('next').addEventListener('click', function () {
+            if (currentPage * songsPerPage < songs.length) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+
+        document.getElementById('prev').addEventListener('click', function () {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+
+        showPage(currentPage);
+    </script>
+    <script>
+ function handleSongClick(songId, filePath) {
+  
+    var encodedFilePath = encodeURIComponent(filePath);
+
+    window.location.href = '/Songs/Details/' + songId + '?filePath=' + encodedFilePath;
+}
+
+function playSong(filePath) {
+    var audioPlayer = document.getElementById('audio-player');
+    var audioSource = document.getElementById('audioSource');
+
+    audioSource.src = filePath;
+    audioPlayer.load();
+    audioPlayer.play()
+        .catch(error => {
+            console.error('Error playing audio:', error);
+        });
+}
 
     </script>
 </body>

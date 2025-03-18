@@ -17,14 +17,28 @@ namespace OnlineMusicProject.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<Songs> songs = await _context.Songs.Include(s => s.Artists).ToListAsync();
-            List<Artists> artists = await _context.Artists.ToListAsync();
+            List<Songs> songsWeekTop = await _context.Songs
+                .Include(s => s.Artists)
+                .OrderByDescending(s => s.NumberOfListeners)  
+                .Take(5).ToListAsync();
+
+            List<Songs>  songNewHit = await _context.Songs
+               .Include(s => s.Artists)
+               .Skip(Math.Max(0, _context.Songs.Count() - 5))
+               .Take(5).OrderByDescending(s => s.SongId).ToListAsync();
+
+            List<Artists> artists = await _context.Artists
+                .OrderByDescending(a => a.ArtistId)
+                .Take(6)
+                .ToListAsync();
+
             List<SongGenres> genres = await _context.SongGenres.ToListAsync();
             var song = await _context.Songs.Include(s => s.Artists).OrderByDescending(s => s.NumberOfListeners).FirstOrDefaultAsync();
 
             var viewALl = new SongArtistViewModel
             {
-                Songs = songs,
+                SongsWeekTop = songsWeekTop,
+                SongsNewHit = songNewHit,
                 Artists = artists,
                 Genres = genres,
                 MaxListener = song,

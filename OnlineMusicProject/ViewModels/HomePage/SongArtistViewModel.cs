@@ -4,6 +4,8 @@ namespace OnlineMusicProject.ViewModels.HomePage
 {
     public class SongArtistViewModel
     {
+        public List<Songs> SongsWeekTop { get; set; }
+        public List<Songs> SongsNewHit { get; set; }
         public List<Songs> Songs { get; set; }
         public List<Artists> Artists { get; set; }
         public Songs MaxListener { get; set; }

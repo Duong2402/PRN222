@@ -52,9 +52,11 @@ namespace OnlineMusicProject.Controllers
                     });
                 }
             }
+            var SongsByGenres = await _context.Songs.Where(s => s.GenreId == song.GenreId && s.SongId != id).ToListAsync();
             var model = new SongPlaylistViewModel
             {
                 Song = song,
+                Songs = SongsByGenres,
                 PlaylistItems = playitems,
                 PlaylistItemsWithCounts = playlistSongsWithCounts
             };
@@ -105,5 +107,6 @@ namespace OnlineMusicProject.Controllers
             return RedirectToAction("Details", new { id = songId });
         }
 
-    }
+	}
+
 }

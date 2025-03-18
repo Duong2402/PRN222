@@ -64,6 +64,8 @@ namespace OnlineMusicProject.Controllers
                 var histories = await _context.Histories
                                       .Include(h => h.Songs).ThenInclude(h => h.Artists)
                                       .Where(h => h.UserId == user.Id.ToString())
+                                      .OrderByDescending(h => h.PlayedAt)
+                                      .Take(5)
                                       .ToListAsync();
                 var model = new UserProfileViewModel
                 {
