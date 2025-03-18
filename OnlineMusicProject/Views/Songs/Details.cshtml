@@ -252,12 +252,12 @@
 								<source id="audioSource" src="@Model.Song.FilePath" type="audio/mpeg">
 							</audio>
 							<div class="audioplayer">
-								<button id="prev" class="audioplayer-prev">
+								<button id="prev-play" class="audioplayer-prev">
 									<i class="fas fa-step-backward"></i>
 								</button>
-								<button id="next" class="audioplayer-next">
+								<button id="next-play" class="audioplayer-next">
 									<i class="fas fa-step-forward"></i>
-								</button>
+								</button> 
 							</div>
 							<div id="replay" style="cursor: pointer; height: 0px" onclick="toggleLoop()">
 								<i id="replay-icon" class="fas fa-sync-alt" style="font-size: 16px; color: white; position: relative; bottom: 55px; left: 320px"></i>
@@ -300,8 +300,8 @@
 		<div id="songs-container" style="display: flex; background: lightgray; height: 120px; width: auto; margin: 0 auto; overflow-x: auto; justify-content:center">
 			@foreach (var song in Model.Songs)
 			{
-				<div class="song-container" data-song-id="@song.SongId" data-file-path="@song.FilePath" style="display: none;">
-					<a asp-controller="Songs" asp-action="Details" asp-route-id="@song.SongId"
+				<div class="song-container" style="display: none;">
+					<a asp-action="Details" asp-route-id="@song.SongId"
 					   style="background: lightgray; display: flex; flex-direction: column; align-items: center">
 						<img src="@song.ImageSong" alt="@song.ImageSong" style="width: 70px; height: 70px; margin-right: 10px; border-radius: 50%; margin-right: 0">
 						<div class="song-info">
@@ -312,14 +312,13 @@
 			}
 		</div>
 		<div class="arrow-container" style="height: 10px;display: flex; justify-content: center; align-items: center">
-
-			<div id="prev" class="swiper-button-prev prev-ads" style="cursor: pointer; margin-right: 20px; position: relative;bottom: 85px;right: 520px;">
+			<div id="prev-page" class="swiper-button-prev prev-ads" style="cursor: pointer; margin-right: 20px; position: relative;bottom: 85px;right: 520px;">
 				<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 					<path d="M15 18l-6-6 6-6"></path>
 				</svg>
 			</div>
 
-			<div id="next" class="swiper-button-next next-ads" style="cursor: pointer; margin-left: 20px;position: relative;bottom: 85px;left: 520px;">
+			<div id="next-page" class="swiper-button-next next-ads" style="cursor: pointer; margin-left: 20px;position: relative;bottom: 85px;left: 520px;">
 				<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 					<path d="M9 18l6-6-6-6"></path>
 				</svg>
@@ -352,7 +351,6 @@
 									}
 								}
 							</div>
-
 							<p style="color: black; font-size: 16px; margin-bottom: 0">@play.CreatedAt?.ToString("dd/MM/yyyy")</p>
 						</a>
 					</div>
@@ -373,21 +371,11 @@
 		</div>
 	</div>
 
-
-	<!-- jQuery-2.2.4 js -->
 	<script src="/js/jquery/jquery-2.2.4.min.js"></script>
-	<!-- Popper js -->
 	<script src="/js/bootstrap/popper.min.js"></script>
-	<!-- Bootstrap js -->
 	<script src="/js/bootstrap/bootstrap.min.js"></script>
-	@* <!-- All Plugins js --> *@
-	@* <script src="/js/plugins/plugins.js"></script> *@
-	<!-- Active js -->
 	<script src="/js/active.js"></script>
-
-	@* <script src="/js/songs/song.js"></script> *@
-
-	<script>
+	<script> // overlay form hiển thị khi bấm vào add to playlist
 
 		var modal = document.getElementById("myModal");
 
@@ -411,51 +399,140 @@
 
 
 	</script>
-	<script>
-		const songsContainer = document.getElementById('songs-container');
-		const songs = Array.from(songsContainer.getElementsByClassName('song-container'));
-		const songsPerPage = 6;
-		let currentPage = 1;
+	<script> // Phân Trang
+		document.addEventListener("DOMContentLoaded", function () {
+			const songsContainer = document.getElementById('songs-container');
+			const songs = Array.from(songsContainer.getElementsByClassName('song-container'));
+			const songsPerPage = 6;
+			let currentPage = 1;
+			const totalPages = Math.ceil(songs.length / songsPerPage); 
 
-		function showPage(page) {
-			const startIndex = (page - 1) * songsPerPage;
-			const endIndex = startIndex + songsPerPage;
+			function showPage(page) {
+				const startIndex = (page - 1) * songsPerPage;
+				const endIndex = startIndex + songsPerPage;
 
-			songs.forEach(song => song.style.display = 'none');
+				songs.forEach(song => song.style.display = 'none');
 
-			const currentSongs = songs.slice(startIndex, endIndex);
-			currentSongs.forEach(song => song.style.display = 'flex');
-		}
+				const currentSongs = songs.slice(startIndex, endIndex);
+				currentSongs.forEach(song => song.style.display = 'flex');
+			}
 
-		showPage(currentPage);
+			document.getElementById('next-page').addEventListener('click', function () {
+				if (currentPage < totalPages) {
+					currentPage++;
+					showPage(currentPage);
+				}
+			});
+			document.getElementById('prev-page').addEventListener('click', function () {
+				if (currentPage > 1) {
+					currentPage--;
+					showPage(currentPage);
+				}
+			});
+			showPage(currentPage);
+		});
+
 	</script>
-	<script>
-		 function handleSongClick(songId, filePath) {
-
-			var encodedFilePath = encodeURIComponent(filePath);
-
-			window.location.href = '/Songs/Details/' + songId + '?filePath=' + encodedFilePath;
-		}
-
-		function playSong(filePath) {
-			var audioPlayer = document.getElementById('audio-player');
-			var audioSource = document.getElementById('audioSource');
-
-			audioSource.src = filePath;
-			audioPlayer.load();
-			audioPlayer.play()
-				.catch(error => {
-					console.error('Error playing audio:', error);
-				});
-		}
-
+	<script> // replay Song
 		function toggleLoop() {
 			var audioPlayer = document.getElementById('audio-player');
 			var replayIcon = document.getElementById('replay-icon');
 			audioPlayer.loop = !audioPlayer.loop;
 			replayIcon.style.color = audioPlayer.loop ? 'blue' : 'white';
-
 		}
+	</script>
+	<script> //Prev and next Song
+		document.addEventListener("DOMContentLoaded", function () {
+			const songs = @Html.Raw(Json.Serialize(Model.Songs));
+			let currentSongIndex = songs.findIndex(song => song.songId === "@Model.Song.SongId")
+
+			const audioPlayer = document.getElementById("audio-player");
+			const audioSource = document.getElementById("audioSource");
+
+			const songNameElement = document.querySelector(".song-name p");
+			const songThumbnail = document.querySelector(".song-thumbnail img");
+			const bradcumbContentSong = document.querySelector(".bradcumbContent p");
+			const bradcumbContentArtist = document.querySelector(".bradcumbContent h2");
+
+			document.getElementById("prev-play").addEventListener("click", function () {
+				currentSongIndex = (currentSongIndex > 0) ? currentSongIndex - 1 : songs.length - 1;
+				updateSong();
+			});
+
+			document.getElementById("next-play").addEventListener("click", function () {
+				currentSongIndex = (currentSongIndex < songs.length - 1) ? currentSongIndex + 1 : 0; 
+				updateSong();
+			});
+
+			function updateSong() {
+				const currentSong = songs[currentSongIndex];
+				audioSource.src = currentSong.filePath;
+				audioPlayer.load();
+				audioPlayer.play();
+
+				songNameElement.textContent = currentSong.nameSong;
+				songThumbnail.src = currentSong.imageSong;
+				songThumbnail.alt = currentSong.nameSong;
+				bradcumbContentSong.textContent = currentSong.nameSong;
+				bradcumbContentArtist.textContent = currentSong.artists.artistName;
+			}
+		});
+
+	</script>
+	<script> //Sử lý auto-play
+		document.addEventListener("DOMContentLoaded", function () {	
+			const songs = @Html.Raw(Json.Serialize(Model.Songs)); 
+			let currentSongIndex = songs.findIndex(song => song.songId === "@Model.Song.SongId")
+			const audioPlayer = document.getElementById("audio-player");
+			const audioSource = document.getElementById("audioSource");
+			const songNameElement = document.querySelector(".song-name p");
+			const songThumbnail = document.querySelector(".song-thumbnail img");
+			const autoSlideCheckbox = document.getElementById("auto-slide-checkbox");
+			const bradcumbContentSong = document.querySelector(".bradcumbContent p");
+			const bradcumbContentArtist = document.querySelector(".bradcumbContent h2");
+
+			audioPlayer.addEventListener("ended", function () {
+				if (autoSlideCheckbox.checked) {
+					
+					currentSongIndex = (currentSongIndex < songs.length - 1) ? currentSongIndex + 1 : 0;
+					updateSong();
+				}
+			});
+
+			document.getElementById("next").addEventListener("click", function () {
+				currentSongIndex = (currentSongIndex < songs.length - 1) ? currentSongIndex + 1 : 0;
+				updateSong();
+			});
+
+			document.getElementById("prev").addEventListener("click", function () {
+				currentSongIndex = (currentSongIndex > 0) ? currentSongIndex - 1 : songs.length - 1;
+				updateSong();
+			});
+
+			function updateSong() {
+				const currentSong = songs[currentSongIndex];
+				audioSource.src = currentSong.filePath;
+				audioPlayer.load();
+				audioPlayer.play();
+
+				songNameElement.textContent = currentSong.nameSong;
+				songThumbnail.src = currentSong.imageSong;
+				songThumbnail.alt = currentSong.nameSong;
+				bradcumbContentSong.textContent = currentSong.nameSong;
+				bradcumbContentArtist.textContent = currentSong.artists.artistName;
+			}
+
+			autoSlideCheckbox.addEventListener("change", function () {
+				const status = document.getElementById("auto-slide-status");
+				if (autoSlideCheckbox.checked) {
+					status.textContent = "Auto-Play";
+					status.style.color = "green";
+				} else {
+					status.textContent = "Manual Play";
+					status.style.color = "gray";
+				}
+			});
+		});
 
 	</script>
 </body>

@@ -23,7 +23,8 @@ namespace OnlineMusicProject.Controllers
         {
             Songs song = await _context.Songs.Include(p => p.Artists)
                                        .FirstOrDefaultAsync(p => p.SongId == id);
-            if(song != null)
+
+			if (song != null)
             {
                 song.NumberOfListeners += 1;
                 _context.Songs.Update(song);
@@ -52,11 +53,11 @@ namespace OnlineMusicProject.Controllers
                     });
                 }
             }
-            var SongsByGenres = await _context.Songs.Where(s => s.GenreId == song.GenreId && s.SongId != id).ToListAsync();
+			var SongsByGenres = await _context.Songs.Include(s => s.Artists).Where(s => s.GenreId == song.GenreId && s.SongId != id).ToListAsync();
             var model = new SongPlaylistViewModel
             {
                 Song = song,
-                Songs = SongsByGenres,
+				Songs = SongsByGenres,
                 PlaylistItems = playitems,
                 PlaylistItemsWithCounts = playlistSongsWithCounts
             };

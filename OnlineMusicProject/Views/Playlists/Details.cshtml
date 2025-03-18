@@ -23,6 +23,52 @@
 	<link rel="stylesheet" href="/css/SongsOnline/songdetail.css">
 
 	<style>
+		.switch {
+			position: relative;
+			display: inline-block;
+			width: 50px;
+			height: 30px;
+		}
+
+			.switch input {
+				opacity: 0;
+				width: 0;
+				height: 0;
+			}
+
+		.slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			transition: 0.4s;
+			border-radius: 30px;
+		}
+
+			.slider:before {
+				position: absolute;
+				content: "";
+				height: 20px;
+				width: 20px;
+				border-radius: 50%;
+				left: 4px;
+				bottom: 5px;
+				background-color: white;
+				transition: 0.4s;
+				background: white
+			}
+
+		input:checked + .slider {
+			background-color: lightgreen;
+		}
+
+			input:checked + .slider:before {
+				transform: translateX(20px);
+			}
+
 		.fixed-size-img {
 			width: 120px;
 			height: 120px;
@@ -130,10 +176,6 @@
 
 		.audio-control {
 			display: none;
-		}
-
-		audio::-webkit-media-controls-play-button {
-			display: block !important;
 		}
 
 		.modalEdit {
@@ -263,7 +305,6 @@
 
 <body>
 
-	<
 	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
 		<div class="bradcumbContent">
 			<h2 style="margin-bottom: 0">@Model.playlistItem.PlaylistName - @Model.UserName</h2>
@@ -285,34 +326,28 @@
 			<div class="row">
 				<div class="col-md-9">
 					<div class="single-song-area mb-30 d-flex flex-wrap align-items-center justify-content-center">
+						<div class="song-thumbnail">
+							<img src="@Model.SinglePlaylistSongs.Songs.ImageSong" alt="@Model.SinglePlaylistSongs.Songs.NameSong" style="height: 150px;">
+						</div>
 						<div class="song-play-area text-center w-100" style="padding: 20px 60px;">
 							<div class="song-name">
 								<p>@Model.SinglePlaylistSongs.Songs.NameSong - @Model.SinglePlaylistSongs.Songs.Artists.ArtistName</p>
 							</div>
-							<audio id="audioPlayer" controls>
-								<source src="@Model.SinglePlaylistSongs.Songs.FilePath" type="audio/mpeg">
+							<audio id="audio-player" controls autoplay>
+								<source id="audioSource" src="@Model.SinglePlaylistSongs.Songs.FilePath" type="audio/mpeg">
 							</audio>
 							<div class="audioplayer" style="height: 0">
-								<form asp-action="Details" method="get" style="display: inline;">
-									<input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId" />
-									<input type="hidden" name="songId" value="@Model.SinglePlaylistSongs.SongId" />
-									<input type="hidden" name="action" value="prev" />
-									<button type="submit" class="audioplayer-prev">
-										<i class="fas fa-step-backward"></i>
-									</button>
-								</form>
 
-								<form asp-action="Details" method="get" style="display: inline;">
-									<input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId" />
-									<input type="hidden" name="songId" value="@Model.SinglePlaylistSongs.SongId" />
-									<input type="hidden" name="action" value="next" />
-									<button type="submit" class="audioplayer-next">
-										<i class="fas fa-step-forward"></i>
-									</button>
-								</form>
+								<button id="prev-play" class="audioplayer-prev">
+									<i class="fas fa-step-backward"></i>
+								</button>
+								<button id="next-play" class="audioplayer-next">
+									<i class="fas fa-step-forward"></i>
+								</button>
+						
 							</div>
-							<div id="replay" style="cursor: pointer; height: 0px">
-								<i class="fas fa-sync-alt" style="font-size: 16px; color: white; position: relative; bottom: 33px; left: 275px"></i>
+							<div id="replay" style="cursor: pointer; height: 0px" onclick="toggleLoop()">
+								<i id="replay-icon" class="fas fa-sync-alt" style="font-size: 16px; color: white; position: relative; bottom: 33px; left: 275px"></i>
 							</div>
 							<div class="button-group">
 								<button class="playlist-btn" onclick="openAddPlaylistForm()" style="width:200px">
@@ -327,6 +362,13 @@
 					</div>
 				</div>
 				<div class="col-md-3" style="background: lightgray">
+					<div id="auto-slide-toggle" style="margin-top: 20px; display: flex; justify-content: center; align-items: center;">
+						<label class="switch">
+							<input type="checkbox" id="auto-slide-checkbox" checked>
+							<span class="slider"></span>
+						</label>
+						<span id="auto-slide-status" style="margin-left: 10px; font-size: 18px; color: gray; margin-bottom: 10px;">Auto-Play</span>
+					</div>
 					@foreach (var s in Model.playlistSongs)
 					{
 						<div style="display: flex; justify-content: space-around; margin:10px 0">
@@ -345,14 +387,7 @@
 								<input type="hidden" name="songId" value="@s.SongId" />
 								<button type="submit"
 										style="border: none; padding: 5px; border-radius: 50%; background: white; width: 30px; height: 30px; position: relative;top: 12px; left: 10px">
-									@if (Model.CurrentSongId == s.SongId)
-									{
-										<i class="fas fa-pause"></i>
-									}
-									else
-									{
-										<i class="fas fa-play"></i>
-									}
+									<i class="fas fa-play"></i>
 								</button>
 							</form>
 						</div>
@@ -495,6 +530,123 @@
 				reader.readAsDataURL(file);
 			}
 		}
+		function toggleLoop() {
+			var audioPlayer = document.getElementById('audio-player');
+			var replayIcon = document.getElementById('replay-icon');
+			audioPlayer.loop = !audioPlayer.loop;
+			replayIcon.style.color = audioPlayer.loop ? 'blue' : 'white';
+
+		}
+	</script>
+	<script> //Sử lý auto-play
+		document.addEventListener("DOMContentLoaded", function () {
+			const songs = @Html.Raw(Json.Serialize(Model.playlistSongs)); 
+			let currentSongIndex = songs.findIndex(song => song.songId === "@Model.SinglePlaylistSongs.Songs.SongId"); 
+			const audioPlayer = document.getElementById("audio-player");
+			const audioSource = document.getElementById("audioSource");
+			const songNameElement = document.querySelector(".song-name p");
+			const songThumbnail = document.querySelector(".song-thumbnail img");
+			const autoSlideCheckbox = document.getElementById("auto-slide-checkbox");
+			const autoSlideStatus = document.getElementById("auto-slide-status");
+
+			audioPlayer.addEventListener("ended", function () {
+				if (autoSlideCheckbox.checked) {
+					currentSongIndex = (currentSongIndex < songs.length - 1) ? currentSongIndex + 1 : 0;
+					updateSong();
+				}
+			});
+
+			function updateSong() {
+				const currentSong = songs[currentSongIndex];
+
+				audioSource.src = currentSong.songs.filePath;
+				audioPlayer.load();
+				audioPlayer.play();
+
+				songThumbnail.src = currentSong.songs.imageSong;
+				songThumbnail.alt = currentSong.songs.nameSong;
+				songNameElement.textContent = `${currentSong.songs.nameSong} - ${currentSong.songs.artists.artistName}`;
+				updatePlaylistUI();
+			}
+
+			autoSlideCheckbox.addEventListener("change", function () {
+				if (autoSlideCheckbox.checked) {
+					autoSlideStatus.textContent = "Auto-Play";
+					autoSlideStatus.style.color = "green";
+				} else {
+					autoSlideStatus.textContent = "Manual Play";
+					autoSlideStatus.style.color = "gray";
+				}
+			});
+			function updatePlaylistUI() {
+		
+				document.querySelectorAll("form button i").forEach(icon => {
+					icon.classList.remove("fa-pause");
+					icon.classList.add("fa-play");
+				});
+
+				const currentButtonIcon = document.querySelector(`form input[name="songId"][value="${songs[currentSongIndex].songId}"]`)
+					?.closest("form")
+					.querySelector("button i");
+
+				if (currentButtonIcon) {
+					currentButtonIcon.classList.remove("fa-play");
+					currentButtonIcon.classList.add("fa-pause");
+				}
+			}
+			updateSong();
+		});
+
+	</script>
+
+	<script> //Prev and next Song
+		document.addEventListener("DOMContentLoaded", function () {
+			const songs = @Html.Raw(Json.Serialize(Model.playlistSongs));
+			let currentSongIndex = songs.findIndex(song => song.songId === "@Model.SinglePlaylistSongs.Songs.SongId")
+			const audioPlayer = document.getElementById("audio-player");
+			const audioSource = document.getElementById("audioSource");
+			const songNameElement = document.querySelector(".song-name p");
+			const songThumbnail = document.querySelector(".song-thumbnail img");
+
+			document.getElementById("prev-play").addEventListener("click", function () {
+				currentSongIndex = (currentSongIndex > 0) ? currentSongIndex - 1 : songs.length - 1;
+				updateSong();
+			});
+
+			document.getElementById("next-play").addEventListener("click", function () {
+				currentSongIndex = (currentSongIndex < songs.length - 1) ? currentSongIndex + 1 : 0;
+				updateSong();
+			});
+
+			function updateSong() {
+				const currentSong = songs[currentSongIndex];
+				audioSource.src = currentSong.songs.filePath;
+				audioPlayer.load();
+				audioPlayer.play();
+
+				songThumbnail.src = currentSong.songs.imageSong;
+				songThumbnail.alt = currentSong.songs.nameSong;
+				songNameElement.textContent = `${currentSong.songs.nameSong} - ${currentSong.songs.artists.artistName}`;
+				updatePlaylistUI();
+			}
+			function updatePlaylistUI() {
+
+				document.querySelectorAll("form button i").forEach(icon => {
+					icon.classList.remove("fa-pause");
+					icon.classList.add("fa-play");
+				});
+
+				const currentButtonIcon = document.querySelector(`form input[name="songId"][value="${songs[currentSongIndex].songId}"]`)
+					?.closest("form")
+					.querySelector("button i");
+
+				if (currentButtonIcon) {
+					currentButtonIcon.classList.remove("fa-play");
+					currentButtonIcon.classList.add("fa-pause");
+				}
+			}
+		});
+
 	</script>
 </body>
 

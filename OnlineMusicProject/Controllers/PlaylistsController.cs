@@ -21,7 +21,7 @@ namespace OnlineMusicProject.Controllers
         }
 
         [Authorize(Roles = "User, Admin")]
-        public async Task<IActionResult> Details(Guid playlistId, Guid? songId, string action)
+        public async Task<IActionResult> Details(Guid playlistId, Guid? songId)
         {
             var user = await userManager.GetUserAsync(User);
             if (user == null)
@@ -56,8 +56,7 @@ namespace OnlineMusicProject.Controllers
                     .ThenInclude(ps => ps.Artists)
                     .Where(ps => ps.PlaylistId == play.PlaylistId)
                     .ToListAsync();
-
-                PlaylistSongs singleSong = null;
+				PlaylistSongs singleSong = null;
                 if (songId != null && songId != Guid.Empty)
                 {
                     singleSong = await _context.PlaylistSongs
@@ -69,20 +68,6 @@ namespace OnlineMusicProject.Controllers
                 if (singleSong == null && songsInPlaylist.Any())
                 {
                     singleSong = songsInPlaylist.First();
-                }
-
-                if (singleSong != null && action != null)
-                {
-                    var currentSongIndex = songsInPlaylist.FindIndex(ps => ps.SongId == singleSong.SongId);
-
-                    if (action == "next" && currentSongIndex + 1 < songsInPlaylist.Count)
-                    {
-                        singleSong = songsInPlaylist[currentSongIndex + 1];
-                    }
-                    else if (action == "prev" && currentSongIndex - 1 >= 0)
-                    {
-                        singleSong = songsInPlaylist[currentSongIndex - 1];
-                    }
                 }
 
                 if (songsInPlaylist == null || singleSong == null)
@@ -98,7 +83,6 @@ namespace OnlineMusicProject.Controllers
                     playlistItem = play,
                     SinglePlaylistSongs = singleSong,
                     playlistSongs = songsInPlaylist,
-                    CurrentSongId = singleSong.SongId
                 };
 
                 return View(model);
@@ -244,6 +228,5 @@ namespace OnlineMusicProject.Controllers
             TempData["MsgToDetail"] = "Song added successfully!";
             return RedirectToAction("Details", new { playlistId });
         }
-
-    }
+	}
 }

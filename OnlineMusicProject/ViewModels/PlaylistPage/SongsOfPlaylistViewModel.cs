@@ -11,6 +11,5 @@ namespace OnlineMusicProject.ViewModels.PlaylistPage
         public Playlists playlistItem { get; set; }
         public PlaylistSongs SinglePlaylistSongs { get; set; }
         public List<PlaylistSongs> playlistSongs { get; set; }
-        public Guid? CurrentSongId { get; set; }
     }
 }

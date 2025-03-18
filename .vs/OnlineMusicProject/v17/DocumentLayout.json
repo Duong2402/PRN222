@@ -1,38 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\",
+  "WorkspaceRootPath": "D:\\HE172265_PRN212\\OnlineMusic\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\prn_new\\prn222\\onlinemusicproject\\views\\playlists\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|d:\\he172265_prn212\\onlinemusic\\onlinemusicproject\\views\\playlists\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\views\\playlists\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\prn_new\\prn222\\onlinemusicproject\\views\\songs\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\views\\songs\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\prn_new\\prn222\\onlinemusicproject\\views\\songs\\songlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\views\\songs\\songlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\prn_new\\prn222\\onlinemusicproject\\wwwroot\\css\\songsonline\\songdetail.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\wwwroot\\css\\songsonline\\songdetail.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\prn_new\\prn222\\onlinemusicproject\\wwwroot\\js\\songs\\song.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\wwwroot\\js\\songs\\song.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\prn_new\\prn222\\onlinemusicproject\\controllers\\playlistscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|d:\\he172265_prn212\\onlinemusic\\onlinemusicproject\\controllers\\playlistscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\controllers\\playlistscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\prn_new\\prn222\\onlinemusicproject\\wwwroot\\js\\active.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\wwwroot\\js\\active.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|c:\\users\\trduo\\onedrive\\desktop\\prn_new\\prn222\\onlinemusicproject\\controllers\\songscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{985F7244-732E-4B54-8552-6DC59C1C33A0}|OnlineMusicProject\\OnlineMusicProject.csproj|solutionrelative:onlinemusicproject\\controllers\\songscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,107 +25,34 @@
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "songdetail.css",
-              "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\wwwroot\\css\\SongsOnline\\songdetail.css",
-              "RelativeDocumentMoniker": "OnlineMusicProject\\wwwroot\\css\\SongsOnline\\songdetail.css",
-              "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\wwwroot\\css\\SongsOnline\\songdetail.css",
-              "RelativeToolTip": "OnlineMusicProject\\wwwroot\\css\\SongsOnline\\songdetail.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-03-18T02:47:49.598Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "PlaylistsController.cs",
-              "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\Controllers\\PlaylistsController.cs",
+              "DocumentMoniker": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Controllers\\PlaylistsController.cs",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Controllers\\PlaylistsController.cs",
-              "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\Controllers\\PlaylistsController.cs",
+              "ToolTip": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Controllers\\PlaylistsController.cs",
               "RelativeToolTip": "OnlineMusicProject\\Controllers\\PlaylistsController.cs",
-              "ViewState": "AgIAALUAAAAAAAAAAAAIwPkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAkwD4AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T02:17:19.589Z",
+              "WhenOpened": "2025-03-18T17:59:09.444Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\Views\\Playlists\\Details.cshtml",
+              "DocumentMoniker": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Views\\Playlists\\Details.cshtml",
               "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Playlists\\Details.cshtml",
-              "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\Views\\Playlists\\Details.cshtml",
+              "ToolTip": "D:\\HE172265_PRN212\\OnlineMusic\\OnlineMusicProject\\Views\\Playlists\\Details.cshtml",
               "RelativeToolTip": "OnlineMusicProject\\Views\\Playlists\\Details.cshtml",
-              "ViewState": "AgIAAPMAAAAAAAAAAAAAAAEBAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAI0BAAAAAAAAAAAAABsCAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-18T02:17:13.191Z",
+              "WhenOpened": "2025-03-18T16:16:22.696Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "song.js",
-              "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\wwwroot\\js\\songs\\song.js",
-              "RelativeDocumentMoniker": "OnlineMusicProject\\wwwroot\\js\\songs\\song.js",
-              "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\wwwroot\\js\\songs\\song.js",
-              "RelativeToolTip": "OnlineMusicProject\\wwwroot\\js\\songs\\song.js",
-              "ViewState": "AgIAABYAAAAAAAAAAAAiwDwAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-18T01:49:23.27Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "active.js",
-              "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\wwwroot\\js\\active.js",
-              "RelativeDocumentMoniker": "OnlineMusicProject\\wwwroot\\js\\active.js",
-              "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\wwwroot\\js\\active.js",
-              "RelativeToolTip": "OnlineMusicProject\\wwwroot\\js\\active.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-18T01:50:05.72Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\Views\\Songs\\Details.cshtml",
-              "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Songs\\Details.cshtml",
-              "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\Views\\Songs\\Details.cshtml",
-              "RelativeToolTip": "OnlineMusicProject\\Views\\Songs\\Details.cshtml",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAowJcAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-18T01:38:19.735Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SongList.cshtml",
-              "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\Views\\Songs\\SongList.cshtml",
-              "RelativeDocumentMoniker": "OnlineMusicProject\\Views\\Songs\\SongList.cshtml",
-              "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\Views\\Songs\\SongList.cshtml",
-              "RelativeToolTip": "OnlineMusicProject\\Views\\Songs\\SongList.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAKYAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-17T16:05:10.56Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SongsController.cs",
-              "DocumentMoniker": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\Controllers\\SongsController.cs",
-              "RelativeDocumentMoniker": "OnlineMusicProject\\Controllers\\SongsController.cs",
-              "ToolTip": "C:\\Users\\trduo\\OneDrive\\Desktop\\PRN_new\\PRN222\\OnlineMusicProject\\Controllers\\SongsController.cs",
-              "RelativeToolTip": "OnlineMusicProject\\Controllers\\SongsController.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAswEMAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T04:39:46.279Z"
             }
           ]
         }
