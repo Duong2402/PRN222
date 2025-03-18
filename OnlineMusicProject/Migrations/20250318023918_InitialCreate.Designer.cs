@@ -12,7 +12,7 @@ using OnlineMusicProject.Models;
 namespace OnlineMusicProject.Migrations
 {
     [DbContext(typeof(OnlineMusicDBContext))]
-    [Migration("20250315033638_InitialCreate")]
+    [Migration("20250318023918_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

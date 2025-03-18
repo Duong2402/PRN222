@@ -28,11 +28,12 @@ namespace OnlineMusicProject.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+
             List<playlistWithCounts> playlistSongsWithCounts = new List<playlistWithCounts>();
             var playitems = await _context.Playlists
                                   .Where(pi => pi.UserId == user.Id)
-                                  .GroupBy(pi => pi.PlaylistName) 
-                                  .Select(group => group.First()) 
+                                  .GroupBy(pi => pi.PlaylistName)
+                                  .Select(group => group.First())
                                   .ToListAsync();
 
             foreach (var playlist in playitems)
@@ -46,6 +47,7 @@ namespace OnlineMusicProject.Controllers
                     CountSongInPlaylist = countSongs
                 });
             }
+
             var play = await _context.Playlists.FirstOrDefaultAsync(p => p.UserId == user.Id && p.PlaylistId == playlistId);
             if (play != null)
             {
@@ -68,24 +70,18 @@ namespace OnlineMusicProject.Controllers
                 {
                     singleSong = songsInPlaylist.First();
                 }
+
                 if (singleSong != null && action != null)
                 {
                     var currentSongIndex = songsInPlaylist.FindIndex(ps => ps.SongId == singleSong.SongId);
 
-                    if (action == "next")
+                    if (action == "next" && currentSongIndex + 1 < songsInPlaylist.Count)
                     {
-                        if (currentSongIndex + 1 < songsInPlaylist.Count())
-                        {
-                            singleSong = songsInPlaylist[currentSongIndex + 1];
-                        }
+                        singleSong = songsInPlaylist[currentSongIndex + 1];
                     }
-                    else if (action == "prev")
+                    else if (action == "prev" && currentSongIndex - 1 >= 0)
                     {
-                        
-                        if (currentSongIndex - 1 >= 0)
-                        {
-                            singleSong = songsInPlaylist[currentSongIndex - 1]; 
-                        }
+                        singleSong = songsInPlaylist[currentSongIndex - 1];
                     }
                 }
 
@@ -169,7 +165,7 @@ namespace OnlineMusicProject.Controllers
             {
                 var songPlaylist = await _context.PlaylistSongs
                                       .FirstOrDefaultAsync(ps => ps.SongId == songId && ps.PlaylistId == play.PlaylistId);
-                if (songPlaylist == null) return RedirectToAction("Details", new {playlistId});
+                if (songPlaylist == null) return RedirectToAction("Details", new { playlistId });
                 _context.PlaylistSongs.Remove(songPlaylist);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", new { playlistId });
