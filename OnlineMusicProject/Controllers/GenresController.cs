@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MailKit.Search;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineMusicProject.Models;
+using OnlineMusicProject.Services.Pagination;
 using OnlineMusicProject.ViewModels.HomePage;
 
 namespace OnlineMusicProject.Controllers
@@ -18,7 +20,7 @@ namespace OnlineMusicProject.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Songs(string genre)
+        public async Task<IActionResult> Songs(string genre, int page = 1)
         {
             if (string.IsNullOrEmpty(genre))
             {
@@ -29,12 +31,14 @@ namespace OnlineMusicProject.Controllers
             {
                 return NotFound();
             }
-            var songs = await _context.Songs.Include(s => s.Artists).Where(s => s.GenreId == genres.GenreId).ToListAsync();
+            int pageSize = 12;
+            var songslist = await _context.Songs.Include(s => s.Artists).Where(s => s.GenreId == genres.GenreId).ToListAsync();
+            var pageResult = PageResult.ToPaginatedList(songslist, page, pageSize);
             var songsGenre = new SongsGenresViewModel
             {
-                Songs = songs,
+                Songs = pageResult,
                 SongGenres = genres,
-                
+
             };
             return View(songsGenre);
         }

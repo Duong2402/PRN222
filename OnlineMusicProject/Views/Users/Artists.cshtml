@@ -2,6 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model OnlineMusicProject.Services.Pagination.Pagination<OnlineMusicProject.Models.Artists>
 @using OnlineMusicProject.Models;
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +35,7 @@
     <section class="events-area section-padding-100">
         <div class="container">
             <div class="row">
-                @foreach(var a in Model)
+                @foreach(var a in Model.Items)
                 {
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="single-event-area mb-30">
@@ -51,13 +52,52 @@
                 }
             </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="load-more-btn text-center mt-70">
-                        <a href="#" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
-            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <!-- Nút Trước -->
+                    <li class="page-item ">
+                        <a class="page-link"
+                           href="@Url.Action("Artists", new { searchQuery = Context.Request.Query["searchQuery"], page = 1 })">
+                            Đầu
+                        </a>
+                    </li>
+
+                    <!-- Các trang -->
+                    @{
+                        int maxPagesToShow = 3; // Số lượng page tối đa hiển thị
+                        int currentPage = Model.CurrentPage; // Trang hiện tại
+                        int totalPages = Model.TotalPages;
+                        // Tính toán trang bắt đầu và kết thúc
+                        int startPage = Math.Max(1, currentPage - 1); // Đảm bảo không nhỏ hơn 1
+                        int endPage = startPage + maxPagesToShow - 1; // Hiển thị 3 trang kể từ startPage
+
+                        // Điều chỉnh nếu endPage vượt quá totalPages
+                        if (endPage > totalPages)
+                        {
+                            endPage = totalPages;
+                            startPage = Math.Max(1, endPage - maxPagesToShow + 1);
+                        }
+
+                        for (int i = startPage; i <= endPage; i++)
+                        {
+                            <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
+                                <a class="page-link"
+                                   href="@Url.Action("Artists", new { searchQuery = Context.Request.Query["searchQuery"], page = i })">
+                                    @i
+                                </a>
+                            </li>
+                        }
+                    }
+                    <li class="page-item ">
+                        <a class="page-link"
+                           href="@Url.Action("Artists", new { searchQuery = Context.Request.Query["searchQuery"], page = Model.TotalPages })">
+                            Cuối
+                        </a>
+                    </li>
+
+
+                </ul>
+            </nav>
         </div>
     </section>
   

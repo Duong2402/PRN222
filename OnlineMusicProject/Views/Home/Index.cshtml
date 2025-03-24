@@ -20,6 +20,7 @@
 
     <!-- Favicon -->
     <link rel="icon" href="/img/core-img/favicon.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
@@ -46,6 +47,14 @@
             border: none;
         }
 
+        .b-search {
+            padding: 2px 2px 2px 25px;
+            width: 180px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            border-radius: 5px;
+        }
 
     </style>
 </head>
@@ -71,12 +80,14 @@
 
                         <!-- Nav brand -->
                         <a asp-controller="Home" asp-action="Index" class="nav-brand"><img src="/img/core-img/logo.png" alt=""></a>
-
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        <div class="box_search new_header active-search">
+                            <form asp-controller="Search" asp-action="Index" method="get">
+                                <span class="search-icon" style="font-size: 15px; color: #555; position: relative; left: 22px">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <input type="search" class="b-search new_header" name="searchQuery" placeholder="Search..." value="@ViewData["SearchQuery"]">
+                            </form>
                         </div>
-
                         <!-- Menu -->
                         <div class="classy-menu">
 

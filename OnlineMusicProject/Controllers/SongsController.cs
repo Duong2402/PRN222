@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineMusicProject.Models;
+using OnlineMusicProject.Services.Pagination;
 using OnlineMusicProject.ViewModels.SongPage;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace OnlineMusicProject.Controllers
 {
@@ -64,12 +66,20 @@ namespace OnlineMusicProject.Controllers
 
             return View(model);
         }
-        public async Task<IActionResult> SongList()
+        public async Task<IActionResult> SongList(string searchQuery, int page = 1)
         {
-            var songs = await _context.Songs.Include(s => s.Artists).ToListAsync();
-            return View(songs);
-        }
-        [HttpPost]
+			int pageSize = 6;
+			var songs = _context.Songs.Include(s => s.Artists).AsQueryable();
+			if (!string.IsNullOrWhiteSpace(searchQuery))
+			{
+                songs = songs.Where(s => s.NameSong.Contains(searchQuery));
+			}
+			var songslist = await songs.ToListAsync();
+			var pageResult = PageResult.ToPaginatedList(songslist, page, pageSize);
+            ViewData["SearchQuery"] = searchQuery;
+            return View(pageResult);
+		}
+		[HttpPost]
         public async Task<IActionResult> CreatePlaylist(string playlistName, Guid songId)
         {
             var user = await userManager.GetUserAsync(User);

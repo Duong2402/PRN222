@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MailKit.Search;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using OnlineMusicProject.Models;
+using OnlineMusicProject.Services.Pagination;
 using OnlineMusicProject.ViewModels;
 using OnlineMusicProject.ViewModels.HomePage;
 using OnlineMusicProject.ViewModels.SongPage;
@@ -126,7 +128,19 @@ namespace OnlineMusicProject.Controllers
 
         public IActionResult Elements() => View();
 
-        public async Task<ActionResult<IEnumerable<Artists>>> Artists() => View(await _context.Artists.ToListAsync());
+        public async Task<ActionResult<IEnumerable<Artists>>> Artists(string searchQuery, int page = 1)
+        {
+            int pageSize = 6;
+            var artists = _context.Artists.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                artists = artists.Where(s => s.ArtistName.Contains(searchQuery));
+            }
+            var artistslist = await artists.ToListAsync();
+            var pageResult = PageResult.ToPaginatedList(artistslist, page, pageSize);
+            ViewData["SearchQuery"] = searchQuery;
+            return View(pageResult);
+        } 
         [Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> Playlist()
         {
