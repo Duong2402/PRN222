@@ -1,31 +1,31 @@
-﻿@model IEnumerable<OnlineMusicProject.Models.Songs>
+﻿@model OnlineMusicProject.Models.PaginatedList<OnlineMusicProject.Models.Songs>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Manage Songs";
 }
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <!-- Title -->
-    <title>Online Music</title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="/img/core-img/favicon.ico">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="/css/style.css">
-
-</head>
-
-<body>
 <div class="container mt-5" style="margin-top: 100px; padding-top: 20px;">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
     <h1>Manage Songs</h1>
-    <a asp-action="CreateSong" class="btn btn-success mb-3">Add New Song</a>
+    <div class="mb-3">
+        <a asp-controller="Admin" asp-action="Dashboard" class="btn btn-secondary me-2">Return to Dashboard</a>
+        <a asp-action="CreateSong" class="btn btn-success">Add New Song</a>
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -33,26 +33,56 @@
                 <th>Name</th>
                 <th>Artist</th>
                 <th>Genre</th>
+                <th>Listeners</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var song in Model)
+            @foreach (var song in Model.Items)
             {
                 <tr>
                     <td>@song.SongId</td>
-                    <td>@song.NameSong</td> 
+                    <td>@song.NameSong</td>
                     <td>@song.Artists?.ArtistName</td>
                     <td>@song.songGenres?.Name</td>
-                        <td>
-                            <a asp-controller="Admin" asp-action="EditSong" asp-route-id="@song.SongId" class="btn btn-sm btn-primary">Edit</a>
-                            <a asp-action="DeleteSong" asp-route-id="@song.SongId" class="btn btn-sm btn-danger">Delete</a>
-                        </td>
+                    <td>@song.NumberOfListeners</td>
+                    <td>
+                        <a asp-action="EditSong" asp-route-id="@song.SongId" class="btn btn-sm btn-primary">Edit</a>
+                        @{
+                            var confirmMessage = $"Are you sure you want to delete the song \"{song.NameSong}\"? This action cannot be undone.";
+                        }
+                        <form asp-action="DeleteSong" asp-route-id="@song.SongId" method="post" style="display: inline;" onsubmit="return confirm('@confirmMessage')">
+                            <input type="hidden" name="id" value="@song.SongId" />
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
-</div>
-</body>
 
-</html>
+    <!-- Pagination Controls (Show only if total rows >= 8) -->
+    @if (Model.TotalPages > 1)
+    {
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                    <a class="page-link" asp-action="ManageSongs" asp-route-page="@(Model.PageIndex - 1)">Previous</a>
+                </li>
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                        <a class="page-link" asp-action="ManageSongs" asp-route-page="@i">@i</a>
+                    </li>
+                }
+                <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                    <a class="page-link" asp-action="ManageSongs" asp-route-page="@(Model.PageIndex + 1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

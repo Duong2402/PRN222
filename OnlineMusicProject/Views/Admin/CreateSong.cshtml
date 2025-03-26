@@ -1,68 +1,62 @@
-﻿@model OnlineMusicProject.Models.Songs
+﻿@model OnlineMusicProject.Models.CreateSongViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Create Song";
 }
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <!-- Title -->
-    <title>Online Music</title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="/img/core-img/favicon.ico">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="/css/style.css">
-
-</head>
-
-<body>
 
 <div class="container mt-5" style="margin-top: 100px; padding-top: 20px;">
     <h1>Create New Song</h1>
-    <form asp-action="CreateSong">
-        <div class="form-group">
-            <label asp-for="NameSong" class="control-label"></label>
-            <input asp-for="NameSong" class="form-control" />
+    <form asp-action="CreateSong" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <div class="form-group mb-3">
+            <label asp-for="NameSong" class="form-label"></label>
+            <input asp-for="NameSong" class="form-control" placeholder="Enter song name" />
             <span asp-validation-for="NameSong" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="FilePath" class="control-label"></label>
-            <input asp-for="FilePath" class="form-control" />
-            <span asp-validation-for="FilePath" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="ImageSong" class="control-label"></label>
-            <input asp-for="ImageSong" class="form-control" />
-            <span asp-validation-for="ImageSong" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Lyrics" class="control-label"></label>
-            <textarea asp-for="Lyrics" class="form-control"></textarea>
-            <span asp-validation-for="Lyrics" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="ArtistId" class="control-label">Artist</label>
-            <select asp-for="ArtistId" class="form-control" asp-items="@(new SelectList(ViewBag.Artists, "ArtistId", "ArtistName"))"></select>
+
+        <div class="form-group mb-3">
+            <label asp-for="ArtistId" class="form-label">Artist</label>
+            <select asp-for="ArtistId" class="form-control" asp-items="@(new SelectList(ViewBag.Artists, "ArtistId", "ArtistName"))">
+                <option value="">Select an artist</option>
+            </select>
             <span asp-validation-for="ArtistId" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="GenreId" class="control-label">Genre</label>
-            <select asp-for="GenreId" class="form-control" asp-items="@(new SelectList(ViewBag.Genres, "GenreId", "Name"))"></select>
+
+        <div class="form-group mb-3">
+            <label asp-for="GenreId" class="form-label">Genre</label>
+            <select asp-for="GenreId" class="form-control" asp-items="@(new SelectList(ViewBag.Genres, "GenreId", "Name"))">
+                <option value="">Select a genre</option>
+            </select>
             <span asp-validation-for="GenreId" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
-            <a asp-action="ManageSongs" class="btn btn-secondary">Cancel</a>
+
+        <div class="form-group mb-3">
+            <label asp-for="Lyrics" class="form-label"></label>
+            <textarea asp-for="Lyrics" class="form-control" placeholder="Enter lyrics (optional)"></textarea>
+            <span asp-validation-for="Lyrics" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="ImageFile" class="form-label"></label>
+            <input asp-for="ImageFile" class="form-control" accept="image/*" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="AudioFile" class="form-label"></label>
+            <input asp-for="AudioFile" class="form-control" accept="audio/*" required />
+            <span asp-validation-for="AudioFile" class="text-danger"></span>
+        </div>
+
+        <div class="form-group text-center">
+            <input type="submit" value="Create Song" class="btn btn-primary px-4" />
+            <a asp-action="ManageSongs" class="btn btn-secondary px-4">Cancel</a>
         </div>
     </form>
 </div>
-</body>
 
-</html>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

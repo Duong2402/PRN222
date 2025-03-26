@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineMusicProject.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineMusicProject.Controllers
 {
@@ -22,239 +23,510 @@ namespace OnlineMusicProject.Controllers
         public IActionResult DashBoard() => View();
 
         // Manage Accounts
-        public async Task<IActionResult> ManageAccounts() => View(await _userManager.Users.ToListAsync());
+        public async Task<IActionResult> ManageAccounts(int page = 1)
+        {
+            const int pageSize = 8;
+            var accounts = _userManager.Users.AsQueryable();
+            var paginatedAccounts = await PaginatedList<Users>.CreateAsync(accounts, page, pageSize);
+            return View(paginatedAccounts);
+        }
 
-
-        public IActionResult CreateAccount() => View();
+        public IActionResult CreateAccount() => View(new CreateAccountViewModel());
 
         [HttpPost]
-        public async Task<IActionResult> CreateAccount(Users user, string password, string confirmPassword, string role)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAccount(CreateAccountViewModel model)
         {
-            if (password != confirmPassword)
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError(string.Empty, "Passwords do not match.");
+                return View(model);
             }
 
-            if (ModelState.IsValid)
+            if (model.Password != model.ConfirmPassword)
             {
-                var result = await _userManager.CreateAsync(user, password);
-                if (result.Succeeded)
-                {
-                    if (!string.IsNullOrEmpty(role))
-                    {
-                        var roleResult = await _userManager.AddToRoleAsync(user, role);
-                        if (!roleResult.Succeeded)
-                        {
-                            foreach (var error in roleResult.Errors)
-                            {
-                                ModelState.AddModelError(string.Empty, error.Description);
-                            }
-                            return View(user);
-                        }
-                    }
-                    return RedirectToAction("ManageAccounts");
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                ModelState.AddModelError(string.Empty, "Passwords do not match.");
+                return View(model);
             }
-            return View(user);
+
+            var user = new Users
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                FullName = model.FullName
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                if (!string.IsNullOrEmpty(model.Role))
+                {
+                    var roleResult = await _userManager.AddToRoleAsync(user, model.Role);
+                    if (!roleResult.Succeeded)
+                    {
+                        foreach (var error in roleResult.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                        return View(model);
+                    }
+                }
+                return RedirectToAction("ManageAccounts");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+            return View(model);
         }
 
         public async Task<IActionResult> EditAccount(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             if (user == null) return NotFound();
-            return View(user);
+
+            var model = new EditAccountViewModel
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Email = user.Email
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditAccount(Users user)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditAccount(EditAccountViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var existingUser = await _userManager.FindByIdAsync(user.Id);
-                if (existingUser == null) return NotFound();
-                existingUser.FullName = user.FullName;
-                existingUser.Email = user.Email;
-                var result = await _userManager.UpdateAsync(existingUser);
-                if (result.Succeeded) return RedirectToAction("ManageAccounts");
-                foreach (var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
+                return View(model);
             }
-            return View(user);
+
+            var user = await _userManager.FindByIdAsync(model.Id);
+            if (user == null) return NotFound();
+
+            user.FullName = model.FullName;
+            user.Email = model.Email;
+            user.UserName = model.Email;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("ManageAccounts");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+            return View(model);
         }
 
+        // POST: Handles deletion directly from ManageAccounts
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteAccount(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
-            if (user == null) return NotFound();
-            return View(user);
-        }
+            if (user == null)
+            {
+                TempData["Error"] = "User not found.";
+                return RedirectToAction("ManageAccounts");
+            }
 
-        [HttpPost, ActionName("DeleteAccount")]
-        public async Task<IActionResult> DeleteAccountConfirmed(string id)
-        {
-            var user = await _userManager.FindByIdAsync(id);
-            if (user != null) await _userManager.DeleteAsync(user);
+            // Optional: Prevent deletion of the last admin
+            var admins = await _userManager.GetUsersInRoleAsync("Admin");
+            if (admins.Count == 1 && await _userManager.IsInRoleAsync(user, "Admin"))
+            {
+                TempData["Error"] = "Cannot delete the last admin account.";
+                return RedirectToAction("ManageAccounts");
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                TempData["Success"] = "Account deleted successfully.";
+                return RedirectToAction("ManageAccounts");
+            }
+
+            TempData["Error"] = "Failed to delete account: " + string.Join(", ", result.Errors.Select(e => e.Description));
             return RedirectToAction("ManageAccounts");
         }
-
         // Manage Songs
-        public async Task<IActionResult> ManageSongs() => View(await _context.Songs.Include(s => s.Artists).Include(s => s.songGenres).ToListAsync());
+        public async Task<IActionResult> ManageSongs(int page = 1)
+        {
+            const int pageSize = 8;
+            var songs = _context.Songs
+                .Include(s => s.Artists)
+                .Include(s => s.songGenres)
+                .AsQueryable();
+            var paginatedSongs = await PaginatedList<Songs>.CreateAsync(songs, page, pageSize);
+            return View(paginatedSongs);
+        }
 
+        // Create Song (GET)
         public IActionResult CreateSong()
         {
             ViewBag.Artists = _context.Artists.ToList();
             ViewBag.Genres = _context.SongGenres.ToList();
-            return View();
+            return View(new CreateSongViewModel());
         }
 
+        // Create Song (POST)
         [HttpPost]
-        public async Task<IActionResult> CreateSong(Songs song)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateSong(CreateSongViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                song.SongId = Guid.NewGuid();
-                _context.Songs.Add(song);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("ManageSongs");
+                ViewBag.Artists = _context.Artists.ToList();
+                ViewBag.Genres = _context.SongGenres.ToList();
+                return View(model);
             }
-            ViewBag.Artists = _context.Artists.ToList();
-            ViewBag.Genres = _context.SongGenres.ToList();
-            return View(song);
+
+            // Ensure upload directories exist
+            var uploadsDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+            var audioDir = Path.Combine(uploadsDir, "audio");
+            var imagesDir = Path.Combine(uploadsDir, "images");
+
+            if (!Directory.Exists(uploadsDir))
+            {
+                Directory.CreateDirectory(uploadsDir);
+            }
+            if (!Directory.Exists(audioDir))
+            {
+                Directory.CreateDirectory(audioDir);
+            }
+            if (!Directory.Exists(imagesDir))
+            {
+                Directory.CreateDirectory(imagesDir);
+            }
+
+            // Map view model to entity
+            var song = new Songs
+            {
+                SongId = Guid.NewGuid(),
+                NameSong = model.NameSong,
+                ArtistId = model.ArtistId,
+                GenreId = model.GenreId,
+                Lyrics = model.Lyrics,
+                NumberOfListeners = 0 // Default value
+            };
+
+            // Handle audio file (required)
+            try
+            {
+                var audioFileName = $"{Guid.NewGuid()}_{Path.GetFileName(model.AudioFile.FileName)}";
+                var audioPath = Path.Combine(audioDir, audioFileName);
+                using (var stream = new FileStream(audioPath, FileMode.Create))
+                {
+                    await model.AudioFile.CopyToAsync(stream);
+                }
+                song.FilePath = "/uploads/audio/" + audioFileName;
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("AudioFile", $"Failed to upload audio file: {ex.Message}");
+                ViewBag.Artists = _context.Artists.ToList();
+                ViewBag.Genres = _context.SongGenres.ToList();
+                return View(model);
+            }
+
+            // Handle image file (optional)
+            if (model.ImageFile != null && model.ImageFile.Length > 0)
+            {
+                var imageFileName = $"{Guid.NewGuid()}_{Path.GetFileName(model.ImageFile.FileName)}";
+                var imagePath = Path.Combine(imagesDir, imageFileName);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await model.ImageFile.CopyToAsync(stream);
+                }
+                song.ImageSong = "/uploads/images/" + imageFileName;
+            }
+
+            _context.Songs.Add(song);
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "Song created successfully.";
+            return RedirectToAction("ManageSongs");
         }
 
+        // Edit Song (GET)
         public async Task<IActionResult> EditSong(Guid id)
         {
-            var song = await _context.Songs.FindAsync(id);
+            var song = await _context.Songs
+                .Include(s => s.Artists)
+                .Include(s => s.songGenres)
+                .FirstOrDefaultAsync(s => s.SongId == id);
             if (song == null) return NotFound();
-            ViewBag.Artists = _context.Artists.ToList();
-            ViewBag.Genres = _context.SongGenres.ToList();
-            return View(song);
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> EditSong(Songs song, IFormFile imageFile, IFormFile audioFile)
-        {
-            if (ModelState.IsValid)
+            var model = new EditSongViewModel
             {
-                var existingSong = await _context.Songs.FindAsync(song.SongId);
-                if (existingSong == null) return NotFound();
+                SongId = song.SongId,
+                NameSong = song.NameSong,
+                ArtistId = song.ArtistId,
+                GenreId = song.GenreId,
+                Lyrics = song.Lyrics,
+                ImageSong = song.ImageSong,
+                FilePath = song.FilePath
+            };
 
-                existingSong.NameSong = song.NameSong;
-                existingSong.ArtistId = song.ArtistId;
-                existingSong.GenreId = song.GenreId;
-                existingSong.Lyrics = song.Lyrics;
-
-                if (imageFile != null)
-                {
-                    var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/images", imageFile.FileName);
-                    using (var stream = new FileStream(imagePath, FileMode.Create))
-                    {
-                        await imageFile.CopyToAsync(stream);
-                    }
-                    existingSong.ImageSong = "/uploads/images/" + imageFile.FileName;
-                }
-
-                if (audioFile != null)
-                {
-                    var audioPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/audio", audioFile.FileName);
-                    using (var stream = new FileStream(audioPath, FileMode.Create))
-                    {
-                        await audioFile.CopyToAsync(stream);
-                    }
-                    existingSong.FilePath = "/uploads/audio/" + audioFile.FileName;
-                }
-
-                _context.Songs.Update(existingSong);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("ManageSongs");
-            }
             ViewBag.Artists = _context.Artists.ToList();
             ViewBag.Genres = _context.SongGenres.ToList();
-            return View(song);
+            return View(model);
         }
 
+        // Edit Song (POST)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditSong(EditSongViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Artists = _context.Artists.ToList();
+                ViewBag.Genres = _context.SongGenres.ToList();
+                return View(model);
+            }
+
+            // Ensure upload directories exist
+            var uploadsDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+            var audioDir = Path.Combine(uploadsDir, "audio");
+            var imagesDir = Path.Combine(uploadsDir, "images");
+
+            if (!Directory.Exists(uploadsDir))
+            {
+                Directory.CreateDirectory(uploadsDir);
+            }
+            if (!Directory.Exists(audioDir))
+            {
+                Directory.CreateDirectory(audioDir);
+            }
+            if (!Directory.Exists(imagesDir))
+            {
+                Directory.CreateDirectory(imagesDir);
+            }
+
+            var song = await _context.Songs.FindAsync(model.SongId);
+            if (song == null) return NotFound();
+
+            // Update song properties
+            song.NameSong = model.NameSong;
+            song.ArtistId = model.ArtistId;
+            song.GenreId = model.GenreId;
+            song.Lyrics = model.Lyrics;
+
+            // Handle image file (optional)
+            if (model.ImageFile != null && model.ImageFile.Length > 0)
+            {
+                var imageFileName = $"{Guid.NewGuid()}_{Path.GetFileName(model.ImageFile.FileName)}";
+                var imagePath = Path.Combine(imagesDir, imageFileName);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await model.ImageFile.CopyToAsync(stream);
+                }
+                song.ImageSong = "/uploads/images/" + imageFileName;
+            }
+
+            // Handle audio file (optional)
+            if (model.AudioFile != null && model.AudioFile.Length > 0)
+            {
+                var audioFileName = $"{Guid.NewGuid()}_{Path.GetFileName(model.AudioFile.FileName)}";
+                var audioPath = Path.Combine(audioDir, audioFileName);
+                using (var stream = new FileStream(audioPath, FileMode.Create))
+                {
+                    await model.AudioFile.CopyToAsync(stream);
+                }
+                song.FilePath = "/uploads/audio/" + audioFileName;
+            }
+
+            _context.Songs.Update(song);
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "Song updated successfully.";
+            return RedirectToAction("ManageSongs");
+        }
+
+        // Delete Song (POST only, directly from ManageSongs)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteSong(Guid id)
         {
             var song = await _context.Songs.FindAsync(id);
-            if (song == null) return NotFound();
-            return View(song);
-        }
+            if (song == null)
+            {
+                TempData["Error"] = "Song not found.";
+                return RedirectToAction("ManageSongs");
+            }
 
-        [HttpPost, ActionName("DeleteSong")]
-        public async Task<IActionResult> DeleteSongConfirmed(Guid id)
-        {
-            var song = await _context.Songs.FindAsync(id);
-            if (song != null)
+            try
             {
                 _context.Songs.Remove(song);
                 await _context.SaveChangesAsync();
+                TempData["Success"] = "Song deleted successfully.";
             }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"Failed to delete song: {ex.Message}";
+            }
+
             return RedirectToAction("ManageSongs");
         }
 
         // Manage Playlists
-        public async Task<IActionResult> ManagePlaylists() => View(await _context.Playlists.Include(p => p.User).ToListAsync());
-
-        public IActionResult CreatePlaylist()
+        public async Task<IActionResult> ManagePlaylists(int page = 1)
         {
-            ViewBag.Users = _userManager.Users.ToList();
-            return View();
+            const int pageSize = 8;
+            var playlists = _context.Playlists
+                .Include(p => p.User)
+                .AsQueryable();
+            var paginatedPlaylists = await PaginatedList<Playlists>.CreateAsync(playlists, page, pageSize);
+            return View(paginatedPlaylists);
         }
 
+        // Create Playlist (GET)
+        public async Task<IActionResult> CreatePlaylist()
+        {
+            ViewBag.Users = await _userManager.Users.ToListAsync();
+            return View(new CreatePlaylistViewModel());
+        }
+
+        // Create Playlist (POST)
         [HttpPost]
-        public async Task<IActionResult> CreatePlaylist(Playlists playlist)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreatePlaylist(CreatePlaylistViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                playlist.PlaylistId = Guid.NewGuid();
-                _context.Playlists.Add(playlist);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("ManagePlaylists");
+                ViewBag.Users = await _userManager.Users.ToListAsync();
+                return View(model);
             }
-            ViewBag.Users = _userManager.Users.ToList();
-            return View(playlist);
+
+            // Ensure upload directories exist
+            var uploadsDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+            var imagesDir = Path.Combine(uploadsDir, "images");
+
+            if (!Directory.Exists(uploadsDir))
+            {
+                Directory.CreateDirectory(uploadsDir);
+            }
+            if (!Directory.Exists(imagesDir))
+            {
+                Directory.CreateDirectory(imagesDir);
+            }
+
+            var playlist = new Playlists
+            {
+                PlaylistId = Guid.NewGuid(),
+                PlaylistName = model.PlaylistName,
+                UserId = model.UserId,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            // Handle image file (optional)
+            if (model.PlaylistImage != null && model.PlaylistImage.Length > 0)
+            {
+                var imageFileName = $"{Guid.NewGuid()}_{Path.GetFileName(model.PlaylistImage.FileName)}";
+                var imagePath = Path.Combine(imagesDir, imageFileName);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await model.PlaylistImage.CopyToAsync(stream);
+                }
+                playlist.PlaylistImage = "/uploads/images/" + imageFileName;
+            }
+
+            _context.Playlists.Add(playlist);
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "Playlist created successfully.";
+            return RedirectToAction("ManagePlaylists");
         }
 
+        // Edit Playlist (GET)
         public async Task<IActionResult> EditPlaylist(Guid id)
         {
-            var playlist = await _context.Playlists.FindAsync(id);
+            var playlist = await _context.Playlists
+                .Include(p => p.User)
+                .FirstOrDefaultAsync(p => p.PlaylistId == id);
             if (playlist == null) return NotFound();
-            ViewBag.Users = _userManager.Users.ToList();
-            return View(playlist);
+
+            var model = new EditPlaylistViewModel
+            {
+                PlaylistId = playlist.PlaylistId,
+                PlaylistName = playlist.PlaylistName,
+                UserId = playlist.UserId,
+                PlaylistImage = playlist.PlaylistImage
+            };
+
+            ViewBag.Users = await _userManager.Users.ToListAsync();
+            return View(model);
         }
 
+        // Edit Playlist (POST)
         [HttpPost]
-        public async Task<IActionResult> EditPlaylist(Playlists playlist)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPlaylist(EditPlaylistViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Playlists.Update(playlist);
-                await _context.SaveChangesAsync();
+                ViewBag.Users = await _userManager.Users.ToListAsync();
+                return View(model);
+            }
+
+            // Ensure upload directories exist
+            var uploadsDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+            var imagesDir = Path.Combine(uploadsDir, "images");
+
+            if (!Directory.Exists(uploadsDir))
+            {
+                Directory.CreateDirectory(uploadsDir);
+            }
+            if (!Directory.Exists(imagesDir))
+            {
+                Directory.CreateDirectory(imagesDir);
+            }
+
+            var playlist = await _context.Playlists.FindAsync(model.PlaylistId);
+            if (playlist == null)
+            {
+                TempData["Error"] = "Playlist not found.";
                 return RedirectToAction("ManagePlaylists");
             }
-            ViewBag.Users = _userManager.Users.ToList();
-            return View(playlist);
+
+            // Update playlist properties
+            playlist.PlaylistName = model.PlaylistName;
+            playlist.UserId = model.UserId;
+
+            // Handle image file (optional)
+            if (model.PlaylistImageFile != null && model.PlaylistImageFile.Length > 0)
+            {
+                var imageFileName = $"{Guid.NewGuid()}_{Path.GetFileName(model.PlaylistImageFile.FileName)}";
+                var imagePath = Path.Combine(imagesDir, imageFileName);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await model.PlaylistImageFile.CopyToAsync(stream);
+                }
+                playlist.PlaylistImage = "/uploads/images/" + imageFileName;
+            }
+
+            _context.Playlists.Update(playlist);
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "Playlist updated successfully.";
+            return RedirectToAction("ManagePlaylists");
         }
 
+        // Delete Playlist (POST only, directly from ManagePlaylists)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeletePlaylist(Guid id)
         {
             var playlist = await _context.Playlists.FindAsync(id);
-            if (playlist == null) return NotFound();
-            return View(playlist);
-        }
-
-        [HttpPost, ActionName("DeletePlaylist")]
-        public async Task<IActionResult> DeletePlaylistConfirmed(Guid id)
-        {
-            var playlist = await _context.Playlists.FindAsync(id);
-            if (playlist != null)
+            if (playlist == null)
             {
-                _context.Playlists.Remove(playlist);
-                await _context.SaveChangesAsync();
+                TempData["Error"] = "Playlist not found.";
+                return RedirectToAction("ManagePlaylists");
             }
+
+            _context.Playlists.Remove(playlist);
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "Playlist deleted successfully.";
             return RedirectToAction("ManagePlaylists");
         }
     }
