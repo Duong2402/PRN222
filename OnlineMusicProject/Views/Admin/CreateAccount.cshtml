@@ -1,4 +1,4 @@
-﻿@model OnlineMusicProject.Models.Users
+﻿@model OnlineMusicProject.ViewModels.AdminPage.CreateAccountViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -25,24 +25,26 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" required minlength="6" placeholder="Enter password" />
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" placeholder="Enter password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
                     <small class="form-text text-muted">Password must be at least 6 characters.</small>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="confirmPassword" class="form-label">Confirm Password</label>
-                    <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" required minlength="6" placeholder="Confirm password" />
-                    <span id="confirmPasswordError" class="text-danger"></span>
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm password" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="role" class="form-label">Role</label>
-                    <select name="role" id="role" class="form-control" required>
+                    <label asp-for="Role" class="form-label">Role</label>
+                    <select asp-for="Role" class="form-control">
                         <option value="">Select a role</option>
                         <option value="User">User</option>
                         <option value="Admin">Admin</option>
                     </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
                 </div>
 
                 <div class="form-group text-center">
@@ -55,21 +57,5 @@
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-    <script>
-        document.querySelector('form').addEventListener('submit', function (e) {
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('confirmPassword').value;
-            var errorSpan = document.getElementById('confirmPasswordError');
-
-            if (password !== confirmPassword) {
-                e.preventDefault();
-                errorSpan.textContent = 'Passwords do not match.';
-            } else {
-                errorSpan.textContent = '';
-            }
-        });
-    </script>
+    <partial name="_ValidationScriptsPartial" />
 }

@@ -1,26 +1,47 @@
-﻿@model OnlineMusicProject.Models.Playlists
+﻿@model OnlineMusicProject.ViewModels.AdminPage.EditPlaylistViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Edit Playlist";
 }
+
 <div class="container mt-5" style="margin-top: 100px; padding-top: 20px;">
     <h1>Edit Playlist</h1>
-    <form asp-action="EditPlaylist">
-        <input type="hidden" asp-for="PlaylistId" /> <!-- Hidden field for PlaylistId -->
-        <div class="form-group">
-            <label asp-for="PlaylistName" class="control-label"></label>
+    <form asp-action="EditPlaylist" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="PlaylistId" />
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <div class="form-group mb-3">
+            <label asp-for="PlaylistName" class="form-label"></label>
             <input asp-for="PlaylistName" class="form-control" />
             <span asp-validation-for="PlaylistName" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="UserId" class="control-label">User</label>
-            <select asp-for="UserId" class="form-control" asp-items="@(new SelectList(ViewBag.Users, "Id", "FullName"))"></select>
+
+        <div class="form-group mb-3">
+            <label asp-for="UserId" class="form-label">User</label>
+            <select asp-for="UserId" class="form-control" asp-items="@(new SelectList(ViewBag.Users, "Id", "FullName"))">
+                <option value="">Select a user</option>
+            </select>
             <span asp-validation-for="UserId" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-primary" />
-            <a asp-action="ManagePlaylists" class="btn btn-secondary">Cancel</a>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Current Image</label>
+            @if (!string.IsNullOrEmpty(Model.PlaylistImage))
+            {
+                <img src="@Model.PlaylistImage" alt="Current playlist image" style="max-width: 200px;" class="mb-2" />
+            }
+            <input asp-for="PlaylistImageFile" class="form-control" accept="image/*" />
+            <span asp-validation-for="PlaylistImageFile" class="text-danger"></span>
+        </div>
+
+        <div class="form-group text-center">
+            <input type="submit" value="Save Changes" class="btn btn-primary px-4" />
+            <a asp-action="ManagePlaylists" class="btn btn-secondary px-4">Cancel</a>
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}   

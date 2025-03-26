@@ -1,4 +1,4 @@
-﻿@model OnlineMusicProject.Models.Songs
+﻿@model OnlineMusicProject.ViewModels.AdminPage.EditSongViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,41 +7,68 @@
 
 <div class="container mt-5" style="margin-top: 100px; padding-top: 20px;">
     <h1>Edit Song</h1>
-    <form asp-action="EditSong" enctype="multipart/form-data">
+    <form asp-action="EditSong" method="post" enctype="multipart/form-data">
         <input type="hidden" asp-for="SongId" />
-        <div class="form-group">
-            <label asp-for="NameSong" class="control-label"></label>
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <div class="form-group mb-3">
+            <label asp-for="NameSong" class="form-label"></label>
             <input asp-for="NameSong" class="form-control" />
             <span asp-validation-for="NameSong" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="ImageSong" class="control-label"></label>
-            <input type="file" name="imageFile" class="form-control" />
-            <span>Current: @Model.ImageSong</span>
+
+        <div class="form-group mb-3">
+            <label asp-for="ArtistId" class="form-label">Artist</label>
+            <select asp-for="ArtistId" class="form-control" asp-items="@(new SelectList(ViewBag.Artists, "ArtistId", "ArtistName"))">
+                <option value="">Select an artist</option>
+            </select>
+            <span asp-validation-for="ArtistId" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="FilePath" class="control-label"></label>
-            <input type="file" name="audioFile" class="form-control" />
-            <span>Current: @Model.FilePath</span>
+
+        <div class="form-group mb-3">
+            <label asp-for="GenreId" class="form-label">Genre</label>
+            <select asp-for="GenreId" class="form-control" asp-items="@(new SelectList(ViewBag.Genres, "GenreId", "Name"))">
+                <option value="">Select a genre</option>
+            </select>
+            <span asp-validation-for="GenreId" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="Lyrics" class="control-label"></label>
+
+        <div class="form-group mb-3">
+            <label asp-for="Lyrics" class="form-label"></label>
             <textarea asp-for="Lyrics" class="form-control"></textarea>
             <span asp-validation-for="Lyrics" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="ArtistId" class="control-label">Artist</label>
-            <select asp-for="ArtistId" class="form-control" asp-items="@(new SelectList(ViewBag.Artists, "ArtistId", "ArtistName"))"></select>
-            <span asp-validation-for="ArtistId" class="text-danger"></span>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Current Image</label>
+            @if (!string.IsNullOrEmpty(Model.ImageSong))
+            {
+                <img src="@Model.ImageSong" alt="Current song image" style="max-width: 200px;" class="mb-2" />
+            }
+            <input asp-for="ImageFile" class="form-control" accept="image/*" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="GenreId" class="control-label">Genre</label>
-            <select asp-for="GenreId" class="form-control" asp-items="@(new SelectList(ViewBag.Genres, "GenreId", "Name"))"></select>
-            <span asp-validation-for="GenreId" class="text-danger"></span>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Current Audio</label>
+            @if (!string.IsNullOrEmpty(Model.FilePath))
+            {
+                <audio controls>
+                    <source src="@Model.FilePath" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            }
+            <input asp-for="AudioFile" class="form-control" accept="audio/*" />
+            <span asp-validation-for="AudioFile" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-primary" />
-            <a asp-action="ManageSongs" class="btn btn-secondary">Cancel</a>
+
+        <div class="form-group text-center">
+            <input type="submit" value="Save Changes" class="btn btn-primary px-4" />
+            <a asp-action="ManageSongs" class="btn btn-secondary px-4">Cancel</a>
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
