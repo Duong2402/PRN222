@@ -4,6 +4,8 @@ namespace OnlineMusicProject.ViewModels
 {
     public class ChangePasswordViewModel
     {
+        [Required]
+        public string Token { get; set; }
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Invalid email.")]
         public string Email { get; set; }

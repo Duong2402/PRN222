@@ -9,6 +9,7 @@ namespace OnlineMusicProject.Models
         public OnlineMusicDBContext(DbContextOptions options) : base(options)
         {
         }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Artists> Artists { get; set; }
 
         public DbSet<Histories> Histories { get; set; }

@@ -253,6 +253,42 @@ namespace OnlineMusicProject.Migrations
                     b.ToTable("Playlists");
                 });
 
+            modelBuilder.Entity("OnlineMusicProject.Models.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("JwtId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens");
+                });
+
             modelBuilder.Entity("OnlineMusicProject.Models.SongGenres", b =>
                 {
                     b.Property<Guid>("GenreId")
@@ -477,6 +513,17 @@ namespace OnlineMusicProject.Migrations
                 });
 
             modelBuilder.Entity("OnlineMusicProject.Models.Playlists", b =>
+                {
+                    b.HasOne("OnlineMusicProject.Models.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("OnlineMusicProject.Models.RefreshToken", b =>
                 {
                     b.HasOne("OnlineMusicProject.Models.Users", "User")
                         .WithMany()
