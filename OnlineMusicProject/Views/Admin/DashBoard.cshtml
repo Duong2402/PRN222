@@ -1,62 +1,162 @@
-﻿@model dynamic
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@using OnlineMusicProject.Models
+@inject UserManager<Users> userManager
+@inject OnlineMusicDBContext context
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Use the admin layout without the header
     ViewData["Title"] = "Admin Dashboard";
+
+    var user = await userManager.GetUserAsync(User);
+    var fullName = user != null ? user.FullName : "Guest";
 }
 
-<style>
-    .dashboard-card {
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
+<!-- Main Content (Sidebar is in _AdminLayout.cshtml) -->
+<button class="btn btn-dark mb-3 d-md-none" onclick="toggleSidebar()">
+    <i class="fas fa-bars"></i> Toggle Sidebar
+</button>
+<h1>Welcome Back, @fullName!</h1>
+<p>Here you can manage accounts, songs, and playlists for the One Sound platform.</p>
 
-        .dashboard-card h3 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .dashboard-card a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-            .dashboard-card a:hover {
-                background-color: #0056b3;
-            }
-</style>
-
-<div class="container mt-5" style="margin-top: 100px; padding-top: 20px;">
-    <h1 class="text-center mb-4">Admin Dashboard</h1>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <h3>Manage Accounts</h3>
-                <p>View, edit, or delete user accounts.</p>
-                <a asp-controller="Admin" asp-action="ManageAccounts">Go to Accounts</a>
+<!-- Statistics Cards -->
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Accounts</h5>
+                <p class="card-text">
+                    @(await userManager.Users.CountAsync())
+                </p>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <h3>Manage Songs</h3>
-                <p>Add, update, or remove songs from the library.</p>
-                <a asp-controller="Admin" asp-action="ManageSongs">Go to Songs</a>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Songs</h5>
+                <p class="card-text">
+                    @(await context.Songs.CountAsync())
+                </p>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <h3>Manage Playlists</h3>
-                <p>Create, edit, or delete playlists.</p>
-                <a asp-controller="Admin" asp-action="ManagePlaylists">Go to Playlists</a>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Playlists</h5>
+                <p class="card-text">
+                    @(await context.Playlists.CountAsync())
+                </p>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Listeners Chart -->
+<div class="row mt-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Song Listeners Over Time</h5>
+                <canvas id="listenersChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Songs (Simplified) -->
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Recent Songs</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Artist</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var song in await context.Songs
+                        .Include(s => s.Artists)
+                        .OrderByDescending(s => s.SongId) // Order by SongId (Guid)
+                        .Take(3)
+                        .ToListAsync())
+                        {
+                            <tr>
+                                <td>@song.NameSong</td>
+                                <td>@song.Artists?.ArtistName</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Toggle sidebar for mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.style.width === '0px' || sidebar.style.width === '') {
+                sidebar.style.width = '250px';
+            } else {
+                sidebar.style.width = '0px';
+            }
+        }
+
+        // Sample data for the chart (replace with real data as needed)
+        const ctx = document.getElementById('listenersChart').getContext('2d');
+        const listenersChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Sep 07', 'Sep 08', 'Sep 09', 'Sep 10', 'Sep 11', 'Sep 12', 'Sep 13'],
+                datasets: [{
+                    label: 'Listeners',
+                    data: [3000, 3500, 3200, 4000, 3800, 4200, 4500],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <style type="text/css">
+        .nav-link.active {
+            background-color: #495057;
+            border-radius: 5px;
+        }
+
+        .nav-link:hover {
+            background-color: #6c757d;
+            border-radius: 5px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            overflow-x: hidden;
+        }
+
+        @@media (max-width: 767.98px) {
+            .sidebar {
+                width: 0px;
+                position: fixed;
+                z-index: 1000;
+            }
+        }
+    </style>
+}
