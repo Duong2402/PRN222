@@ -17,6 +17,7 @@ namespace OnlineMusicProject.Models
         [ForeignKey(nameof(Users))]
         public string UserId { get; set; }
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
+        public bool IsPublic { get; set; }
         public Users User { get; set; }
         public ICollection<PlaylistSongs> PlaylistSongs { get; set; }
     }

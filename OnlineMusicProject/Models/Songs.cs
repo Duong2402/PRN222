@@ -28,6 +28,7 @@ namespace OnlineMusicProject.Models
         public SongGenres songGenres { get; set; }
         public Guid ArtistId {  get; set; }
         public Artists Artists { get; set; }
+        public ICollection<AlbumSongs> AlbumSongs { get; set; }
         public ICollection<PlaylistSongs> PlaylistSongs { get; set; }
         public ICollection<Histories> Histories { get; set; }
 

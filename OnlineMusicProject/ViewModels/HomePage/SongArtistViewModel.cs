@@ -11,5 +11,6 @@ namespace OnlineMusicProject.ViewModels.HomePage
         public Songs MaxListener { get; set; }
         public Artists ArtistOfSongs { get; set; }
         public List<SongGenres> Genres { get; set; }
+        public List<Albums> Albums { get; set; }
     }
 }

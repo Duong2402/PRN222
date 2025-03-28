@@ -34,7 +34,7 @@ namespace OnlineMusicProject.Controllers
 
             List<SongGenres> genres = await _context.SongGenres.ToListAsync();
             var song = await _context.Songs.Include(s => s.Artists).OrderByDescending(s => s.NumberOfListeners).FirstOrDefaultAsync();
-
+            var albums = await _context.Albums.Include(a => a.Artists).OrderByDescending(a => a.AlbumId).Take(10).ToListAsync();
             var viewALl = new SongArtistViewModel
             {
                 SongsWeekTop = songsWeekTop,
@@ -42,6 +42,7 @@ namespace OnlineMusicProject.Controllers
                 Artists = artists,
                 Genres = genres,
                 MaxListener = song,
+                Albums = albums,
                 
             };
             return View(viewALl);

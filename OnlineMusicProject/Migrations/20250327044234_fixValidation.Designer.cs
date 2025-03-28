@@ -12,8 +12,8 @@ using OnlineMusicProject.Models;
 namespace OnlineMusicProject.Migrations
 {
     [DbContext(typeof(OnlineMusicDBContext))]
-    [Migration("20250326140316_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250327044234_fixValidation")]
+    partial class fixValidation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,6 +158,48 @@ namespace OnlineMusicProject.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("OnlineMusicProject.Models.AlbumSongs", b =>
+                {
+                    b.Property<Guid>("AlbumId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("SongId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AlbumId", "SongId");
+
+                    b.HasIndex("SongId");
+
+                    b.ToTable("AlbumSongs");
+                });
+
+            modelBuilder.Entity("OnlineMusicProject.Models.Albums", b =>
+                {
+                    b.Property<Guid>("AlbumId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Album_Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ArtistId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AlbumId");
+
+                    b.HasIndex("ArtistId");
+
+                    b.ToTable("Albums");
+                });
+
             modelBuilder.Entity("OnlineMusicProject.Models.Artists", b =>
                 {
                     b.Property<Guid>("ArtistId")
@@ -188,6 +230,9 @@ namespace OnlineMusicProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AlbumId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("PlayedAt")
                         .HasColumnType("datetime2");
 
@@ -199,6 +244,8 @@ namespace OnlineMusicProject.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("HistoryId");
+
+                    b.HasIndex("AlbumId");
 
                     b.HasIndex("SongId");
 
@@ -477,8 +524,43 @@ namespace OnlineMusicProject.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("OnlineMusicProject.Models.AlbumSongs", b =>
+                {
+                    b.HasOne("OnlineMusicProject.Models.Albums", "Albums")
+                        .WithMany("AlbumSongs")
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineMusicProject.Models.Songs", "Songs")
+                        .WithMany("AlbumSongs")
+                        .HasForeignKey("SongId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Albums");
+
+                    b.Navigation("Songs");
+                });
+
+            modelBuilder.Entity("OnlineMusicProject.Models.Albums", b =>
+                {
+                    b.HasOne("OnlineMusicProject.Models.Artists", "Artists")
+                        .WithMany("Albums")
+                        .HasForeignKey("ArtistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Artists");
+                });
+
             modelBuilder.Entity("OnlineMusicProject.Models.Histories", b =>
                 {
+                    b.HasOne("OnlineMusicProject.Models.Albums", "Albums")
+                        .WithMany("Histories")
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("OnlineMusicProject.Models.Songs", "Songs")
                         .WithMany("Histories")
                         .HasForeignKey("SongId")
@@ -490,6 +572,8 @@ namespace OnlineMusicProject.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Albums");
 
                     b.Navigation("Songs");
 
@@ -556,8 +640,17 @@ namespace OnlineMusicProject.Migrations
                     b.Navigation("songGenres");
                 });
 
+            modelBuilder.Entity("OnlineMusicProject.Models.Albums", b =>
+                {
+                    b.Navigation("AlbumSongs");
+
+                    b.Navigation("Histories");
+                });
+
             modelBuilder.Entity("OnlineMusicProject.Models.Artists", b =>
                 {
+                    b.Navigation("Albums");
+
                     b.Navigation("Songs");
                 });
 
@@ -573,6 +666,8 @@ namespace OnlineMusicProject.Migrations
 
             modelBuilder.Entity("OnlineMusicProject.Models.Songs", b =>
                 {
+                    b.Navigation("AlbumSongs");
+
                     b.Navigation("Histories");
 
                     b.Navigation("PlaylistSongs");

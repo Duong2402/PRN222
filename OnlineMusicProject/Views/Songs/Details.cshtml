@@ -231,7 +231,7 @@
 	<div style="margin-top: 20px">
 		@if (TempData["MsgToDetail"] != null)
 		{
-			<div class="alert alert-info" style="text-align: center; font-size: 20px">
+			<div id="tempAlert" class="alert alert-info" style="text-align: center; font-size: 20px">
 				@TempData["MsgToDetail"]
 			</div>
 		}
@@ -359,11 +359,8 @@
 			<form id="updateNameForm" asp-controller="Songs" asp-action="CreatePlaylist" method="post">
 				<div>
 					<input type="hidden" name="songId" value="@Model.Song.SongId" />
-					<input name="playlistName" placeholder="Enter new name" />
-					@if (TempData["RequiredMsg"] != null)
-					{
-						<span class="text-danger">@TempData["RequiredMsg"]</span>
-					}
+					<input name="playlistName" placeholder="Enter new name"/>
+					<span id="nameError" class="text-danger" style="display:none;">Playlist name is required.</span>
 				</div>
 				<button type="submit">Create Playlist</button>
 			</form>
@@ -393,10 +390,17 @@
 			}
 		}
 
-		document.getElementById("updateNameForm").onsubmit = function (event) {
-			closeModal();
-		};
+			document.getElementById("updateNameForm").addEventListener("submit", function (event) {
+			var playlistName = document.querySelector('input[name="playlistName"]').value.trim();
+			var nameError = document.getElementById("nameError");
 
+			if (!playlistName) {
+				event.preventDefault();
+				nameError.style.display = "inline"; 
+				return;
+			}
+			nameError.style.display = "none";
+		});
 
 	</script>
 	<script> // Phân Trang
@@ -534,6 +538,20 @@
 			});
 		});
 
+	</script>
+	<script>
+		var alertElement = document.getElementById("tempAlert");
+
+		if (alertElement) {
+			setTimeout(function () {
+				alertElement.style.transition = "opacity 0.5s ease";
+				alertElement.style.opacity = "0";
+
+				setTimeout(function () {
+					alertElement.remove();
+				}, 500);
+			}, 5000);
+		}
 	</script>
 </body>
 

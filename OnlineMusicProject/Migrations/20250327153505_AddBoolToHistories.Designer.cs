@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineMusicProject.Models;
 
@@ -11,9 +12,11 @@ using OnlineMusicProject.Models;
 namespace OnlineMusicProject.Migrations
 {
     [DbContext(typeof(OnlineMusicDBContext))]
-    partial class OnlineMusicDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250327153505_AddBoolToHistories")]
+    partial class AddBoolToHistories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,6 +237,9 @@ namespace OnlineMusicProject.Migrations
 
                     b.Property<Guid?>("AlbumId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsAlbum")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("PlayedAt")
                         .HasColumnType("datetime2");

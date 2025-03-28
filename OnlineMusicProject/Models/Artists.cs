@@ -20,7 +20,6 @@ namespace OnlineMusicProject.Models
 
         public string? Bio { get; set; }
         public ICollection<Songs> Songs { get; set; }
-
-
+        public ICollection<Albums> Albums { get; set; }
     }
 }

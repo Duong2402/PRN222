@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineMusicProject.Models;
 
@@ -11,9 +12,11 @@ using OnlineMusicProject.Models;
 namespace OnlineMusicProject.Migrations
 {
     [DbContext(typeof(OnlineMusicDBContext))]
-    partial class OnlineMusicDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250327042047_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,14 +193,9 @@ namespace OnlineMusicProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("AlbumId");
 
                     b.HasIndex("ArtistId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Albums");
                 });
@@ -232,7 +230,7 @@ namespace OnlineMusicProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AlbumId")
+                    b.Property<Guid>("AlbumId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("PlayedAt")
@@ -285,9 +283,6 @@ namespace OnlineMusicProject.Migrations
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsPublic")
-                        .HasColumnType("bit");
 
                     b.Property<string>("PlaylistImage")
                         .HasColumnType("nvarchar(max)");
@@ -556,14 +551,7 @@ namespace OnlineMusicProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineMusicProject.Models.Users", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
                     b.Navigation("Artists");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("OnlineMusicProject.Models.Histories", b =>
@@ -571,7 +559,8 @@ namespace OnlineMusicProject.Migrations
                     b.HasOne("OnlineMusicProject.Models.Albums", "Albums")
                         .WithMany("Histories")
                         .HasForeignKey("AlbumId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("OnlineMusicProject.Models.Songs", "Songs")
                         .WithMany("Histories")

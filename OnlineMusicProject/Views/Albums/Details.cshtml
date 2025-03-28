@@ -1,7 +1,7 @@
 ﻿@using OnlineMusicProject.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Identity;
-@model OnlineMusicProject.ViewModels.PlaylistPage.SongsOfPlaylistViewModel
+@model OnlineMusicProject.ViewModels.AlbumsPage.AlbumsAndSongsViewModel
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -298,7 +298,7 @@
 			align-items: center;
 			justify-content: center;
 			background-size: cover;
-			background-position: center; 
+			background-position: center;
 		}
 	</style>
 </head>
@@ -306,11 +306,11 @@
 <body>
 
 	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
-		<div class="bradcumbContent">
-			<h2 style="margin-bottom: 0">@Model.playlistItem.PlaylistName - @Model.UserName</h2>
-			<button onclick="openEditPlaylistForm()" style="border: none; margin-left: 10px; font-size: 20px; background: white; outline: none;">
-				<span class="icon"><i class="fas fa-edit"></i></span>
-			</button>
+		<div class="bradcumbContent" style="display: block">
+			<h2 style="margin-bottom: 0">@Model.album.Title </h2>
+			<a asp-controller="Artists" asp-action="SongsOf" asp-route-artist ="@Model.album.Artists.ArtistName" >
+				<h4 style="margin: 10px 0; color: blue">@Model.album.Artists.ArtistName</h4>
+			</a>
 		</div>
 	</section>
 	<div style="margin-top: 20px">
@@ -321,39 +321,47 @@
 			</div>
 		}
 	</div>
-	<div class="one-music-songs-area mb-70" style="margin-top: 40px">
+
+    <div class="one-music-songs-area mb-70" style="margin-top: 40px">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-9">
 					<div class="single-song-area mb-30 d-flex flex-wrap align-items-center justify-content-center">
 						<div class="song-thumbnail">
-							<img src="@Model.SinglePlaylistSongs.Songs.ImageSong" alt="@Model.SinglePlaylistSongs.Songs.NameSong" style="height: 150px;">
+							<img src="@Model.SingleAlbumSongs.Songs.ImageSong" alt="@Model.SingleAlbumSongs.Songs.NameSong" style="height: 150px;">
 						</div>
 						<div class="song-play-area text-center w-100" style="padding: 20px 60px;">
 							<div class="song-name">
-								<p>@Model.SinglePlaylistSongs.Songs.NameSong - @Model.SinglePlaylistSongs.Songs.Artists.ArtistName</p>
+								<p>@Model.SingleAlbumSongs.Songs.NameSong - @Model.SingleAlbumSongs.Songs.Artists.ArtistName</p>
 							</div>
 							<audio id="audio-player" controls autoplay>
-								<source id="audioSource" src="@Model.SinglePlaylistSongs.Songs.FilePath" type="audio/mpeg">
+								<source id="audioSource" src="@Model.SingleAlbumSongs.Songs.FilePath" type="audio/mp3">
 							</audio>
 							<div class="audioplayer" style="height: 0">
-
 								<button id="prev-play" class="audioplayer-prev">
 									<i class="fas fa-step-backward"></i>
 								</button>
 								<button id="next-play" class="audioplayer-next">
 									<i class="fas fa-step-forward"></i>
 								</button>
-						
 							</div>
 							<div id="replay" style="cursor: pointer; height: 0px" onclick="toggleLoop()">
 								<i id="replay-icon" class="fas fa-sync-alt" style="font-size: 16px; color: white; position: relative; bottom: 33px; left: 275px"></i>
 							</div>
 							<div class="button-group">
-								<button class="playlist-btn" onclick="openAddPlaylistForm()" style="width:200px">
-									<span class="icon">❤️</span> Add to playlist
-								</button>
-								<a href="@Model.SinglePlaylistSongs.Songs.FilePath" download class="download-btn" style="width: 200px">
+								@if (User.Identity.IsAuthenticated)
+								{
+									<button class="playlist-btn" onclick="openModal()" style="width:200px">
+										<span class="icon">❤️</span> Add to playlist
+									</button>
+								}
+								else
+								{
+									<a asp-controller="Account" asp-action="Login" class="playlist-btn" style="width:200px">
+										<span class="icon">❤️</span> Add to playlist
+									</a>
+								}
+								<a href="@Model.SingleAlbumSongs.Songs.FilePath" download class="download-btn" style="width: 200px">
 									<span class="icon">⬇</span> Download
 								</a>
 							</div>
@@ -369,13 +377,10 @@
 						</label>
 						<span id="auto-slide-status" style="margin-left: 10px; font-size: 18px; color: gray; margin-bottom: 10px;">Auto-Play</span>
 					</div>
-					@foreach (var s in Model.playlistSongs)
+					@foreach (var s in Model.albumSongs)
 					{
 						<div style="display: flex; justify-content: space-around; margin:10px 0">
 							<div class="song-container">
-								<a class="delete-btn" asp-action="RemoveSongFromPlaylist" asp-route-songId="@s.SongId" asp-route-playlistId="@s.PlaylistId" style="flex-shrink: 0;margin-left: 0;padding: 0">
-									<i class="fa fa-trash"></i>
-								</a>
 								<img src="@s.Songs.ImageSong" alt="@s.Songs.ImageSong">
 								<div class="song-info">
 									<h6>@s.Songs.Artists.ArtistName</h6>
@@ -383,7 +388,7 @@
 								</div>
 							</div>
 							<form asp-action="Details" method="get">
-								<input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId" />
+								<input type="hidden" name="albumId" value="@Model.album.AlbumId" />
 								<input type="hidden" name="songId" value="@s.SongId" />
 								<button type="submit"
 										style="border: none; padding: 5px; border-radius: 50%; background: white; width: 30px; height: 30px; position: relative;top: 12px; left: 10px">
@@ -405,13 +410,13 @@
 				@foreach (var play in Model.PlaylistItems)
 				{
 					<div>
-						<a asp-controller="Playlists"
+						<a asp-controller="Albums"
 						   asp-action="addSongToPlaylist"
 						   asp-route-playlistId="@play.PlaylistId"
-						   asp-route-itemId="@Model.playlistItem.PlaylistId"
-						   asp-route-songId="@Model.SinglePlaylistSongs.SongId"
+						   asp-route-itemId="@Model.album.AlbumId"
+						   asp-route-songId="@Model.SingleAlbumSongs.Songs.SongId"
 						   style="display: flex; justify-content: space-between;
-                              text-decoration: none;padding: 0 5px;">
+                        text-decoration: none;padding: 0 5px;">
 							<div style="display: flex; align-items: center;">
 								<p style="color: black; font-size: 16px; margin-bottom: 0">@play.PlaylistName</p>
 								@foreach (var cp in Model.PlaylistItemsWithCounts)
@@ -422,58 +427,22 @@
 									}
 								}
 							</div>
-
 							<p style="color: black; font-size: 16px; margin-bottom: 0">@play.CreatedAt?.ToString("dd/MM/yyyy")</p>
 						</a>
 					</div>
 				}
 			</div>
-
-			<form id="updateNameForm" asp-action="CreatePlaylist" method="post">
+			<form id="updateNameForm" asp-controller="Albums" asp-action="CreatePlaylist" method="post">
 				<div>
-					<input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId" />
-					<input type="hidden" name="songId" value="@Model.SinglePlaylistSongs.SongId" />
-					<input name="playlistName" placeholder="Enter new name" />
+					<input type="hidden" name="songId" value="@Model.SingleAlbumSongs.Songs.SongId" />
+					<input type="hidden" name="albumId" value="@Model.album.AlbumId" />
+					<input name="playlistName" placeholder="Enter new name"/>
 					<span id="nameError" class="text-danger" style="display:none;">Playlist name is required.</span>
 				</div>
 				<button type="submit">Create Playlist</button>
 			</form>
-
 		</div>
 	</div>
-
-
-	<div id="myModalEdit" class="modalEdit">
-		<div class="modalEdit-content">
-			<span class="closeEdit" onclick="closeModalEdit()" style="text-align: right;">&times;</span>
-
-			<form id="updatePlaylistForm" asp-action="Edit" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="playlistId" value="@Model.playlistItem.PlaylistId" />
-				<div style="text-align: center; margin-bottom:5px; display: flex">
-					<input type="file" name="playlistImage" id="Avatar" accept="image/*" style="margin-right: 5px" onchange="previewImage(event)">
-					<br>
-					<img id="avatarPreview" src="@(!string.IsNullOrEmpty(Model.playlistItem.PlaylistImage) ? Model.playlistItem.PlaylistImage : "/img/playlist-img/default_Image.png")" alt="User Avatar" class="avatar-img" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" />
-				</div>
-				<div>
-					<input name="playlistName" id="playlistName" placeholder="Enter new name" value="@Model.playlistItem.PlaylistName" />
-					<span id="nameError" class="text-danger" style="display:none;">Playlist name is required.</span>
-				</div>
-				<div style="display: flex; align-items: center; gap: 20px; padding: 10px;">
-					<button type="submit" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s; width: 100px">
-						Save
-					</button>
-					<a asp-controller="Playlists" asp-action="Delete" asp-route-playlistId="@Model.playlistItem.PlaylistId" style="background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s; width: 100px; padding: 10px">
-						Delete
-					</a>
-				</div>
-			</form>
-
-		</div>
-	</div>
-
-
-
-	<!-- jQuery-2.2.4 js -->
 	<script src="/js/jquery/jquery-2.2.4.min.js"></script>
 	<!-- Popper js -->
 	<script src="/js/bootstrap/popper.min.js"></script>
@@ -484,29 +453,19 @@
 	<!-- Active js -->
 	<script src="/js/active.js"></script>
 	<script>
-		function openAddPlaylistForm() {
-			document.getElementById("myModalEdit").style.display = "none";
-			document.getElementById("myModal").style.display = "block";
-		}
+		var modal = document.getElementById("myModal");
 
-		function openEditPlaylistForm() {
-			document.getElementById("myModal").style.display = "none";
-			document.getElementById("myModalEdit").style.display = "block";
+		function openModal() {
+			modal.style.display = "block";
 		}
 
 		function closeModal() {
-			document.getElementById("myModal").style.display = "none";
-		}
-
-		function closeModalEdit() {
-			document.getElementById("myModalEdit").style.display = "none";
+			modal.style.display = "none";
 		}
 
 		window.onclick = function (event) {
-			if (event.target == document.getElementById("myModal")) {
+			if (event.target == modal) {
 				closeModal();
-			} else if (event.target == document.getElementById("myModalEdit")) {
-				closeModalEdit();
 			}
 		}
 
@@ -521,35 +480,8 @@
 			}
 			nameError.style.display = "none";
 		});
-
-		document.getElementById("updatePlaylistForm").addEventListener("submit", function (event) {
-			var playlistName = document.querySelector('input[name="playlistName"]').value.trim();
-			var nameError = document.getElementById("nameError");
-
-			if (!playlistName) {
-				event.preventDefault();
-				nameError.style.display = "inline"; 
-				return;
-			}
-			nameError.style.display = "none";
-		});
-
-
 	</script>
 	<script>
-		function previewImage(event) {
-			var file = event.target.files[0];
-			var reader = new FileReader();
-
-			reader.onload = function (e) {
-				var imgElement = document.getElementById('avatarPreview');
-				imgElement.src = e.target.result;
-			}
-
-			if (file) {
-				reader.readAsDataURL(file);
-			}
-		}
 		function toggleLoop() {
 			var audioPlayer = document.getElementById('audio-player');
 			var replayIcon = document.getElementById('replay-icon');
@@ -558,10 +490,10 @@
 
 		}
 	</script>
-	<script> //Sử lý auto-play
+	<script>
 		document.addEventListener("DOMContentLoaded", function () {
-			const songs = @Html.Raw(Json.Serialize(Model.playlistSongs)); 
-			let currentSongIndex = songs.findIndex(song => song.songId === "@Model.SinglePlaylistSongs.Songs.SongId"); 
+			const songs = @Html.Raw(Json.Serialize(Model.albumSongs));
+			let currentSongIndex = songs.findIndex(song => song.songId === "@Model.SingleAlbumSongs.Songs.SongId");
 			const audioPlayer = document.getElementById("audio-player");
 			const audioSource = document.getElementById("audioSource");
 			const songNameElement = document.querySelector(".song-name p");
@@ -599,7 +531,7 @@
 				}
 			});
 			function updatePlaylistUI() {
-		
+
 				document.querySelectorAll("form button i").forEach(icon => {
 					icon.classList.remove("fa-pause");
 					icon.classList.add("fa-play");
@@ -616,13 +548,27 @@
 			}
 			updateSong();
 		});
+	</script>
+	<script>
+		var alertElement = document.getElementById("tempAlert");
 
+		if (alertElement) {
+			setTimeout(function () {
+				alertElement.style.transition = "opacity 0.5s ease";
+				alertElement.style.opacity = "0"; 
+
+				setTimeout(function () {
+					alertElement.remove();
+				}, 500);
+			}, 5000);
+		}
 	</script>
 
-	<script> //Prev and next Song
+	<script>
+		//Prev and next Song
 		document.addEventListener("DOMContentLoaded", function () {
-			const songs = @Html.Raw(Json.Serialize(Model.playlistSongs));
-			let currentSongIndex = songs.findIndex(song => song.songId === "@Model.SinglePlaylistSongs.Songs.SongId")
+			const songs = @Html.Raw(Json.Serialize(Model.albumSongs));
+			let currentSongIndex = songs.findIndex(song => song.songId === "@Model.SingleAlbumSongs.Songs.SongId")
 			const audioPlayer = document.getElementById("audio-player");
 			const audioSource = document.getElementById("audioSource");
 			const songNameElement = document.querySelector(".song-name p");
@@ -667,20 +613,6 @@
 			}
 		});
 
-	</script>
-	<script>
-		var alertElement = document.getElementById("tempAlert");
-
-		if (alertElement) {
-			setTimeout(function () {
-				alertElement.style.transition = "opacity 0.5s ease";
-				alertElement.style.opacity = "0";
-
-				setTimeout(function () {
-					alertElement.remove();
-				}, 500);
-			}, 5000);
-		}
 	</script>
 </body>
 
