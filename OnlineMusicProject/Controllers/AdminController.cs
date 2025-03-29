@@ -20,8 +20,28 @@ namespace OnlineMusicProject.Controllers
             _context = context;
         }
 
-        // Dashboard
-        public IActionResult DashBoard() => View();
+        public async Task<IActionResult> Dashboard()
+        {
+            // Fetch listener data for the last 7 days (simplified since we don't have DateAdded)
+            var listenerData = await _context.Songs
+                .GroupBy(s => s.SongId) // Group by SongId as a placeholder
+                .Select(g => new
+                {
+                    SongId = g.Key,
+                    TotalListeners = g.Sum(s => s.NumberOfListeners)
+                })
+                .OrderByDescending(g => g.SongId)
+                .Take(7) // Take the top 7 songs
+                .ToListAsync();
+
+            var labels = listenerData.Select(s => s.SongId.ToString().Substring(0, 8)).ToList(); // Use first 8 chars of Guid for labels
+            var data = listenerData.Select(s => s.TotalListeners).ToList();
+
+            ViewData["ChartLabels"] = labels;
+            ViewData["ChartData"] = data;
+
+            return View();
+        }
 
         // Manage Accounts
         public async Task<IActionResult> ManageAccounts(int page = 1)

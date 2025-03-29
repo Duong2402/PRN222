@@ -1,0 +1,133 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Identity
+@using OnlineMusicProject.Models
+@inject SignInManager<Users> signInManager
+@inject UserManager<Users> userManager
+@{
+    var user = await userManager.GetUserAsync(User);
+    var fullName = user != null ? user.FullName : "Guest";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin - @ViewData["Title"]</title>
+    <link rel="icon" href="/img/core-img/favicon.ico" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+        .avatar-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .b-search {
+            padding: 2px 2px 2px 25px;
+            width: 180px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="bg-dark text-white sidebar" id="sidebar" style="width: 250px; min-height: 100vh; padding-top: 20px; transition: width 0.3s;">
+            <div class="px-3">
+                <a asp-controller="Home" asp-action="Index" class="nav-brand">
+                    <img src="/img/core-img/logo.png" alt="One Sound Logo" style="margin: 20px" />
+                </a>
+                <p class="text-muted small">Admin Dashboard</p>
+            </div>
+            <hr class="bg-light" />
+            <ul class="nav flex-column px-3">
+                <li class="nav-item">
+                    <a class="nav-link text-white @(ViewContext.RouteData.Values["Action"].ToString() == "Dashboard" ? "active" : "")" asp-controller="Admin" asp-action="Dashboard">
+                        <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white @(ViewContext.RouteData.Values["Action"].ToString() == "ManageAccounts" ? "active" : "")" asp-controller="Admin" asp-action="ManageAccounts">
+                        <i class="fas fa-users me-2"></i> Manage Accounts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white @(ViewContext.RouteData.Values["Action"].ToString() == "ManageSongs" ? "active" : "")" asp-controller="Admin" asp-action="ManageSongs">
+                        <i class="fas fa-music me-2"></i> Manage Songs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white @(ViewContext.RouteData.Values["Action"].ToString() == "ManagePlaylists" ? "active" : "")" asp-controller="Admin" asp-action="ManagePlaylists">
+                        <i class="fas fa-list-ul me-2"></i> Manage Playlists
+                    </a>
+                </li>
+            </ul>
+            <hr class="bg-light" />
+            <div class="px-3">
+                <h6 class="text-muted">ACCOUNT</h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-controller="Users" asp-action="Profile">
+                            <i class="fas fa-user me-2"></i> Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Users/Contact">
+                            <i class="fas fa-question-circle me-2"></i> Help
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-controller="Account" asp-action="Logout">
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-grow-1 p-4">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="#"><img src="/img/core-img/logo.png" alt=""></a>
+                    <p class="copywrite-text">
+                        <a href="#">Online Music - Relaxation options for every home</a>
+                    </p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="footer-nav">
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-controller="Songs" asp-action="SongList">Songs</a></li>
+                            <li><a href="/Users/Artists">Artists</a></li>
+                            <li><a href="/Users/Blog">News</a></li>
+                            <li><a href="/Users/Contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="/js/bootstrap/popper.min.js"></script>
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <script src="/js/plugins/plugins.js"></script>
+    <script src="/js/active.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
