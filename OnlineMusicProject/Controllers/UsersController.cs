@@ -3,12 +3,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineMusicProject.Models;
 using OnlineMusicProject.Services.Pagination;
 using OnlineMusicProject.ViewModels;
 using OnlineMusicProject.ViewModels.HomePage;
+using OnlineMusicProject.ViewModels.PlaylistPage;
 using OnlineMusicProject.ViewModels.SongPage;
+using Org.BouncyCastle.Utilities.Collections;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace OnlineMusicProject.Controllers
@@ -17,11 +20,13 @@ namespace OnlineMusicProject.Controllers
     {
         private readonly UserManager<Users> userManager;
         private readonly OnlineMusicDBContext _context;
+        private readonly IWebHostEnvironment _environment;
 
-        public UsersController(UserManager<Users> userManager, OnlineMusicDBContext context)
+        public UsersController(UserManager<Users> userManager, OnlineMusicDBContext context, IWebHostEnvironment environment)
         {
             this.userManager = userManager;
             _context = context;
+            _environment = environment;
         }
 
         [Authorize(Roles = "User, Admin")]
@@ -58,21 +63,29 @@ namespace OnlineMusicProject.Controllers
         public IActionResult AlbumsStore() => View();
 
         [Authorize(Roles = "User, Admin")]
-        public async Task<IActionResult> HistoryOfListening()
+        public async Task<IActionResult> HistoryOfListening(string category)
         {
+            if (string.IsNullOrEmpty(category))
+            {
+                category = "Songs";
+            }
             var user = await userManager.GetUserAsync(User);
             if (user != null)
             {
                 var histories = await _context.Histories
-                                      .Include(h => h.Songs).ThenInclude(h => h.Artists)
-                                      .Where(h => h.UserId == user.Id.ToString())
-                                      .OrderByDescending(h => h.PlayedAt)
-                                      .Take(5)
-                                      .ToListAsync();
+                   .Include(h => h.Songs).ThenInclude(h => h.Artists)
+                   .Include(h => h.Albums).ThenInclude(h => h.Artists)
+                   .Where(h => h.UserId == user.Id.ToString())
+                   .OrderByDescending(h => h.PlayedAt)
+                   .Take(5)
+                   .ToListAsync();
+                var filteredHistories = category == "Songs" ? histories.Where(h => h.AlbumId == null).ToList()
+                        : category == "Albums" ? histories.Where(h => h.SongId == null).ToList()
+                        : new List<Histories>();
                 var model = new UserProfileViewModel
                 {
                     User = user,
-                    Histories = histories
+                    histories = filteredHistories,
                 };
                 return View(model);
             }
@@ -80,47 +93,97 @@ namespace OnlineMusicProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> HistoryOfListening(Guid songId)
+        public async Task<IActionResult> HistoryOfListening(Guid? songId, Guid? albumId)
         {
             var user = await userManager.GetUserAsync(User);
-            if (user == null) return RedirectToAction("Details", "Songs", new { id = songId });
-            var song = await _context.Songs.FindAsync(songId);
-            if (song == null)
-            {
-                return NotFound();
-            }
-            var history = await _context.Histories.FirstOrDefaultAsync(h => h.UserId == user.Id && h.SongId == songId);
 
-            if (history == null)
+            if (user == null)
             {
-                Histories newHistory = new Histories
+                if (songId != null)
                 {
-                    HistoryId = Guid.NewGuid(),
-                    UserId = user.Id,
-                    SongId = songId,
-                    PlayedAt = DateTime.Now,
-                };
-                _context.Histories.Add(newHistory);
+                    return RedirectToAction("Details", "Songs", new { id = songId });
+                }
+                if (albumId != null)
+                {
+                    return RedirectToAction("Details", "Albums", new { albumId });
+                }
+                return BadRequest("User is not logged in and no valid ID is provided.");
             }
-            else
-            {
-                history.PlayedAt = DateTime.Now;
-                _context.Histories.Update(history);
-            }
-            await _context.SaveChangesAsync();
 
-            return RedirectToAction("Details", "Songs", new { id = songId });
+            if (songId != null)
+            {
+                var song = await _context.Songs.FindAsync(songId);
+                if (song == null)
+                {
+                    return NotFound();
+                }
+
+                var historySong = await _context.Histories.FirstOrDefaultAsync(h => h.UserId == user.Id && h.SongId == songId);
+                if (historySong == null)
+                {
+                    var newHistory = new Histories
+                    {
+                        HistoryId = Guid.NewGuid(),
+                        UserId = user.Id,
+                        SongId = songId,
+                        PlayedAt = DateTime.Now,
+                    };
+                    _context.Histories.Add(newHistory);
+                }
+                else
+                {
+                    historySong.PlayedAt = DateTime.Now;
+                    _context.Histories.Update(historySong);
+                }
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", "Songs", new { id = songId });
+            }
+
+            if (albumId != null)
+            {
+                var album = await _context.Albums.FindAsync(albumId);
+                if (album == null)
+                {
+                    return NotFound();
+                }
+
+                var historyAlbum = await _context.Histories.FirstOrDefaultAsync(h => h.UserId == user.Id && h.AlbumId == albumId);
+                if (historyAlbum == null)
+                {
+                    var newHistory = new Histories
+                    {
+                        HistoryId = Guid.NewGuid(),
+                        UserId = user.Id,
+                        AlbumId = albumId,
+                        PlayedAt = DateTime.Now,
+                    };
+                    _context.Histories.Add(newHistory);
+                }
+                else
+                {
+                    historyAlbum.PlayedAt = DateTime.Now;
+                    _context.Histories.Update(historyAlbum);
+                }
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", "Albums", new { albumId });
+            }
+            return BadRequest("No songId or albumId provided.");
         }
 
-        public async Task<IActionResult> RemoveFromHistories(Guid songId)
+
+        public async Task<IActionResult> RemoveFromHistories(Guid? songId, Guid? albumId)
         {
             var user = await userManager.GetUserAsync(User);
             if (user == null) return RedirectToAction("Login", "Account");
-            var songHistory = await _context.Histories
-                                       .FirstOrDefaultAsync(h => h.UserId == user.Id.ToString() && h.SongId == songId);
-            if (songHistory == null) return RedirectToAction("HistoryOfListening");
-            _context.Histories.Remove(songHistory);
-            await _context.SaveChangesAsync();
+            var history = await _context.Histories
+                          .FirstOrDefaultAsync(h => h.UserId == user.Id.ToString() &&
+                           (h.SongId == songId || h.AlbumId == albumId));
+            if (history != null)
+            {
+                _context.Histories.Remove(history);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("HistoryOfListening");
+            }
             return RedirectToAction("HistoryOfListening");
         }
 
@@ -149,7 +212,7 @@ namespace OnlineMusicProject.Controllers
             List<playlistWithCounts> playlistSongsWithCounts = new List<playlistWithCounts>();
             if (user != null)
             {
-                play = await _context.Playlists.Where(p => p.UserId == user.Id).ToListAsync();
+                play = await _context.Playlists.Where(p => p.UserId == user.Id).OrderByDescending(p => p.PlaylistId).ToListAsync();
                 foreach(var item in play)
                 {
                     int count = await _context.PlaylistSongs
@@ -162,10 +225,14 @@ namespace OnlineMusicProject.Controllers
                     });
                 }
             }
+            List<SongGenres> genres = await _context.SongGenres.ToListAsync();
+            List<Artists> artists = await _context.Artists.ToListAsync();
             var model = new PlaylistViewModel
             {
                 PlaylistItems = play,
-                PlaylistItemsWithCounts = playlistSongsWithCounts
+                PlaylistItemsWithCounts = playlistSongsWithCounts,
+                SongGenres = genres,
+                Artists = artists
             };
             return View(model);
         }
@@ -205,7 +272,6 @@ namespace OnlineMusicProject.Controllers
             }
             return RedirectToAction("Login", "Account");
         }
-
         public async Task<IActionResult> addToPlaylist(Guid itemId, Guid songId)
         {
             var user = await userManager.GetUserAsync(User);
@@ -237,6 +303,50 @@ namespace OnlineMusicProject.Controllers
                 }
             }
             return RedirectToAction("Details", "Songs", new { id = songId });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddSongs(SongsViewModel model)
+        {
+            var user = await userManager.GetUserAsync(User);
+
+            var nameSong = await _context.Songs.FirstOrDefaultAsync(s => s.NameSong == model.NameSong);
+            var imageSong = await _context.Artists.FirstOrDefaultAsync(a => a.ArtistId == model.ArtistId);
+
+            if (nameSong != null)
+            {
+                TempData["MsgRequired"] = "This name already exists.";
+                return RedirectToAction("Playlist");
+            }
+
+            if (user != null)
+            {
+
+                var song = new Songs
+                {
+                    SongId = Guid.NewGuid(),
+                    NameSong = model.NameSong,
+                    ImageSong = imageSong?.ArtistImage,
+                    GenreId = model.GenreId,
+                    ArtistId = model.ArtistId,
+                    UserId = user.Id,
+                    IsPublic = model.IsPublic,
+                };
+                if (model.FilePath != null && model.FilePath.Length > 0)
+                {
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "audio", model.FilePath.FileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await model.FilePath.CopyToAsync(stream);
+                    }
+
+                    song.FilePath = "/audio/ " + model.FilePath.FileName;
+                }
+                _context.Songs.Add(song);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("PlayList");
+            }
+            return RedirectToAction("Login", "Account");
         }
 
     }

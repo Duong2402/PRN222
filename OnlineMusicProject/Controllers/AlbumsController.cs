@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineMusicProject.Models;
+using OnlineMusicProject.Services.Pagination;
 using OnlineMusicProject.ViewModels.AlbumsPage;
 using OnlineMusicProject.ViewModels.PlaylistPage;
 using OnlineMusicProject.ViewModels.SongPage;
@@ -25,7 +26,7 @@ namespace OnlineMusicProject.Controllers
         }
         public async Task<IActionResult> Details(Guid albumId, Guid? songId)
         {
-            var albums = await _context.Albums.Include(a => a.Artists).FirstOrDefaultAsync(a => a.AlbumId == albumId);
+            var albums = await _context.Albums.Include(a => a.Artists).Include(a => a.User).FirstOrDefaultAsync(a => a.AlbumId == albumId);
 			var user = await userManager.GetUserAsync(User);
 			List<Playlists> playitems = new List<Playlists>();
 			List<playlistWithCounts> playlistSongsWithCounts = new List<playlistWithCounts>();
@@ -88,6 +89,20 @@ namespace OnlineMusicProject.Controllers
 				return View(model);
 			}
 			return RedirectToAction("Index","Home");
+		}
+
+		public async Task<IActionResult> List(string searchQuery, int page = 1)
+		{
+			int pageSize = 6;
+			var albums = _context.Albums.Include(s => s.Artists).AsQueryable();
+			if (!string.IsNullOrWhiteSpace(searchQuery))
+			{
+				albums = albums.Where(s => s.Title.Contains(searchQuery));
+			}
+			var songslist = await albums.ToListAsync();
+			var pageResult = PageResult.ToPaginatedList(songslist, page, pageSize);
+			ViewData["SearchQuery"] = searchQuery;
+			return View(pageResult);
 		}
 		public async Task<IActionResult> addSongToPlaylist(Guid playlistId, Guid itemId, Guid songId)
 		{
@@ -152,6 +167,34 @@ namespace OnlineMusicProject.Controllers
 			await _context.SaveChangesAsync();
 			TempData["MsgToDetail"] = "Song added successfully!";
 			return RedirectToAction("Details", new { albumId});
+		}
+
+		public async Task<IActionResult> AddAlbumToPlaylist(Guid albumId)
+		{
+			var user = await userManager.GetUserAsync(User);
+			var album = await _context.Albums.Include(s => s.Artists).FirstOrDefaultAsync(al => al.AlbumId == albumId);
+			if (user != null && album != null)
+			{
+				var existingPlaylist = await _context.Playlists.FirstOrDefaultAsync(p => p.PlaylistName == album.Title);
+				if (existingPlaylist == null)
+				{
+					Playlists playlists = new Playlists
+					{
+						PlaylistId = Guid.NewGuid(),
+						PlaylistName = album.Title,
+						PlaylistImage = album.Album_Image,
+						UserId = user.Id,
+					};
+					_context.Playlists.Add(playlists);
+					await _context.SaveChangesAsync();
+                    TempData["MsgToDetail"] = "Albumn added successfully!";
+				}
+				else
+				{
+					TempData["MsgToDetail"] = "This albumn is already in the playlist!";
+				}
+			}
+			return RedirectToAction("Details", new { albumId });
 		}
 	}
 }

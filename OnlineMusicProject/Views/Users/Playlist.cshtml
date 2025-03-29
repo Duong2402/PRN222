@@ -43,6 +43,17 @@
             background-color: rgba(0, 0, 0, 0.4);
         }
 
+        .modalUpload{
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
         .modal-content {
             background-color: white;
             margin: 15% auto;
@@ -51,6 +62,17 @@
             width: 300px;
             border-radius: 5px;
             text-align: center;
+            z-index: 10000;
+        }
+
+        .modalUpload-content{
+            background-color: white;
+            margin: 8% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            border-radius: 5px;
+            text-align: left;
             z-index: 10000;
         }
 
@@ -77,8 +99,28 @@
             border: 1px solid #ddd;
         }
 
+        #updatePlaylistForm input {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
         #updateNameForm button {
             padding: 10px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #updatePlaylistForm button {
+            padding: 5px;
             width: 100%;
             background-color: #4CAF50;
             color: white;
@@ -92,6 +134,17 @@
                 background-color: #45a049;
             }
 
+        #updatePlaylistForm button:hover {
+                background-color: #45a049;
+            }
+
+        .form-group{
+           margin-bottom: 5px !important
+        }
+        .form-group label{
+            font-size: 16px;
+            font-weight: bold
+        }
         .album-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -112,9 +165,8 @@
             border-radius: 10px;
             text-align: center;
             width: 150px;
-            height: 150px
+            height: 150px ;
         }
-
         .arrow-container {
             display: flex;
             justify-content: center;
@@ -141,18 +193,72 @@
                 outline: none;
             }
 
+        .single-album .delete-btn {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .single-album:hover .delete-btn {
+            opacity: 1;
+        }
+
+        #toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 300px;
+            position: relative;
+            left: 36%;
+            top: 30px
+        }
+
+        .toggle-button {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+            .toggle-button.active {
+                background-color: #007bff;
+                color: white;
+                transform: scale(1.2);
+            }
+
+            .toggle-button:not(.active) {
+                background-color: #f9f9f9;
+                color: black;
+                transform: scale(1);
+            }
+            
+
     </style>
 </head>
 
 <body>
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent" style="display: flex; align-items: center; justify-content: center; text-align: center;">
-            <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 30px">Playlists</p>
-            <button class="edit-button" style="background-color: #4CAF50; color: white; border: none; font-size: 24px; padding: 10px 15px; border-radius: 50%; cursor: pointer;" onclick="openModal()">
+            <p style="margin-right: 20px; margin-bottom: 0; color: black; font-weight: bold;font-size: 30px">My Music</p>
+            <button id="playlist-content" class="edit-button" style="display: block; background-color: #4CAF50; color: white; border: none; font-size: 24px; padding: 10px 15px; border-radius: 50%; cursor: pointer;" onclick="openModal()">
+                <i class="fas fa-plus"></i>
+            </button>
+            <button id="upload-songs-content" class="Upload-button" style="display: none; background-color: #4CAF50; color: white; border: none; font-size: 24px; padding: 10px 15px; border-radius: 50%; cursor: pointer;" onclick="openModalUpload()">
                 <i class="fas fa-plus"></i>
             </button>
         </div>
     </section>
+    <div id="toggle-container">
+        <div class="toggle-button active" id="playlist-button">
+            <a href="#">Playlists</a>
+        </div>
+        <div class="toggle-button" id="upload-songs-button">
+            <a href="#">Upload Songs</a>
+        </div>
+    </div>
+
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>
@@ -163,7 +269,8 @@
                     <img id="avatarPreview" src="" class="avatar-img" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" />
                 </div>
                 <div>
-                   <input name="playlistName" placeholder="Enter name" />
+                    <input name="playlistName" placeholder="Enter name" />
+                    <span id="nameError" class="text-danger" style="display:none;">Playlist name is required.</span>
                     @if (TempData["RequiredMsg"] != null)
                     {
                         <span class="text-danger">@TempData["RequiredMsg"]</span>
@@ -175,33 +282,74 @@
         </div>
     </div>
 
-    <section class="login-area section-padding-100">
+    <div id="myModalUpload" class="modalUpload">
+        <div class="modalUpload-content">
+            <span class="close" onclick="closeModalUpload()" style="text-align: right;">&times;</span>
+
+            <form id="updatePlaylistForm" asp-action="AddSongs" method="post" enctype="multipart/form-data">
+                <div class="form-group" style="text-align: center; margin-bottom:5px; display: flex">
+                    <input type="file" name="FilePath" accept="audio/*" style="margin-right: 5px">
+                </div>
+                <div class="form-group">
+                    <label for="Name">Title</label>
+                    <input name="NameSong" id="Name" style="padding: 5px;">
+                </div>
+                <div class="form-group">
+                    <label for="GenreId">Genres</label>
+                    <select name="GenreId" id="GenreId" style="padding: 5px; width: 250px">
+                        <option value="" disabled selected>Select Genres</option>
+                        @foreach(var g in Model.SongGenres){
+                            <option value="@g.GenreId">@g.Name</option>
+                        }
+                   
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ArtistId">Artists</label>
+                    <select name="ArtistId" id="ArtistId" style="padding: 5px; width: 250px">
+                        <option value="" disabled selected>Select Artist</option>
+                        @foreach(var a in Model.Artists)
+                        {
+                           <option value="@a.ArtistId">@a.ArtistName</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group" style="display: flex; gap: 10px">
+                    <label style="margin-bottom: 0">Status</label>
+                    <input type="checkbox" name="IsPublic" style="width:20px; margin-bottom: 0">
+                    <span style="display:flex; align-items:center">Is Public</span>
+                </div>
+                
+                <button type="submit" class="submit-btn">Upload</button>
+            </form>
+        </div>
+    </div>
+
+
+    <section class="login-area section-padding-100" style="padding-top: 50px!important">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
-                    <div class="login-content">
-                        <div class="login-form" style="display: flex; justify-content: center; text-align: left; overflow: hidden; max-width: 100%;">
+                    <div class="login-content" style="padding: 0">
+                        <div class="login-form" style="display: flex; justify-content: center; text-align: left; overflow: hidden; max-width: 100%; height:240px">
                             <div>
                                 @if (Model.PlaylistItems.Count() > 0)
                                 {
                                     <div id="album-container" class="album-container" style="display: flex; gap: 10px; justify-content: center; padding: 20px 0">
                                         @foreach (var play in Model.PlaylistItems)
                                         {
-                                            <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item" style="display: flex; max-width: 250px;">
-                                                <a asp-controller="Playlists" asp-action="Details" asp-route-playlistId="@play.PlaylistId">
-                                                    <div class="single-album">
+                                            <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item" style="display: flex; max-width: 280px;">
+                                                <a asp-controller="Playlists" asp-action="Details" asp-route-playlistId="@play.PlaylistId" asp-route-title="@play.PlaylistName">
+                                                    <div class="single-album" style="width: 180px">
                                                         <img src="@(!string.IsNullOrEmpty(play.PlaylistImage) ? play.PlaylistImage : "/img/playlist-img/default_Image.png")" alt="" style="width: 100%; height:100%;">
-                                                        <div class="album-info">
-                                                            <a href="#">
+                                                        <div class="album-info" style="width: 160px">
+                                                            <a href="#" style="margin-bottom: 20px">
                                                                 <h5>@play.PlaylistName</h5>
                                                             </a>
-                                                            @foreach (var cp in Model.PlaylistItemsWithCounts)
-                                                            {
-                                                                @if (cp.Playlists.PlaylistId == play.PlaylistId)
-                                                                {
-                                                                    <p>(@cp.CountSongInPlaylist)</p>
-                                                                }
-                                                            }
+                                                            <a class="delete-btn" asp-controller="Playlists" asp-action="Delete" asp-route-playlistId="@play.PlaylistId">
+                                                                <i class="fa fa-trash"></i>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -230,6 +378,7 @@
                             </div>
                         </div>
                     </div>
+                
                 </div>
             </div>
         </div>
@@ -244,26 +393,43 @@
     <!-- Active js -->
     <script src="/js/active.js"></script>
    <script>
-        // Modal Update Name
-        var modal = document.getElementById("myModal");
-
         function openModal() {
-            modal.style.display = "block";
+            document.getElementById("myModalUpload").style.display = "none";
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function openModalUpload() {
+            document.getElementById("myModal").style.display = "none";
+            document.getElementById("myModalUpload").style.display = "block";
         }
 
         function closeModal() {
-            modal.style.display = "none";
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function closeModalUpload() {
+            document.getElementById("myModalUpload").style.display = "none";
         }
 
         window.onclick = function (event) {
-            if (event.target == modal) {
+            if (event.target == document.getElementById("myModal")) {
                 closeModal();
+            } else if (event.target == document.getElementById("myModalUpload")) {
+                closeModalUpload();
             }
         }
 
-        document.getElementById("updateNameForm").onsubmit = function (event) {
-            closeModal();
-        };
+        document.getElementById("updateNameForm").addEventListener("submit", function (event) {
+            var playlistName = document.querySelector('input[name="playlistName"]').value.trim();
+            var nameError = document.getElementById("nameError");
+
+            if (!playlistName) {
+                event.preventDefault();
+                nameError.style.display = "inline";
+                return;
+            }
+            nameError.style.display = "none";
+        });
 
     </script>
    <script>
@@ -312,6 +478,46 @@
             }
         });
         showPage(currentPage);
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const playlistButton = document.getElementById("playlist-button");
+            const uploadSongsButton = document.getElementById("upload-songs-button");
+            playlistButton.classList.add("active");
+
+            playlistButton.addEventListener("click", function () {
+                playlistButton.classList.add("active");
+                uploadSongsButton.classList.remove("active");
+            });
+
+            uploadSongsButton.addEventListener("click", function () {
+                uploadSongsButton.classList.add("active");
+                playlistButton.classList.remove("active");
+            });
+        });
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll('.toggle-button');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    const buttonId = this.id;
+
+                    if (buttonId === 'playlist-button') {
+                        document.getElementById('playlist-content').style.display = 'block';
+                        document.getElementById('upload-songs-content').style.display = 'none';
+                    } else if (buttonId === 'upload-songs-button') {
+                        document.getElementById('playlist-content').style.display = 'none';
+                        document.getElementById('upload-songs-content').style.display = 'block';
+                    }
+                });
+            });
+        });
+
     </script>
 </body>
 

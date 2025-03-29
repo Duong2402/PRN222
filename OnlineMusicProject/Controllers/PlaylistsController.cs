@@ -21,14 +21,19 @@ namespace OnlineMusicProject.Controllers
         }
 
         [Authorize(Roles = "User, Admin")]
-        public async Task<IActionResult> Details(Guid playlistId, Guid? songId)
+        public async Task<IActionResult> Details(Guid playlistId, Guid? songId, string? title)
         {
             var user = await userManager.GetUserAsync(User);
             if (user == null)
             {
                 return RedirectToAction("Login", "Account");
             }
-
+            var albumn = await _context.Albums.FirstOrDefaultAsync(a => a.Title == title);
+            if(albumn != null)
+            {
+                var albumId = albumn.AlbumId;
+                return RedirectToAction("Details", "Albums", new { albumId });
+            }
             List<playlistWithCounts> playlistSongsWithCounts = new List<playlistWithCounts>();
             var playitems = await _context.Playlists
                                   .Where(pi => pi.UserId == user.Id)

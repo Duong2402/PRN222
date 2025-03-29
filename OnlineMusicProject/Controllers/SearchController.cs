@@ -28,6 +28,11 @@ namespace OnlineMusicProject.Controllers
             if (isSongs.Any()){
                 return RedirectToAction("SongList", "Songs", new { searchQuery });
             }
+            var isAlbums = _context.Albums.Include(s => s.Artists).Where(al => al.Title.Contains(searchQuery));
+            if (isAlbums.Any())
+            {
+                return RedirectToAction("List", "Albums", new { searchQuery });
+            }
             return RedirectToAction("NotFound", "Search");
         }
 

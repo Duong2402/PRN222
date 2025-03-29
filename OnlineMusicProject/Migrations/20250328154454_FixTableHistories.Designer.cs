@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineMusicProject.Models;
 
@@ -11,9 +12,11 @@ using OnlineMusicProject.Models;
 namespace OnlineMusicProject.Migrations
 {
     [DbContext(typeof(OnlineMusicDBContext))]
-    partial class OnlineMusicDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250328154454_FixTableHistories")]
+    partial class FixTableHistories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -384,10 +387,8 @@ namespace OnlineMusicProject.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<bool?>("IsPublic")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Lyrics")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameSong")
@@ -398,16 +399,11 @@ namespace OnlineMusicProject.Migrations
                     b.Property<int>("NumberOfListeners")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("SongId");
 
                     b.HasIndex("ArtistId");
 
                     b.HasIndex("GenreId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Songs");
                 });
@@ -652,14 +648,7 @@ namespace OnlineMusicProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineMusicProject.Models.Users", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
                     b.Navigation("Artists");
-
-                    b.Navigation("User");
 
                     b.Navigation("songGenres");
                 });

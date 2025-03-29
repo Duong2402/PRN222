@@ -18,12 +18,12 @@ namespace OnlineMusicProject.Controllers
         public async Task<IActionResult> Index()
         {
             List<Songs> songsWeekTop = await _context.Songs
-                .Include(s => s.Artists)
+                .Include(s => s.Artists).Where(s => s.IsPublic == true)
                 .OrderByDescending(s => s.NumberOfListeners)  
                 .Take(5).ToListAsync();
 
             List<Songs>  songNewHit = await _context.Songs
-               .Include(s => s.Artists)
+               .Include(s => s.Artists).Where(s => s.IsPublic == true)
                .Skip(Math.Max(0, _context.Songs.Count() - 5))
                .Take(5).OrderByDescending(s => s.SongId).ToListAsync();
 

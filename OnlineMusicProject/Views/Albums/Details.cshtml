@@ -402,6 +402,45 @@
 			</div>
 		</div>
 	</div>
+	<div style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9; max-width: 73%; margin: 10px; font-family: Arial, sans-serif; display: flex; justify-content: space-between; margin-top: -70px;">
+		<div style="display: flex; gap: 15px; align-items: center; margin-bottom: 15px;">
+			<img src="@((Model.album.UserId != null && !string.IsNullOrEmpty(Model.album.User.Avatar))
+				? Model.album.User.Avatar
+				: "/img/avatar-img/avatar.png")"
+				 alt="User Avatar"
+				 style="height: 80px; width: 80px; object-fit: cover; border-radius: 50%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+
+			<div>
+				<p style="margin: 0; font-weight: bold; font-size: 18px; color: #333;">Tạo bởi:</p>
+				
+					<p style="margin: 5px 0 0 0; font-size: 16px; color: #555; color: blue">
+						@if (Model.album.UserId == null)
+						{
+							@:Không tìm thấy người tạo
+						}
+						else
+						{
+							<a href="">@Model.album.User.UserName</a>
+						}
+					</p>
+			</div>
+		</div>
+		<div style="text-align: center; margin-top: 10px;">
+			@if (User.Identity.IsAuthenticated)
+			{
+				<a asp-controller="Albums" asp-action="AddAlbumToPlaylist" asp-route-albumId ="@Model.album.AlbumId" style="display: inline-flex; align-items: center; text-decoration: none; color: #007BFF; font-size: 14px; font-weight: bold; background-color: #f0f8ff; padding: 10px 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+					<span class="icon_add_to_heart_new" style="margin-right: 5px;">❤️</span> Thêm vào yêu thích
+				</a>
+			}
+			else
+			{
+				<a asp-controller="Account" asp-action="Login" style="display: inline-flex; align-items: center; text-decoration: none; color: #007BFF; font-size: 14px; font-weight: bold; background-color: #f0f8ff; padding: 10px 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+					<span class="icon_add_to_heart_new" style="margin-right: 5px;">❤️</span> Thêm vào yêu thích
+				</a>
+			}
+		</div>
+	</div>
+
 	<div id="myModal" class="modal">
 		<div class="modal-content">
 			<span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>

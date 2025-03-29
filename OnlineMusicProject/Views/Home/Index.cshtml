@@ -111,8 +111,8 @@
                                         </ul>
                                     </li>
                                     <li><a href="/Users/Artists">Artists</a></li>
-                                    <li><a href="/Users/Blog">News</a></li>
-                                    <li><a href="/Users/Contact">Contact</a></li>
+                                    <li><a asp-controller="Albums" asp-action="List" >Albums</a></li>
+        
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -133,7 +133,7 @@
                                                         <a class="dropdown-item nav-link text-dark" asp-controller="Admin" asp-action="DashBoard">Dashboard</a>
                                                     }
                                                     <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="Profile">Profile</a>
-                                                    <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="Playlist">Playlist</a>
+                                                    <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="Playlist">My Music</a>
                                                     <a class="dropdown-item nav-link text-dark" asp-controller="Users" asp-action="HistoryOfListening">Recently</a>
                                                     <a class="dropdown-item nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
                                                 </div>
@@ -219,15 +219,18 @@
                     <div class="albums-slideshow owl-carousel">
                         @foreach (var al in Model.Albums)
                         {
-                            <div class="single-album">
-                                <img src="@al.Album_Image" alt="@al.Title"style="width: 196px; height: 245px">
-                                <div class="album-info">
-                                    <a asp-controller="Albums" asp-action="Details" asp-route-albumId ="@al.AlbumId">
-                                        <h5>@al.Title</h5>
-                                    </a>
-                                    <p>@al.Artists.ArtistName</p>
-                                </div>
-                            </div>
+                            <form asp-controller="Users" asp-action="HistoryOfListening" method="post">
+                                <input type="hidden" name="albumId" value="@al.AlbumId" />
+                                <button type="submit" style="background: transparent; border: none; display: flex;align-items: center; cursor: pointer">
+                                    <div class="single-album">
+                                        <img src="@al.Album_Image" alt="@al.Title" style="width: 196px; height: 245px">
+                                        <div class="album-info">
+                                            <h5>@al.Title</h5>
+                                            <p>@al.Artists.ArtistName</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </form>
                         }
                     </div>
                 </div>
@@ -427,8 +430,7 @@
                             <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                             <li><a asp-controller="Songs" asp-action="SongList">Songs</a></li>
                             <li><a href="/Users/Artists">Artists</a></li>
-                            <li><a href="/Users/Blog">News</a></li>
-                            <li><a href="/Users/Contact">Contact</a></li>
+                            <li><a asp-controller="Albums" asp-action="List" >Albums</a></li>
                         </ul>
                     </div>
                 </div>

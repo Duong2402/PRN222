@@ -455,8 +455,7 @@
 					<img id="avatarPreview" src="@(!string.IsNullOrEmpty(Model.playlistItem.PlaylistImage) ? Model.playlistItem.PlaylistImage : "/img/playlist-img/default_Image.png")" alt="User Avatar" class="avatar-img" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" />
 				</div>
 				<div>
-					<input name="playlistName" id="playlistName" placeholder="Enter new name" value="@Model.playlistItem.PlaylistName" />
-					<span id="nameError" class="text-danger" style="display:none;">Playlist name is required.</span>
+					<input name="playlistName" id="playlistName" placeholder="Enter new name" value="@Model.playlistItem.PlaylistName" required/>
 				</div>
 				<div style="display: flex; align-items: center; gap: 20px; padding: 10px;">
 					<button type="submit" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s; width: 100px">
@@ -521,20 +520,6 @@
 			}
 			nameError.style.display = "none";
 		});
-
-		document.getElementById("updatePlaylistForm").addEventListener("submit", function (event) {
-			var playlistName = document.querySelector('input[name="playlistName"]').value.trim();
-			var nameError = document.getElementById("nameError");
-
-			if (!playlistName) {
-				event.preventDefault();
-				nameError.style.display = "inline"; 
-				return;
-			}
-			nameError.style.display = "none";
-		});
-
-
 	</script>
 	<script>
 		function previewImage(event) {

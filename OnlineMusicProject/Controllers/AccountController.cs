@@ -251,7 +251,7 @@ namespace OnlineMusicProject.Controllers
         }
         public async Task<IActionResult> Logout()
         {
-            //await signInManager.SignOutAsync();
+            await signInManager.SignOutAsync();
             Response.Cookies.Delete("access_Token");
             Response.Cookies.Delete("refresh_Token");
             var refreshToken = Request.Cookies["refresh_Token"];

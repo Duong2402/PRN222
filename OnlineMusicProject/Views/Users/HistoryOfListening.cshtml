@@ -5,13 +5,12 @@
 @using OnlineMusicProject.Models
 @inject SignInManager<Users> signInManager;
 @inject UserManager<Users> userManager;
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model OnlineMusicProject.ViewModels.UserProfileViewModel
 @{
     var user = await userManager.GetUserAsync(User);
     var fullName = user != null ? user.FullName : "Guest";
 }
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,6 +113,37 @@
                 border: 1px solid red;
             }
 
+        #toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 300px;
+            position: relative;
+            left: 36%;
+            top: 30px
+        }
+
+        .toggle-button {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+            .toggle-button.active {
+                background-color: #007bff;
+                color: white;
+                transform: scale(1.2);
+            }
+
+            .toggle-button:not(.active) {
+                background-color: #f9f9f9;
+                color: black;
+                transform: scale(1);
+            }
 
     </style>
 </head>
@@ -128,6 +158,15 @@
             </button>
         </div>
     </section>
+    <div id="toggle-container">
+        <div class="toggle-button" id="playlist-button">
+            <a asp-action="HistoryOfListening" asp-route-category="Songs">Songs</a>
+        </div>
+        <div class="toggle-button active" id="upload-songs-button">
+            <a asp-action="HistoryOfListening" asp-route-category="Albums">Albums</a>
+        </div>
+    </div>
+
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()" style="text-align: right;">&times;</span>
@@ -145,27 +184,66 @@
                 <div class="col-12 col-lg-8">
                     <div class="login-content">
                         <h3>Lịch sử nghe nhạc</h3>
-                        <div class="login-form" style="position: relative;">
-                            @foreach(var history in Model.Histories)
+                        <div id="history-container" class="login-form" style="position: relative;">
+                            @foreach (var history in Model.histories)
                             {
-                               
-                                <div style="display: flex; align-items: center;">
-                                   
-                                        <div style="flex-grow: 1; text-align:left">
-                                           <a asp-controller="Songs" asp-action="Details" asp-route-id="@history.SongId">
-                                              <p style="margin: 0; font-weight: bold; font-size:20px">@history.Songs.NameSong</p>
-                                              <p style="margin: 0; font-size: 15px; color: gray;">@history.Songs.Artists.ArtistName</p>
-                                           </a>
-                                        </div>
-                                        <div style="text-align: right; display: flex; justify-content: space-between; align-items: center;">
-                                            <p style="margin: 0; font-size: 15px; color: gray; flex-shrink: 0;">@history.PlayedAt</p>
-                                            <a class="delete-btn" asp-action="RemoveFromHistories" asp-route-songId="@history.SongId" style="flex-shrink: 0; margin-left:10px">
-                                                <i class="fa fa-trash"></i>
+                                @if(history.Songs != null)
+                                {
+                                    <div style="display: flex; align-items: center;">
+                                        <div style="flex-grow: 1; text-align: left;">
+
+                                            <a asp-controller="Songs" asp-action="Details" asp-route-id="@history.SongId">
+                                                <p style="margin: 0; font-weight: bold; font-size: 20px;">
+                                                    @history.Songs.NameSong
+                                                </p>
+                                                <p style="margin: 0; font-size: 15px; color: gray;">
+                                                    @history.Songs.Artists?.ArtistName
+                                                </p>
                                             </a>
+
                                         </div>
 
-                                </div>
+                                        <div style="text-align: right; display: flex; justify-content: space-between; align-items: center;">
+                                            <p style="margin: 0; font-size: 15px; color: gray; flex-shrink: 0;">
+                                                @history.PlayedAt?.ToString("dd/MM/yyyy HH:mm")
+                                            </p>
+                                            <a class="delete-btn" asp-action="RemoveFromHistories" asp-route-songId="@history.SongId" style="flex-shrink: 0; margin-left: 10px;">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                }
+                                @if(history.Albums != null)
+                                {
+                                    <div style="display: flex; align-items: center;">
+                                        <div style="flex-grow: 1; text-align: left;">
+
+                                            <a asp-controller="Albums" asp-action="Details" asp-route-albumId="@history.AlbumId">
+                                                <p style="margin: 0; font-weight: bold; font-size: 20px;">
+                                                    @history.Albums.Title
+                                                </p>
+                                                <p style="margin: 0; font-size: 15px; color: gray;">
+                                                    @history.Albums.Artists?.ArtistName
+                                                </p>
+                                            </a>
+
+                                        </div>
+
+                                        <div style="text-align: right; display: flex; justify-content: space-between; align-items: center;">
+                                            <p style="margin: 0; font-size: 15px; color: gray; flex-shrink: 0;">
+                                                @history.PlayedAt?.ToString("dd/MM/yyyy HH:mm")
+                                            </p>
+                                            <a class="delete-btn" asp-action="RemoveFromHistories" asp-route-albumId="@history.AlbumId" style="flex-shrink: 0; margin-left: 10px;">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                }
+
                             }
+
                         </div>
                     </div>
                 </div>
@@ -201,9 +279,34 @@
         }
 
         document.getElementById("updateNameForm").onsubmit = function (event) {
-            // Không cần preventDefault
             closeModal(); // Đóng modal sau khi submit
         };
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const activeCategory = localStorage.getItem("activeCategory");
+            const buttons = document.querySelectorAll('.toggle-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            if (activeCategory) {
+                const activeButton = document.getElementById(activeCategory + '-button');
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+            }
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    const category = this.id.replace('-button', '');
+                    localStorage.setItem('activeCategory', category);
+                });
+            });
+        });
+
     </script>
 </body>
 

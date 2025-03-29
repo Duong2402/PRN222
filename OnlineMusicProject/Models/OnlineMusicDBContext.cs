@@ -98,6 +98,12 @@ namespace OnlineMusicProject.Models
              .WithMany()
              .HasForeignKey(h => h.UserId)
              .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Songs>()
+            .HasOne(s => s.User)
+            .WithMany()
+            .HasForeignKey(h => h.UserId)
+            .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

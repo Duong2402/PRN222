@@ -38,7 +38,6 @@
             outline: none;
             border: none;
         }
-
     </style>
 </head>
 
@@ -63,8 +62,21 @@
         </div>
     </div>
 
-    <!-- ##### Add Area End ##### -->
-    <!-- ##### Song Area Start ##### -->
+    <div class="row oneMusic-albums" style="margin-top: -60px">
+        @foreach(var al in Model.Albums)
+        {
+            <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item s e q">
+                <div class="single-album">
+                    <img src="@al.Album_Image" alt="@al.Title">
+                    <div class="album-info">
+                        <a asp-controller="Albums" asp-action="Details" asp-route-albumId="@al.AlbumId">
+                            <h5>@al.Title</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
     <div class="one-music-songs-area">
         <div class="container">
             <div class="row">

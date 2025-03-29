@@ -55,7 +55,7 @@ namespace OnlineMusicProject.Controllers
                     });
                 }
             }
-			var SongsByGenres = await _context.Songs.Include(s => s.Artists).Where(s => s.GenreId == song.GenreId && s.SongId != id).ToListAsync();
+			var SongsByGenres = await _context.Songs.Include(s => s.Artists).Where(s => s.GenreId == song.GenreId && s.SongId != id && song.IsPublic == true).ToListAsync();
             var model = new SongPlaylistViewModel
             {
                 Song = song,
@@ -69,7 +69,7 @@ namespace OnlineMusicProject.Controllers
         public async Task<IActionResult> SongList(string searchQuery, int page = 1)
         {
 			int pageSize = 6;
-			var songs = _context.Songs.Include(s => s.Artists).AsQueryable();
+			var songs = _context.Songs.Include(s => s.Artists).Where(s => s.IsPublic == true).AsQueryable();
 			if (!string.IsNullOrWhiteSpace(searchQuery))
 			{
                 songs = songs.Where(s => s.NameSong.Contains(searchQuery));
