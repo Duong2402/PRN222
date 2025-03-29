@@ -27,6 +27,8 @@ namespace OnlineMusicProject.Test
         private string _userId;
         private Guid _songId;
         private Guid _playlistId;
+        private Guid _albumId;
+        private string _category;
 
         [SetUp]
         public void Setup()
@@ -194,7 +196,7 @@ namespace OnlineMusicProject.Test
             _context.Histories.Add(history);
             await _context.SaveChangesAsync();
 
-            var result = await _controller.HistoryOfListening();
+            var result = await _controller.HistoryOfListening(_category);
 
             Assert.IsNotNull(result);
             var viewResult = result as ViewResult;
@@ -202,8 +204,8 @@ namespace OnlineMusicProject.Test
             var model = viewResult.Model as UserProfileViewModel;
             Assert.IsNotNull(model);
             Assert.AreEqual(_userId, model.User.Id);
-            Assert.AreEqual(1, model.Histories.Count);
-            Assert.AreEqual(_songId, model.Histories[0].SongId);
+            Assert.AreEqual(1, model.histories.Count);
+            Assert.AreEqual(_songId, model.histories[0].SongId);
         }
 
         [Test]
@@ -211,7 +213,7 @@ namespace OnlineMusicProject.Test
         {
             _userManagerMock.Setup(um => um.GetUserAsync(It.IsAny<ClaimsPrincipal>())).ReturnsAsync((Users)null);
 
-            var result = await _controller.HistoryOfListening();
+            var result = await _controller.HistoryOfListening(_category);
 
             Assert.IsNotNull(result);
             var redirectResult = result as RedirectToActionResult;
@@ -224,7 +226,7 @@ namespace OnlineMusicProject.Test
         [Test]
         public async Task HistoryOfListening_Post_NewHistory_ReturnsRedirectToSongDetails()
         {
-            var result = await _controller.HistoryOfListening(_songId);
+            var result = await _controller.HistoryOfListening(_songId, _albumId);
 
             Assert.IsNotNull(result);
             var redirectResult = result as RedirectToActionResult;
@@ -254,7 +256,7 @@ namespace OnlineMusicProject.Test
             _context.Histories.Add(history);
             await _context.SaveChangesAsync();
 
-            var result = await _controller.HistoryOfListening(_songId);
+            var result = await _controller.HistoryOfListening(_songId,_albumId);
 
             Assert.IsNotNull(result);
             var redirectResult = result as RedirectToActionResult;
@@ -273,8 +275,9 @@ namespace OnlineMusicProject.Test
         public async Task HistoryOfListening_Post_SongNotFound_ReturnsNotFound()
         {
             var invalidSongId = Guid.NewGuid();
+            var invalidAlbumId = Guid.NewGuid();
 
-            var result = await _controller.HistoryOfListening(invalidSongId);
+            var result = await _controller.HistoryOfListening(invalidSongId, invalidAlbumId);
 
             Assert.IsNotNull(result);
             var notFoundResult = result as NotFoundResult;
@@ -296,7 +299,7 @@ namespace OnlineMusicProject.Test
             _context.Histories.Add(history);
             await _context.SaveChangesAsync();
 
-            var result = await _controller.RemoveFromHistories(_songId);
+            var result = await _controller.RemoveFromHistories(_songId, _albumId);
 
             Assert.IsNotNull(result);
             var redirectResult = result as RedirectToActionResult;
@@ -310,7 +313,7 @@ namespace OnlineMusicProject.Test
         [Test]
         public async Task RemoveFromHistories_HistoryNotFound_ReturnsRedirectToHistoryOfListening()
         {
-            var result = await _controller.RemoveFromHistories(_songId);
+            var result = await _controller.RemoveFromHistories(_songId, _albumId);
 
             Assert.IsNotNull(result);
             var redirectResult = result as RedirectToActionResult;

@@ -20,13 +20,11 @@ namespace OnlineMusicProject.Controllers
     {
         private readonly UserManager<Users> userManager;
         private readonly OnlineMusicDBContext _context;
-        private readonly IWebHostEnvironment _environment;
-
-        public UsersController(UserManager<Users> userManager, OnlineMusicDBContext context, IWebHostEnvironment environment)
+        
+        public UsersController(UserManager<Users> userManager, OnlineMusicDBContext context)
         {
             this.userManager = userManager;
-            _context = context;
-            _environment = environment;
+            _context = context; 
         }
 
         [Authorize(Roles = "User, Admin")]

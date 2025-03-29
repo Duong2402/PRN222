@@ -98,6 +98,7 @@ namespace OnlineMusicProject.Controllers
 			if (!string.IsNullOrWhiteSpace(searchQuery))
 			{
 				albums = albums.Where(s => s.Title.Contains(searchQuery));
+
 			}
 			var songslist = await albums.ToListAsync();
 			var pageResult = PageResult.ToPaginatedList(songslist, page, pageSize);

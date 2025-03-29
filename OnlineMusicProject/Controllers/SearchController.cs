@@ -33,7 +33,7 @@ namespace OnlineMusicProject.Controllers
             {
                 return RedirectToAction("List", "Albums", new { searchQuery });
             }
-            return RedirectToAction("NotFound", "Search");
+            return RedirectToAction("Index", "Home");
         }
 
     }

@@ -28,7 +28,7 @@ namespace OnlineMusicProject.Controllers
             var artists = await _context.Artists.FirstOrDefaultAsync(a => a.ArtistName == artist);
             if (artists == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Home");
             }
             var songs = await _context.Songs.Include(s => s.Artists).Where(s => s.ArtistId == artists.ArtistId && s.IsPublic == true).ToListAsync();
             var albums = await _context.Albums.Include(al => al.Artists).Where(al => al.ArtistId == artists.ArtistId).ToListAsync();

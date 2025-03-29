@@ -63,7 +63,6 @@ builder.Services
         };
     });
 
-
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
